@@ -1,0 +1,1535 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>מצילים חיים בקליק</title>
+<style>
+:root{
+  --navy-dark:#0c1f33;--navy:#16314f;--navy-mid:#2a4d72;--navy-light:#5483a8;
+  --card:#22405f;--card-2:#1b3450;--orange:#ff8e3c;--red:#c81e2c;
+  --cream:#eef3f7;--muted:#9fb4c8;--gold:#e2c22d;--good:#3fae64;--danger-light:#ffb3b8;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#08111c;color:var(--cream);min-height:100vh;display:flex;justify-content:center;}
+#app{width:100%;max-width:480px;min-height:100vh;background:radial-gradient(circle at 30% 0%,rgba(84,131,168,.35),transparent 55%),linear-gradient(165deg,var(--navy-dark) 0%,var(--navy) 45%,var(--navy-mid) 100%);position:relative;overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.6);}
+.texture{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0px,rgba(255,255,255,.015) 1px,transparent 1px,transparent 3px);pointer-events:none;mix-blend-mode:overlay;}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px;background:linear-gradient(180deg,rgba(8,17,28,.92),rgba(8,17,28,.55) 80%,transparent);backdrop-filter:blur(2px);}
+header .icon-btn{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);color:var(--cream);cursor:pointer;transition:.15s;}
+header .icon-btn:hover{background:rgba(255,255,255,.16);}
+header .icon-btn svg{width:19px;height:19px;}
+header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 10px rgba(0,0,0,.5);}
+
+/* SCREENS */
+.screen{display:none;padding:0 18px 110px;animation:fadein .25s ease;}
+.screen.active{display:block;}
+@keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* SPLASH */
+#screen-splash{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:26px;padding-top:0;}
+#screen-splash img.logo{width:170px;height:170px;filter:drop-shadow(0 6px 18px rgba(0,0,0,.55));}
+#screen-splash h1{color:var(--gold);font-size:30px;margin:0;line-height:1.3;}
+.bounce-down{width:62px;height:62px;border:2px solid var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;animation:bounce 1.6s infinite;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(10px);}}
+
+/* PAGE TITLES */
+.page-title{text-align:center;color:var(--gold);font-size:14px;letter-spacing:.5px;opacity:.85;margin:4px 0 2px;}
+.page-heading{text-align:center;font-size:24px;font-weight:800;color:var(--cream);margin:0 0 16px;}
+
+/* MENU BUTTONS */
+.menu-list{display:flex;flex-direction:column;gap:13px;margin-top:6px;}
+.role-btn{background:linear-gradient(180deg,var(--card),var(--card-2));border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:17px 16px;color:var(--cream);font-size:18px;font-weight:700;text-align:center;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,.3);transition:.15s;display:flex;align-items:center;justify-content:center;gap:10px;}
+.role-btn:active{transform:scale(.98);}
+.role-btn:hover{border-color:var(--orange);}
+.role-btn .emoji{font-size:22px;}
+.row2{display:flex;gap:12px;}
+.row2 .role-btn{flex:1;font-size:14px;padding:15px 8px;}
+.role-btn.small{font-size:14px;padding:13px 10px;}
+.role-btn.ghost{background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.25);color:var(--muted);font-weight:600;font-size:14px;}
+.role-btn.accent{background:linear-gradient(135deg,rgba(255,142,60,.15),rgba(226,194,45,.08));border-color:rgba(255,142,60,.35);color:var(--orange);}
+
+/* CONTENT CARDS */
+.lesson-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:16px;margin-bottom:13px;}
+.lesson-card h3{margin:0 0 10px;color:var(--orange);font-size:16px;display:flex;align-items:center;gap:8px;}
+.lesson-card p{margin:0 0 8px;font-size:14px;line-height:1.85;}
+.lesson-card ul{margin:4px 0;padding-inline-start:18px;}
+.lesson-card li{font-size:14px;line-height:1.85;margin-bottom:5px;}
+.lesson-card b{color:var(--gold);}
+.note{background:rgba(226,194,45,.1);border:1px solid rgba(226,194,45,.35);color:var(--gold);padding:10px 12px;border-radius:10px;font-size:13px;margin-bottom:12px;line-height:1.65;}
+.warn{background:rgba(200,30,44,.12);border:1px solid rgba(200,30,44,.45);color:var(--danger-light);padding:10px 12px;border-radius:10px;font-size:13px;margin-bottom:12px;line-height:1.65;}
+.info{background:rgba(84,131,168,.12);border:1px solid rgba(84,131,168,.35);color:#a8c8e8;padding:10px 12px;border-radius:10px;font-size:13px;margin-bottom:12px;line-height:1.65;}
+
+/* FLOW / PROTOCOL RENDERING */
+.flow-wrap{display:flex;flex-direction:column;gap:0;}
+.flow-step{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 14px;font-size:14px;line-height:1.7;}
+.flow-decision{background:rgba(226,194,45,.1);border:1px solid rgba(226,194,45,.3);border-radius:10px;padding:12px 14px;font-size:14px;font-weight:600;color:var(--gold);line-height:1.6;}
+.flow-arrow{text-align:center;color:var(--muted);font-size:18px;padding:3px 0;line-height:1;}
+.flow-branch{display:flex;flex-direction:column;gap:6px;padding:4px 0 4px 0;}
+
+/* NUMBERED STEP-BY-STEP (flow-wrap stepper, e.g. CAT application) */
+.flow-wrap.stepper .flow-step{display:none;animation:stepFade .3s ease both;}
+.flow-wrap.stepper .flow-step.cur{display:block;}
+.flow-wrap.stepper .flow-arrow{display:none;}
+@keyframes stepFade{from{opacity:0;transform:translateX(-8px);}to{opacity:1;transform:translateX(0);}}
+.stepper-nav{display:flex;align-items:center;gap:10px;margin-top:10px;}
+.stepper-nav .step-btn{flex:1;padding:10px;border-radius:10px;text-align:center;font-size:14px;font-weight:700;cursor:pointer;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--cream);transition:.15s;user-select:none;}
+.stepper-nav .step-btn:active{transform:scale(.96);}
+.stepper-nav .step-btn.primary{background:linear-gradient(180deg,#3c6e93,#27496b);border-color:transparent;}
+.stepper-nav .step-btn.disabled{opacity:.35;pointer-events:none;}
+.stepper-counter{font-size:12px;color:var(--muted);white-space:nowrap;min-width:54px;text-align:center;}
+
+/* NUMBERED CARD STEPPER (e.g. שלבי אר"ן) */
+.card-stepper-wrap .lesson-card{display:none;}
+.card-stepper-wrap .lesson-card.cur{display:block;animation:stepFade .3s ease both;}
+.flow-yes{background:rgba(63,174,100,.1);border:1px solid rgba(63,174,100,.3);border-radius:9px;padding:10px 12px;font-size:13.5px;line-height:1.7;}
+.flow-yes::before{content:"✅ כן — ";font-weight:700;color:#a8e6bc;}
+.flow-no{background:rgba(200,30,44,.1);border:1px solid rgba(200,30,44,.3);border-radius:9px;padding:10px 12px;font-size:13.5px;line-height:1.7;}
+.flow-no::before{content:"❌ לא — ";font-weight:700;color:var(--danger-light);}
+.flow-result{background:rgba(84,131,168,.12);border:1px solid rgba(84,131,168,.3);border-radius:9px;padding:10px 12px;font-size:13.5px;line-height:1.7;color:#a8c8e8;}
+.flow-note{font-size:12.5px;color:var(--muted);padding:4px 10px;line-height:1.6;font-style:italic;}
+
+/* STEPS ROW */
+.steps-row{display:flex;gap:6px;justify-content:center;margin-bottom:14px;}
+.steps-row .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.18);}
+.steps-row .dot.done{background:var(--good);}
+.steps-row .dot.cur{background:var(--orange);width:22px;border-radius:6px;}
+
+/* BUTTONS */
+.bottom-actions{display:flex;gap:10px;margin-top:16px;}
+.btn{flex:1;padding:14px 10px;border-radius:12px;text-align:center;font-size:15px;font-weight:700;cursor:pointer;border:1px solid rgba(255,255,255,.12);transition:.15s;user-select:none;}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:linear-gradient(180deg,#3c6e93,#27496b);color:#fff;}
+.btn-primary:hover{border-color:var(--orange);}
+.btn-ghost{background:rgba(255,255,255,.05);color:var(--muted);}
+.btn-ghost:hover{color:#fff;}
+.btn-wide{width:100%;}
+
+/* SIDE MENU */
+#sidemenu-overlay{position:absolute;inset:0;background:rgba(0,0,0,.55);z-index:80;display:none;}
+#sidemenu-overlay.active{display:block;}
+#sidemenu{position:absolute;top:0;right:0;bottom:0;width:78%;max-width:340px;background:linear-gradient(180deg,var(--navy-dark),var(--navy));z-index:90;transform:translateX(100%);transition:transform .25s ease;padding:20px 16px;overflow-y:auto;box-shadow:-8px 0 24px rgba(0,0,0,.5);}
+#sidemenu.active{transform:translateX(0);}
+#sidemenu h4{color:var(--gold);font-size:13px;margin:18px 0 8px;opacity:.8;}
+#sidemenu .item{padding:12px 10px;border-radius:10px;color:var(--cream);font-size:15px;cursor:pointer;display:flex;align-items:center;gap:10px;}
+#sidemenu .item:hover{background:rgba(255,255,255,.07);}
+#sidemenu .close-x{position:absolute;top:16px;left:16px;cursor:pointer;color:var(--muted);font-size:22px;}
+
+/* SIDE MENU — ROLE SECTION */
+#sm-role-section:empty{display:none;}
+
+/* PROTOCOL / DRUG LIST */
+.proto-list{display:flex;flex-direction:column;gap:10px;}
+.proto-item{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:.15s;}
+.proto-item:hover{border-color:var(--orange);background:rgba(255,255,255,.08);}
+.proto-item .pi-label{font-size:14.5px;font-weight:600;color:var(--cream);flex:1;}
+.proto-item .pi-num{font-size:11px;color:var(--muted);background:rgba(255,255,255,.08);padding:2px 8px;border-radius:8px;margin-left:8px;white-space:nowrap;}
+.proto-item .pi-arrow{color:var(--muted);font-size:18px;}
+
+/* EVAC TABLE */
+#screen-evac-tools .evac-table-wrap{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;overflow:hidden;margin-bottom:16px;}
+.evac-table{width:100%;border-collapse:collapse;}
+.evac-table thead th{background:rgba(255,255,255,.08);color:var(--gold);font-size:13px;font-weight:700;padding:11px 12px;text-align:right;}
+.evac-table thead th:last-child{text-align:center;}
+.evac-table tbody tr{border-top:1px solid rgba(255,255,255,.06);}
+.evac-table tbody tr:hover{background:rgba(255,255,255,.03);}
+.evac-table td{padding:11px 12px;font-size:13.5px;vertical-align:middle;}
+.evac-table td:last-child{text-align:center;min-width:70px;}
+.evac-name-row{display:flex;align-items:center;gap:10px;}
+.evac-thumb{width:46px;height:34px;border-radius:8px;object-fit:cover;flex-shrink:0;border:1px solid rgba(255,255,255,.14);box-shadow:0 2px 8px rgba(0,0,0,.4),inset 0 0 0 1px rgba(0,0,0,.15);filter:brightness(.9) saturate(.9) contrast(1.05);}
+.evac-name{font-weight:700;}
+.evac-name small{display:block;font-weight:400;color:var(--muted);font-size:12px;}
+.badge-armor{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;background:rgba(255,255,255,.08);color:var(--muted);}
+.btn-evac{background:linear-gradient(180deg,#3c6e93,#27496b);color:#fff;border:none;border-radius:8px;padding:7px 11px;font-size:13px;font-weight:700;cursor:pointer;transition:.15s;}
+.btn-evac:active{transform:scale(.96);}
+
+/* EVAC MODAL */
+#evacModal{position:absolute;inset:0;background:rgba(0,0,0,.65);z-index:100;display:none;align-items:flex-end;justify-content:center;}
+#evacModal.open{display:flex;}
+.evac-modal-box{background:linear-gradient(180deg,#1b3450,#0c1f33);border:1px solid rgba(255,255,255,.12);border-top-left-radius:20px;border-top-right-radius:20px;width:100%;max-height:82vh;overflow-y:auto;padding:20px 18px 40px;box-shadow:0 -8px 32px rgba(0,0,0,.5);animation:slideUp .25s ease-out;position:relative;}
+@keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
+.evac-hero-wrap{position:relative;margin:-20px -18px 14px;overflow:hidden;border-top-left-radius:20px;border-top-right-radius:20px;height:170px;background:#0c1f33;}
+.evac-hero-bg{position:absolute;inset:-12px;background-size:cover;background-position:center;filter:blur(22px) brightness(.5) saturate(1.1);transform:scale(1.15);}
+.evac-hero-wrap img{position:relative;width:100%;height:100%;object-fit:contain;object-position:center;display:block;filter:brightness(.94) saturate(.95) contrast(1.05);}
+.evac-hero-fade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,31,51,0) 55%,rgba(20,42,66,.7) 84%,#1b3450 100%);pointer-events:none;}
+.evac-hero-wrap video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;display:none;}
+.evac-hero-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:50%;background:rgba(8,17,28,.6);backdrop-filter:blur(3px);border:1px solid rgba(255,255,255,.3);display:none;align-items:center;justify-content:center;color:#fff;font-size:20px;cursor:pointer;transition:transform .15s;}
+.evac-hero-play:active{transform:translate(-50%,-50%) scale(.92);}
+.evac-hero-wrap.has-video{cursor:pointer;}
+.evac-hero-wrap.has-video .evac-hero-play{display:flex;}
+.evac-hero-wrap.playing .evac-hero-bg,.evac-hero-wrap.playing .evac-hero-fade,.evac-hero-wrap.playing .evac-hero-play,.evac-hero-wrap.playing img{display:none;}
+.evac-hero-wrap.playing video{display:block;}
+.evac-modal-box h3{color:var(--gold);margin:0 0 16px;font-size:19px;}
+.evac-close{position:absolute;top:16px;left:16px;background:rgba(8,17,28,.55);backdrop-filter:blur(3px);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.15);color:#fff;font-size:20px;cursor:pointer;line-height:1;}
+.evac-tabs{display:flex;gap:4px;margin-bottom:16px;}
+.evac-tab{flex:1;padding:10px 6px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(--muted);font-size:14px;font-weight:600;cursor:pointer;text-align:center;transition:.15s;}
+.evac-tab.active{background:rgba(84,131,168,.25);border-color:var(--navy-light);color:var(--cream);}
+.evac-panel{display:none;}
+.evac-panel.active{display:block;}
+.evac-row{margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.06);}
+.evac-row:last-child{border-bottom:none;}
+.evac-lbl{font-size:12px;color:var(--muted);margin-bottom:3px;}
+.evac-val{font-size:15px;color:var(--cream);font-weight:500;}
+.evac-pros{background:rgba(63,174,100,.12);border:1px solid rgba(63,174,100,.3);color:#a8e6bc;padding:12px;border-radius:10px;margin-bottom:12px;font-size:14px;line-height:1.7;}
+.evac-cons{background:rgba(200,30,44,.12);border:1px solid rgba(200,30,44,.35);color:var(--danger-light);padding:12px;border-radius:10px;font-size:14px;line-height:1.7;}
+.evac-pros-title,.evac-cons-title{font-weight:700;margin-bottom:6px;display:block;font-size:13px;}
+
+.muted{color:var(--muted);}
+.small{font-size:12.5px;}
+.center{text-align:center;}
+.placeholder-card{background:rgba(255,255,255,.03);border:1px dashed rgba(255,255,255,.15);border-radius:12px;padding:20px;text-align:center;color:var(--muted);font-size:14px;}
+
+/* DRUG CARDS */
+.drug-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;margin-bottom:12px;overflow:hidden;}
+.drug-header{background:rgba(255,255,255,.06);padding:12px 14px;display:flex;align-items:baseline;justify-content:space-between;gap:8px;border-bottom:1px solid rgba(255,255,255,.07);}
+.drug-name{font-size:15px;font-weight:700;color:var(--cream);}
+.drug-dose{font-size:12px;color:var(--muted);white-space:nowrap;font-family:monospace;}
+.drug-body{padding:4px 0;}
+.drug-row{padding:9px 14px;border-bottom:1px solid rgba(255,255,255,.05);display:flex;flex-direction:column;gap:3px;}
+.drug-row:last-child{border-bottom:none;}
+.drug-lbl{font-size:11px;color:var(--gold);font-weight:700;letter-spacing:.4px;text-transform:uppercase;}
+.drug-val{font-size:13.5px;color:var(--cream);line-height:1.75;}
+
+/* SCHEME TABLE */
+.scheme-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:14px;}
+.scheme-table{width:100%;border-collapse:collapse;font-size:13.5px;}
+.scheme-table .sec-row td{background:rgba(255,255,255,.08);color:var(--gold);font-weight:700;font-size:13px;padding:9px 12px;letter-spacing:.3px;}
+.scheme-table tr:not(.sec-row){border-bottom:1px solid rgba(255,255,255,.05);}
+.scheme-table tr:not(.sec-row):hover{background:rgba(255,255,255,.03);}
+.scheme-table td{padding:9px 10px;vertical-align:top;line-height:1.65;}
+.scheme-table td:first-child{width:42px;text-align:center;padding-right:4px;}
+.ltr{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;font-weight:800;font-size:13px;flex-shrink:0;}
+.ltr-X{background:rgba(192,57,43,.25);color:#e74c3c;border:1px solid rgba(192,57,43,.4);}
+.ltr-C{background:rgba(44,95,138,.35);color:#5dade2;border:1px solid rgba(44,95,138,.5);}
+.ltr-A{background:rgba(30,125,92,.25);color:#58d68d;border:1px solid rgba(30,125,92,.4);}
+.ltr-R{background:rgba(108,52,131,.25);color:#c39bd3;border:1px solid rgba(108,52,131,.4);}
+.ltr-E{background:rgba(211,84,0,.25);color:#f0b27a;border:1px solid rgba(211,84,0,.4);}
+.ltr-PFC{background:rgba(125,102,8,.25);color:var(--gold);border:1px solid rgba(125,102,8,.4);font-size:10px;width:36px;}
+.scheme-note{font-size:12px;color:var(--muted);padding:6px 10px 10px;line-height:1.6;font-style:italic;}
+</style>
+</head>
+<body>
+<div id="app">
+<div class="texture"></div>
+
+<header id="mainHeader" style="display:none;">
+  <div class="icon-btn" id="btnMenu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></div>
+  <div class="logo-wrap"><img src="assets/logo.png" alt="לוגו"></div>
+  <div class="icon-btn" id="btnHome"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></div>
+</header>
+
+<div id="sidemenu-overlay"><div id="sidemenu">
+  <div class="close-x" id="btnCloseMenu">✕</div>
+  <div class="center" style="margin-top:6px;"><img src="assets/logo.png" style="width:64px;height:64px;border-radius:50%;"></div>
+  <h4>תפריט ראשי</h4>
+  <div class="item" data-go="menu">🏠 מי אני?</div>
+  <div id="sm-role-section"></div>
+  <h4>כלים נוספים</h4>
+  <div class="item" data-go="evac-tools">🚑 כלי פינוי</div>
+  <div class="item" data-go="lesson:arn">📋 תו"ל אר"ן</div>
+  <div class="item" data-go="lesson:lessons">📖 לקחי מלחמת התקומה</div>
+</div></div>
+
+<!-- SPLASH -->
+<section class="screen active" id="screen-splash">
+  <img class="logo" src="assets/logo.png" alt="ענף רפואה קרבית">
+  <h1>מצילים חיים<br>בקליק</h1>
+  <div class="bounce-down" id="btnEnter"><svg viewBox="0 0 24 24" fill="none" stroke="#ff8e3c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="4" x2="12" y2="20"/><polyline points="6 14 12 20 18 14"/></svg></div>
+  <div class="muted small">לומדה דיגיטלית לאנשי הרפואה במילואים</div>
+</section>
+
+<!-- MAIN MENU -->
+<section class="screen" id="screen-menu">
+  <div class="page-title">מצילים חיים בקליק</div>
+  <div class="page-heading">מי אני?</div>
+  <div class="menu-list">
+    <div class="role-btn" data-go="role:ls"><span class="emoji">🪖</span> מח"צ — מציל חיים צבאי</div>
+    <div class="role-btn" data-go="role:md"><span class="emoji">🩹</span> חובש</div>
+    <div class="role-btn" data-go="role:sr"><span class="emoji">⚕️</span> מטפל בכיר</div>
+    <div class="row2">
+      <div class="role-btn small" data-go="evac-tools">🚑 כלי פינוי</div>
+      <div class="role-btn small" data-go="lesson:arn">📋 תו"ל אר"ן</div>
+    </div>
+    <div class="role-btn ghost" data-go="lesson:lessons">📖 לקחי מלחמת התקומה</div>
+  </div>
+</section>
+
+<!-- PROTOCOLS MENU -->
+<section class="screen" id="screen-sr-protocols">
+  <div class="page-title">מטפל בכיר</div>
+  <div class="page-heading">פרוטוקולים</div>
+  <div class="proto-list">
+    <div class="proto-item" data-go="lesson:proto-pain"><span class="pi-num">1</span><span class="pi-label">פרוטוקול טיפול בכאב</span><span class="pi-arrow">‹</span></div>
+    <div class="proto-item" data-go="lesson:proto-antibiotics"><span class="pi-num">2</span><span class="pi-label">פרוטוקול הטיפול באנטיביוטיקה</span><span class="pi-arrow">‹</span></div>
+    <div class="proto-item" data-go="lesson:proto-vascular"><span class="pi-num">3</span><span class="pi-label">פרוטוקול השגת גישה למחזור הדם</span><span class="pi-arrow">‹</span></div>
+    <div class="proto-item" data-go="lesson:proto-death"><span class="pi-num">4</span><span class="pi-label">פרוטוקול סיום מאמצי החייאה וקביעת מוות</span><span class="pi-arrow">‹</span></div>
+    <div class="proto-item" data-go="lesson:proto-chest-vent"><span class="pi-num">5</span><span class="pi-label">פרוטוקול טיפול בפצוע חזה מונשם</span><span class="pi-arrow">‹</span></div>
+    <div class="proto-item" data-go="lesson:proto-chest-spont"><span class="pi-num">6</span><span class="pi-label">פרוטוקול טיפול בפצוע חזה נושם ספונטנית</span><span class="pi-arrow">‹</span></div>
+    <div class="proto-item" data-go="lesson:proto-airway"><span class="pi-num">7</span><span class="pi-label">פרוטוקול הערכת וניהול נתיב אוויר</span><span class="pi-arrow">‹</span></div>
+    <div class="proto-item" data-go="lesson:proto-damage-ctrl"><span class="pi-num">8</span><span class="pi-label">פרוטוקול החייאת בקרת נזקים בשדה בפצוע מדמם</span><span class="pi-arrow">‹</span></div>
+  </div>
+  <div class="bottom-actions"><div class="btn btn-ghost btn-wide" data-go="menu">⟵ חזרה</div></div>
+</section>
+
+<!-- DRUGS MENU -->
+<section class="screen" id="screen-sr-drugs">
+  <div class="page-title">מטפל בכיר</div>
+  <div class="page-heading">תרופות</div>
+  <div class="proto-list">
+    <div class="proto-item" data-go="lesson:drug-sedation"><span class="pi-label">הרדמה ואלחוש</span><span class="pi-arrow">‹</span></div>
+    <div class="proto-item" data-go="lesson:drug-analgesia"><span class="pi-label">אנלגטיקה</span><span class="pi-arrow">‹</span></div>
+    <div class="proto-item" data-go="lesson:drug-deep-shock"><span class="pi-label">פצוע בהלם עמוק</span><span class="pi-arrow">‹</span></div>
+    <div class="proto-item" data-go="lesson:drug-antibiotics"><span class="pi-label">אנטיביוטיקה</span><span class="pi-arrow">‹</span></div>
+    <div class="proto-item" data-go="lesson:drug-crush"><span class="pi-label">פצוע מעיכה</span><span class="pi-arrow">‹</span></div>
+    <div class="proto-item" data-go="lesson:drug-abc"><span class="pi-label">אב"כ</span><span class="pi-arrow">‹</span></div>
+    <div class="proto-item" data-go="lesson:drug-misc"><span class="pi-label">שונות</span><span class="pi-arrow">‹</span></div>
+  </div>
+  <div class="bottom-actions"><div class="btn btn-ghost btn-wide" data-go="menu">⟵ חזרה</div></div>
+</section>
+
+<!-- כלי פינוי -->
+<section class="screen" id="screen-evac-tools">
+  <div class="page-title">לומדה</div>
+  <div class="page-heading">כלי פינוי</div>
+  <div class="evac-table-wrap">
+    <table class="evac-table">
+      <thead><tr><th>כלי</th><th>מהירות</th><th>מיגון</th><th></th></tr></thead>
+      <tbody>
+        <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/nagmash.jpg" alt="נגמ&quot;ש פינוי" loading="lazy"><span class="evac-name">נגמ"ש פינוי</span></div></td><td>40 קמ"ש</td><td><span class="badge-armor">נק"ל</span></td><td><button class="btn-evac" onclick="openEvac('p1')">פרטים</button></td></tr>
+        <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/NAMER.jpg" alt="נמ&quot;ר פינוי" loading="lazy"><span class="evac-name">נמ"ר פינוי</span></div></td><td>60 קמ"ש</td><td><span class="badge-armor">נק"ל + נ"ט</span></td><td><button class="btn-evac" onclick="openEvac('p2')">פרטים</button></td></tr>
+        <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/Achzarit.jpg" alt="אכזרית פינוי" loading="lazy"><span class="evac-name">אכזרית פינוי</span></div></td><td>40 קמ"ש</td><td><span class="badge-armor">נק"ל + נ"ט</span></td><td><button class="btn-evac" onclick="openEvac('p3')">פרטים</button></td></tr>
+        <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/hammer.jpg" alt="האמר גנרי" loading="lazy"><span class="evac-name">האמר גנרי</span></div></td><td>70 קמ"ש</td><td><span class="badge-armor">לא ממוגן</span></td><td><button class="btn-evac" onclick="openEvac('p4')">פרטים</button></td></tr>
+        <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/yanshuf.jpg" alt="ינשוף" loading="lazy"><span class="evac-name">ינשוף</span></div></td><td>מהיר</td><td><span class="badge-armor">לא ממוגן</span></td><td><button class="btn-evac" onclick="openEvac('p5')">פרטים</button></td></tr>
+        <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/yasur.jpg" alt="יסעור" loading="lazy"><span class="evac-name">יסעור</span></div></td><td>מהיר</td><td><span class="badge-armor">לא ממוגן</span></td><td><button class="btn-evac" onclick="openEvac('p6')">פרטים</button></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="bottom-actions"><div class="btn btn-ghost btn-wide" data-go="menu">⟵ חזרה לתפריט הראשי</div></div>
+  <div id="evacModal">
+    <div class="evac-modal-box">
+      <button class="evac-close" onclick="closeEvac()">✕</button>
+      <div class="evac-hero-wrap" id="eHeroWrap">
+        <div class="evac-hero-bg" id="eHeroBg"></div>
+        <img id="eHeroImg" src="" alt="">
+        <video id="eHeroVideo" playsinline controls></video>
+        <div class="evac-hero-fade"></div>
+        <div class="evac-hero-play" id="eHeroPlay">▶</div>
+      </div>
+      <h3 id="evacTitle">—</h3>
+      <div class="evac-tabs">
+        <div class="evac-tab active" data-etab="gen">מאפיינים</div>
+        <div class="evac-tab" data-etab="pc">יתרונות וחסרונות</div>
+      </div>
+      <div class="evac-panel active" id="epanel-gen">
+        <div class="evac-row"><div class="evac-lbl">כוח רפואי</div><div class="evac-val" id="eCrew"></div></div>
+        <div class="evac-row"><div class="evac-lbl">העמסת נפגעים</div><div class="evac-val" id="eCapacity"></div></div>
+        <div class="evac-row"><div class="evac-lbl">מיגון</div><div class="evac-val" id="eArmor"></div></div>
+        <div class="evac-row"><div class="evac-lbl">מהירות</div><div class="evac-val" id="eSpeed"></div></div>
+      </div>
+      <div class="evac-panel" id="epanel-pc">
+        <div class="evac-pros"><span class="evac-pros-title">✅ יתרונות</span><span id="ePros"></span></div>
+        <div class="evac-cons"><span class="evac-cons-title">⚠️ חסרונות</span><span id="eCons"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LESSON (generic) -->
+<section class="screen" id="screen-lesson">
+  <div class="page-title" id="lessonEyebrow">—</div>
+  <div class="page-heading" id="lessonTitle">—</div>
+  <div class="steps-row" id="lessonSteps"></div>
+  <div id="lessonBody"></div>
+  <div class="bottom-actions" id="lessonActions"></div>
+</section>
+
+</div>
+<script>
+/* ---- EVAC DATA ---- */
+const evacData={
+  p1:{title:'נגמ"ש פינוי',img:'assets/nagmash.jpg',crew:'מט"ב + 2 חובשים',capacity:'2 בשכיבה עם יכולת טיפול · 4 בשכיבה ללא טיפול · 6 בישיבה',armor:'נק"ל',speed:'40 קמ"ש',pros:'יכולת טיפול בנסיעה · מתקון ייעודי · עבירות בשטח',cons:'איטי מאוד · מיגון מנק"ל בלבד'},
+  p2:{title:'נמ"ר פינוי',img:'assets/NAMER.jpg',crew:'מט"ב + 2 חובשים',capacity:'2 בשכיבה עם יכולת טיפול · 5 בישיבה עם טיפול מוגבל',armor:'נק"ל + נ"ט',speed:'60 קמ"ש',pros:'מתקון ייעודי · טיפול תוך כדי נסיעה',cons:'צפוף'},
+  p3:{title:'אכזרית פינוי',img:'assets/Achzarit.jpg',video:'assets/achzarit.mp4',crew:'מט"ב + 2 חובשים',capacity:'עד 3 בשכיבה (טיפול ב-1 בלבד) · 4 בישיבה עם טיפול מוגבל',armor:'נק"ל + נ"ט',speed:'40 קמ"ש',pros:'טיפול תוך כדי נסיעה',cons:'העמסה מורכבת — מסדרון צר · איטי · אין מתקון לאלונקות'},
+  p4:{title:'האמר גנרי',img:'assets/hammer.jpg',crew:'חובש אורגני + מט"ב במידת האפשר',capacity:'2 בשכיבה עם טיפול מוגבל · 4 בשכיבה ללא טיפול',armor:'לא ממוגן',speed:'70 קמ"ש',pros:'עבירות גבוהה · מהיר · מתקון ייעודי · טיפול וניטור',cons:'לא ממוגן · לא מואר · בפינוי אין מקום ללוחמים'},
+  p5:{title:'ינשוף',img:'assets/yanshuf.jpg',crew:'חובשים + 1-2 מט"בים',capacity:'2 בשכיבה דחופים · 6 בישיבה',armor:'לא ממוגן',speed:'מהירות גבוהה',pros:'מהיר · טיפול וליווי נמרץ · העמסת ציוד',cons:'לא ממוגן · אין מתקון'},
+  p6:{title:'יסעור',img:'assets/yasur.jpg',crew:'חובשים + 3 מט"בים',capacity:'4 בשכיבה עם טיפול · 7 ללא טיפול · 42 בישיבה',armor:'לא ממוגן',speed:'מהירות גבוהה',pros:'מהיר · טיפול וליווי נמרץ · העמסת ציוד',cons:'לא ממוגן · מאסיבי ורועש · אין מתקון'}
+};
+function openEvac(id){
+  const d=evacData[id];if(!d)return;
+  const hero=document.getElementById('eHeroImg');
+  hero.src=d.img;hero.alt=d.title;
+  document.getElementById('eHeroBg').style.backgroundImage=`url('${d.img}')`;
+  const wrap=document.getElementById('eHeroWrap');
+  const video=document.getElementById('eHeroVideo');
+  wrap.classList.remove('playing');
+  video.pause();
+  video.removeAttribute('src');video.load();
+  if(d.video){wrap.classList.add('has-video');video.dataset.src=d.video;}
+  else{wrap.classList.remove('has-video');delete video.dataset.src;}
+  document.getElementById('evacTitle').textContent=d.title;
+  document.getElementById('eCrew').textContent=d.crew;
+  document.getElementById('eCapacity').textContent=d.capacity;
+  document.getElementById('eArmor').textContent=d.armor;
+  document.getElementById('eSpeed').textContent=d.speed;
+  document.getElementById('ePros').textContent=d.pros;
+  document.getElementById('eCons').textContent=d.cons;
+  document.querySelectorAll('.evac-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.evac-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelector('.evac-tab[data-etab="gen"]').classList.add('active');
+  document.getElementById('epanel-gen').classList.add('active');
+  document.getElementById('evacModal').classList.add('open');
+}
+function closeEvac(){
+  document.getElementById('evacModal').classList.remove('open');
+  const video=document.getElementById('eHeroVideo');
+  video.pause();
+  document.getElementById('eHeroWrap').classList.remove('playing');
+}
+document.getElementById('eHeroPlay').addEventListener('click',()=>{
+  const wrap=document.getElementById('eHeroWrap');
+  if(!wrap.classList.contains('has-video'))return;
+  const video=document.getElementById('eHeroVideo');
+  if(!video.src&&video.dataset.src)video.src=video.dataset.src;
+  wrap.classList.add('playing');
+  video.play();
+});
+document.querySelectorAll('.evac-tab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const tab=btn.getAttribute('data-etab');
+    document.querySelectorAll('.evac-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.evac-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('epanel-'+tab).classList.add('active');
+  });
+});
+document.getElementById('evacModal').addEventListener('click',e=>{if(e.target.id==='evacModal')closeEvac();});
+
+/* ===== LESSON REGISTRY ===== */
+const D={};
+
+/* ---- מח"צ: חלץ טפל ---- */
+D['ls-chaltz']={eyebrow:'מח"צ',title:'חלץ טפל',group:'ls',seq:0,body:`
+<div class="lesson-card">
+  <h3>🎯 הכרזה ופתיחת האירוע</h3>
+  <p><b>הכרזה: "פצוע בכוח" / "נפצעתי"</b> + השבה באש.</p>
+</div>
+<div class="lesson-card">
+  <h3>🔄 סדר פעולות — פצוע בכוח</h3>
+  <div class="flow-wrap">
+    <div class="flow-step">1️⃣ השגת עליונות באש</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">2️⃣ חילוץ עצמי / חילוץ הפצוע למחסה ראשוני על ידי כוח שהוגדר לכך</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">3️⃣ עצירת דימום פורץ על ידי לוחם / מטפל סמוך</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">4️⃣ העברת דיווח אג"מי</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">5️⃣ הגעה למקום מוגן — מרחק סביר מגורמי סיכון, בו ניתן לתת לפצוע טיפול ראשוני</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">6️⃣ המשך לחימה והשלמת המשימה <b>תוך פינוי הפצוע לנקודת הטיפול</b></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">7️⃣ פינוי</div>
+  </div>
+</div>`};
+
+/* ---- מח"צ: עצירת דימומים ---- */
+D['ls-bleed']={eyebrow:'מח"צ',title:'עצירת דימומים',group:'ls',seq:1,body:`
+<div class="lesson-card">
+  <h3>🩸 שיטות עצירת דימום</h3>
+  <div class="flow-wrap">
+    <div class="flow-step"><b>לחץ ישיר (F.C — First Care)</b><br>עצירת הדימום מכלי הדם הספציפי שנפגע. לחץ ישיר זה אדיר! (מניעת נמק בגפה)</div>
+    <div class="flow-arrow">או</div>
+    <div class="flow-step"><b>לחץ עקיף (CAT / נקודת לחיצה)</b><br>הפסקת זרימת הדם לכל הגפה</div>
+  </div>
+  <div class="note">דימום מגפה תחת אש = הנחת CAT</div>
+</div>
+
+<div class="lesson-card">
+  <h3>📋 א.ת.ק.ל.ח — התוויות להנחת CAT</h3>
+  <ul>
+    <li><b>א — אר"ן:</b> אירוע רב נפגעים</li>
+    <li><b>ת — תחת אש</b></li>
+    <li><b>ק — קטיעה</b></li>
+    <li><b>ל — לחץ ישיר שכשל</b></li>
+    <li><b>ח — חוסר הכרה</b> כתוצאה מדימום (לא מחבלת ראש / תרופות)</li>
+  </ul>
+  <div class="note">בכל מצב של פציעה שלא עונה על אחת מההתוויות — נשתמש ב-FC</div>
+</div>
+
+<div class="lesson-card">
+  <h3>🔴 הנחת CAT — שלב אחר שלב</h3>
+  <div class="flow-wrap">
+    <div class="flow-step">1️⃣ ווידוא היעדרות חפצים בכיסים — כרוך את הרצועה בראש הגפה</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">2️⃣ <b>מתיחה ראשונית חזקה!</b> אבטח באמצעות הסקוץ'</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">3️⃣ <b>הרם וסובב את מוט ההידוק ככל האפשר!</b></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">4️⃣ נעל את המוט בגשר, קפל את שארית הרצועה ואבטח עם הסקוץ' מעל</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">5️⃣ <b>וודא שהדימום נעצר</b> ורשום שעה ב-4 ספרות (XX:XX)</div>
+  </div>
+  <div class="warn">תחת אש — ההנחה תתבצע מעל המדים ובראש הגפה! · אם ח.ע. כשל — הנח ח.ע. נוסף מעל לראשון</div>
+</div>
+
+<div class="lesson-card">
+  <h3>🩹 הנחת First Care — תחבושת אישית</h3>
+  <div class="flow-wrap">
+    <div class="flow-step">1️⃣ הנחת התחבושת על הפציעה</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">2️⃣ העבר את האגד המתוח דרך הגשר פעמיים</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">3️⃣ מתח את האגד לכיוון הנגדי, על הגשר</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">4️⃣ <b>לפף את האגד סביב הגפה — שמור על המתיחה!</b></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">5️⃣ קבע בעזרת התפס הפלסטי</div>
+  </div>
+  <div class="warn">אם התחבושת לא עוזרת ונספגת בדם — <b>יש לשים CAT!</b> להניח את התחבושת כך שהדימום נמצא בין הגשרון לבין המדבקה הלבנה.</div>
+</div>
+
+<div class="lesson-card">
+  <h3>💪 נקודות לחיצה</h3>
+  <p>לחיצה חזקה על העורק למניעת זרימת דם להמשך הגפה. <b>יש לבצע רק אם כשלו הניסיונות לעצירה ע"י FC/CAT</b>, או לבצע עד הגעת CAT.</p>
+  <ul>
+    <li><b>עצם הבריח:</b> להכניס שתי אצבעות לתוך השקע של עצם הבריח וללחוץ את העורק על גבי העצם</li>
+    <li><b>מפשעה (פמורלי):</b> היד באגרוף — להפעיל לחץ עם משקל הגוף. ללחוץ את העורק על גבי עצם הירך</li>
+  </ul>
+</div>`};
+
+/* ---- מח"צ: סכמת SABC ---- */
+D['ls-scheme']={eyebrow:'מח"צ',title:'סכמת הטיפול בפצוע בודד',group:'ls',seq:2,body:`
+<div class="lesson-card">
+  <h3>🛡️ S — Safety (בטיחות)</h3>
+  <p>בטיחות המטפל והמטופל: הרחקה מגורם מסכן, נטרול אויב, הסרת נשק ונצירתו.</p>
+  <p><b>עצירת דימומים פורצים:</b> ח"ע בראש גפה, F.C, נקודת לחיצה.</p>
+  <p>דיווח ראשוני ודרישה לפינוי — לפי שיטת <b>5 המ"מים:</b></p>
+  <ul>
+    <li>מי אני ולמי אני פונה</li>
+    <li>מיקום</li>
+    <li>מה קרה</li>
+    <li>מתי קרה</li>
+    <li>מספר פצועים ומצבם</li>
+  </ul>
+</div>
+<div class="lesson-card">
+  <h3>🌬️ A — Airway (נתיב אוויר)</h3>
+  <p>בדיקת הכרה על ידי <b>קול בלבד</b>.</p>
+  <p>סילוק הפרשות — הטיה קלה של הראש הצידה <b>מבלי להכניס עצמים לפיו של המטופל</b>.</p>
+</div>
+<div class="lesson-card">
+  <h3>💨 B — Breathing (נשימה)</h3>
+  <p>בדיקת נשימה: <b>נושם / לא נושם (10 שניות)</b>.</p>
+  <p>ביצוע חש"י (חצי שכיבה חצי ישיבה) לכל פצוע שנושם בצורה לא תקינה / לא נושם.</p>
+</div>
+<div class="lesson-card">
+  <h3>🩸 C — Circulation (מחזור דם)</h3>
+  <p>סריקת דימומים נוספים ועצירתם — בגפיים, באיזורי מעבר.</p>
+  <p>העלאת דיווח נוסף: דרישה לפינוי + מצב הפצועים (הכרה, נשימה, פציעות) + חבירה למטפל.</p>
+  <p><b>הכנה לפינוי:</b> הפשטה, העמסה לאלונקה, כיסוי וקיבוע.</p>
+  <p>ביצוע סכמת מג"ן (יהלו"ם).</p>
+</div>
+`};
+
+/* ---- מח"צ: ARN ---- */
+D['ls-arn']={eyebrow:'מח"צ',title:'אר"ן — אירוע רב נפגעים',group:'ls',seq:3,body:`
+<div class="lesson-card">
+  <h3>📖 הגדרה</h3>
+  <p>אר"ן = אירוע בו מספר הנפגעים וחומרת הפציעות <b>גוברים על המשאבים הקיימים</b> בשטח ועל יכולת הצוות הרפואי להעניק טיפול מיטבי לכלל הפצועים.</p>
+  <p>באר"ן נתמקד באיתור מוקדם של <b>הפצועים בני ההצלה</b> ונשקיע את משאבי הפינוי והטיפול לטובתם.</p>
+</div>
+
+<div class="lesson-card">
+  <h3>👥 תפקידי פיקוד</h3>
+  <p><b>מפקד רפואי:</b> המטפל הבכיר ביותר באירוע. יכול להתחלף במהלך האירוע אם מגיע בכיר יותר.</p>
+  <p><b>מפקד אג"מי:</b> מפקד. אחראי על יישום ההנחיות, סידור הזירה, איסוף נתונים, חלוקת משימות, דיווחים וחבירה לגורמים נוספים.</p>
+  <div class="note">מפקד רפואי ומפקד אג"מי — <b>צמודים ולא נפרדים</b> לאורך כל האירוע!</div>
+</div>
+
+<div class="lesson-card">
+  <h3>📍 שלב 1 — הגעה לזירה וריכוז פצועים</h3>
+  <p>מנהל האירוע קובע נקודת ריכוז פצועים ומחלק את המח"צים לגזרות.</p>
+  <p><b>דיווח בהגעה (ע"י מנהל האירוע):</b></p>
+  <ul>
+    <li>עדכון הגעה לאירוע ומיקום</li>
+    <li>סוג האירוע (פיגוע / תאונת דרכים / ירי / מטען חבלה וכו')</li>
+    <li>תמונת מצב אג"מית (בקצרה)</li>
+    <li><b>הכרזת "אר"ן" בקשר</b></li>
+    <li>חלוקה לגזרות וכוחות</li>
+    <li>מחשבה על הזנקת מסוק</li>
+  </ul>
+  <p><b>דגשים לבחירת נקודת ריכוז פצועים:</b></p>
+  <ul>
+    <li>בטוחה עד כמה שניתן</li>
+    <li>מאפשרת סידור מרווח של הפצועים אחד אחרי השני</li>
+    <li>סמוכה לציר פינוי</li>
+  </ul>
+  <p><b>עצירת דימומים פורצים לכל הפצועים בגזרה בלבד</b> ← סחיבת הפצועים לנקודת הריכוז. קריאה לפצועים מהלכים להגיע. מסדרים עם הראש לאותו כיוון, מרחק אלונקה בין פצוע לפצוע.</p>
+</div>
+
+<div class="lesson-card">
+  <h3>🏷️ שלב 2 — טריאז' (מיון ראשוני) — SAB1/2C</h3>
+  <ul>
+    <li><b>דחוף</b> — פצוע עם סכנה לחיים או לאיבר</li>
+    <li><b>לא דחוף</b> — פצוע ללא סכנה לחיים / לאיבר</li>
+    <li><b>ממתין</b> — פצוע שאינו נושם ← מוציאים אותו משורת הפצועים</li>
+  </ul>
+  <p>מח"צים — לאחר סיום ריכוז הפצועים: <b>הפשטה, העמסה על אלונקה, כיסוי, פינוי.</b></p>
+</div>
+
+<div class="lesson-card">
+  <h3>📊 שלב 3 — סיכום טריאז'</h3>
+  <p>מפקד אג"מי ומפקד רפואי עוברים על טבלת השליטה וקובעים סדר קדימויות לטיפול ולפינוי <b>(נא לא להפריד)</b>.</p>
+  <p><b>דיווח בסיום:</b> מספר פצועים לפי חלוקה לדחיפויות · דרישות מיוחדות (מסוק, חילוץ, הכנת פלזמה וכו').</p>
+</div>
+
+<div class="lesson-card">
+  <h3>🩺 שלב 4 — סבב טיפולי</h3>
+  <p><b>מטפל בכיר + חובש:</b> השלמת סקר ראשוני לפי הסכמה המלאה, לפי קדימויות. הערכות לביצוע פרוצדורות.</p>
+  <p><b>מנהל אירוע:</b> מתן משימות לחובשים ולמח"צים · קידום פינויים.</p>
+</div>
+
+<div class="lesson-card">
+  <h3>✅ שלב 5 — סיום האירוע</h3>
+  <ul>
+    <li>וידוא פינוי <b>כלל הפצועים</b> — סריקת זירה איכותית</li>
+    <li>השלמת ואיסוף רישום</li>
+    <li>דיווח מסכם</li>
+    <li>ארגון כוח אדם וציוד — חזרה לכשירות</li>
+    <li>שיחת סיכום</li>
+  </ul>
+</div>
+
+<div class="lesson-card">
+  <h3>🪖 תפקיד המח"צ באר"ן</h3>
+  <ul>
+    <li>עצירת דימומים גורפת לכלל הפצועים בגזרתכם</li>
+    <li>הבאת הפצועים בגזרתכם לנקודת הריכוז</li>
+    <li>סידור הפצועים עפ"י החלטת המפקד האג"מי</li>
+    <li>התחלת הפשטת הפצועים, סריקת דימומים, והעמסה לאלונקות על פי דחיפויות פינוי</li>
+    <li>כיסוי כלל הפצועים</li>
+  </ul>
+</div>
+`};
+
+/* ---- מח"צ: יהלו"ם ---- */
+D['ls-yahalom']={eyebrow:'מח"צ',title:'יהלו"ם — תגובת קרב',group:'ls',seq:4,body:`
+<div class="lesson-card">
+  <h3>💎 מה זה יהלו"ם?</h3>
+  <p>סכמת יהלו"ם <b>מפחיתה בעשרות אחוזים</b> את הסיכויים לפוסט-טראומה.</p>
+  <div class="note">לא לשכוח לבדוק האם הפצוע נפצע פיזית וצריך טיפול רפואי!</div>
+</div>
+<div class="lesson-card">
+  <h3>🔵 י — יצירת קשר</h3>
+  <p>רואה, שומע, מגיב.</p>
+  <p>"תסתכל עליי" · "אתה שומע אותי?" · "תלחץ לי את היד"</p>
+</div>
+<div class="lesson-card">
+  <h3>🔵 ה — הדגשת מחוייבות</h3>
+  <p>"אני איתך, אתה לא לבד"</p>
+</div>
+<div class="lesson-card">
+  <h3>🔵 ל — לברר עובדות</h3>
+  <p>שאלות קצרות וממוקדות עובדות.</p>
+  <p>"איך קוראים לך?" · "מי המפקד שלך?"</p>
+</div>
+<div class="lesson-card">
+  <h3>🔵 ו — וידוא סדר התרחשות</h3>
+  <p>להסביר מה קרה, מה קורה, ומה יקרה.</p>
+  <p>"חטפנו טיל" / "יורים עלינו" / "אני צריך שתשיב באש"</p>
+</div>
+<div class="lesson-card">
+  <h3>🔵 ם — מתן משימות</h3>
+  <p>הנחייה סמכותית לפעולה מיידית.</p>
+  <p>"קח את הנשק שלך ותירה מהחלון"</p>
+  <div class="note">התערבות מהירה תסייע לנפגע להתאושש מהר ולחזור לתפקוד.</div>
+</div>`};
+
+/* ---- חובש: X ---- */
+D['md-X']={eyebrow:'חובש',title:'X — חילוץ',group:'md',seq:0,body:`
+<div class="lesson-card">
+  <h3>🎯 חלץ טפל / פצוע בכוח</h3>
+  <p>הכרזה בשטח ובקשר על <b>פצוע בכוח</b>, השגת עליונות באש, הגעה למחסה ראשוני על ידי חילוץ עצמי או על ידי כוח שהוגדר לכך, עצירת דימום פורץ על ידי לוחם / מטפל סמוך.</p>
+</div>
+<div class="lesson-card">
+  <h3>🔄 סדר פעולות</h3>
+  <div class="flow-wrap">
+    <div class="flow-step">הכרזה ← חילוץ ← עצירת דימום פורץ</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">דיווח אג"מי ← מקום מוגן ← המשך לחימה ופינוי לנקודת הטיפול</div>
+  </div>
+</div>`};
+
+/* ---- חובש: C עצירת דימומים ---- */
+D['md-C']={eyebrow:'חובש',title:'C — עצירת דימומים',group:'md',seq:1,body:`
+<div class="lesson-card">
+  <h3>🔴 CAT — חוסם עורקים</h3>
+  <p><b>התוויות (א.ת.ק.ל.ח):</b> אר"ן, תחת אש, קטיעה, לחץ ישיר שנכשל, חוסר הכרה שלא כתוצאה מחבלת ראש / תרופות.</p>
+  <p>4 אצבעות מעל הפציעה ← מתיחה ראשונית חזקה ← לסובב עד שאי אפשר ← הצנעת ה-CAT ← <b>לרשום שעה במיקום ברור.</b></p>
+  <div class="warn">בארן / תחת אש — יש להניח בראש הגפה!</div>
+</div>
+<div class="lesson-card">
+  <h3>🩹 First Care — תחבושת אישית</h3>
+  <p>שבירת הגשרון בסיבוב השלישי, שמירה על סטריליות.</p>
+  <div class="warn">בפציעות ראש — <b>רק למט"ב מותר לשבור גשרון.</b></div>
+  <p>לבדוק דופק על הגפה החבושה לאחר הנחה — לוודא שלא ביצענו חסם עורקים בשוגג.</p>
+</div>
+<div class="lesson-card">
+  <h3>🧲 Packing — תחבושת דחיסה</h3>
+  <p>לבצע כנגד עצם. <b>אין לבצע בטורסו.</b></p>
+  <p>יש להקפיד על לחיצה במשך <b>3 דקות</b> לפני הנחת ה-First Care מעל.</p>
+</div>
+<div class="lesson-card">
+  <h3>🩺 קטטר פולי</h3>
+  <p>לשאוב 10 סיסי ולנפח עד 30 (ניפוח בסליין). ניתן להכניס נוסף אם הדימום לא נעצר.</p>
+  <p>לקבע באמצעות First Care כדי שלא יישלף.</p>
+</div>
+<div class="lesson-card">
+  <h3>💪 נקודות לחיצה</h3>
+  <ul>
+    <li>עורק הפמורלי (מפשעה)</li>
+    <li>עורק התת-בריחי (עצם הבריח)</li>
+    <li>עורק הברכיאלי (זרוע)</li>
+  </ul>
+  <div class="warn">אין לעזוב נקודת לחיצה (למעט שחלוף עם 669). לדווח על קיומה לפני שחלוף.</div>
+</div>`};
+
+/* ---- חובש: C החזר נפח ---- */
+D['md-volflow']={eyebrow:'חובש',title:'C — החזר נפח והמרת CAT',group:'md',seq:2,body:`
+<div class="lesson-card">
+  <h3>🚨 קריטריונים להלם עמוק</h3>
+  <ul>
+    <li>ל"ד סיסטולי מתחת ל-90 ממ"כ, <b>או</b></li>
+    <li>ל"ד שאינו נמדד + דופק רדיאלי שאינו נימוש, <b>או</b></li>
+    <li>חוסר הכרה שלא כתוצאה מחבלת ראש / תרופות</li>
+  </ul>
+</div>
+<div class="lesson-card">
+  <h3>💉 מתן החזר נפח</h3>
+  <div class="flow-wrap">
+    <div class="flow-step">1️⃣ השגת גישה ורידית <b>או</b> תוך-גרמית (IO)</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">2️⃣ חיבור מחסנית הקלקר למכשיר הקינפלו ולסוללה ← הדלקה</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">3️⃣ חיבור הסט למכשיר (החלק הקצר) ← שטיפת הסט ← חיבור החלק הארוך למטופל ← תחילת מתן דם</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">4️⃣ <b>הכנת פלזמה:</b> העברת מי הזרקה לבקבוקון הפלזמה בסטון ← ערבוב עדין עד מרקם אחיד ללא גושים ← חיבור סט Y ← שטיפה ומתן</div>
+  </div>
+  <div class="note">מומלץ למדוד ל"ד לפני תחילת הפינוי או בהגעה למנחת / נקודת שחלוף.</div>
+</div>
+<div class="lesson-card">
+  <h3>🔄 המרת חסם עורקים</h3>
+  <p><b>התוויות להמרה — כל אלה יחד:</b></p>
+  <ul>
+    <li>חסם עורקים שהונח מסיבות חולפות (אר"ן / תחת אש) <b>ושהסיבות חלפו</b></li>
+    <li>הפצוע בהכרה ואינו בהלם</li>
+    <li>יש אפשרות לנטר אחר הדימום / התחדשות</li>
+    <li>אין קטיעה של הגפה</li>
+    <li>יש גישה ורידית פתוחה</li>
+    <li>ל"ד סיסטולי מעל 90 <b>וגם</b> דופק נמוך מ-110</li>
+    <li>יש CAT נוסף מעל מקור הפציעה — מוכן להנחה אם ההמרה תיכשל</li>
+  </ul>
+  <p><b>סדר פעולות:</b></p>
+  <div class="flow-wrap">
+    <div class="flow-step">1️⃣ הכנת CAT נוסף מעל מקור הדימום</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">2️⃣ שחרור הדרגתי של ח.ע. המקורי ובחינת מקור הדימום</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-decision">האם הדימום התחדש?</div>
+    <div class="flow-branch">
+      <div class="flow-yes">הדק את ה-CAT הנוסף שהכנו מראש</div>
+      <div class="flow-no">ההמרה הצליחה — תעד ועקוב</div>
+    </div>
+  </div>
+  <div class="warn">לחובשים: המרה עד <b>2 שעות</b> מההנחה. למטב"ים: עד <b>6 שעות.</b></div>
+</div>`};
+
+/* ---- חובש: A/R ---- */
+D['md-AR']={eyebrow:'חובש',title:'A/R — נתיב אוויר ונשימה',group:'md',seq:3,body:`
+<div class="lesson-card">
+  <h3>🌬️ טיפול נשימתי תומך</h3>
+  <p>דגש על טיפול תומך: <b>הושבה · מתן חמצן · סילוק הפרשות · פתיחת פה.</b></p>
+  <div class="warn">הנשמה בלחץ חיובי בפצוע מדמם תרע את מצבו ההמודינמי. יש להימנע מהתערבויות מיותרות.</div>
+</div>
+<div class="lesson-card">
+  <h3>💨 מנשם</h3>
+  <p>לחבר את המנשם למקור חמצן ולמעגל החולה ← להפעיל על תוכנית <b>PSVC</b>.</p>
+</div>
+<div class="lesson-card">
+  <h3>🫁 פציעות חזה</h3>
+  <p>בית החזה מוגדר מ<b>בסיס הצוואר עד קו הטבור.</b></p>
+  <div class="warn">בפציעות חזה — <b>אין</b> לבצע Packing או לחץ ישיר באמצעות First Care.</div>
+</div>`};
+
+/* ---- חובש: E ---- */
+D['md-E']={eyebrow:'חובש',title:'E — פינוי והכנה',group:'md',seq:4,body:`
+<div class="lesson-card">
+  <h3>🩹 הכנה לפינוי</h3>
+  <div class="flow-wrap">
+    <div class="flow-step">הפשטה ← סריקה ← הפיכה ← כיסוי ← קסדה ← קשירה לאלונקה ← הצנעת שרוכים ← קיבוע מיטבי של כלל הפרוצדורות</div>
+  </div>
+</div>
+<div class="lesson-card">
+  <h3>🚁 חבירה לפינוי מוסק</h3>
+  <ul>
+    <li>קיבוע ציוד לפני הגעת מסוק למנחת (בדגש: שמיכת מילוט)</li>
+    <li>אין להעביר דרישה לקיצור מסוק — רק בקשת הזנקה; אם לא נדרש: חזל"ש</li>
+    <li>טריאז' במנחת — ע"י המפקד הרפואי של המנחת <b>בלבד</b></li>
+    <li>פינוי עד <b>2 פצועים</b> בינשוף</li>
+    <li>בקשר: <b>"הפצועים מוכנים במנחת"</b></li>
+    <li>בכשל קשר — ציר עוקף דרך חמ"ל חטיבה–אוגדה</li>
+  </ul>
+</div>`};
+
+/* ---- יהלו"ם (shared) ---- */
+D['md-yahalom']={eyebrow:'חובש',title:'יהלו"ם — תגובת קרב',group:null,body:D['ls-yahalom'].body};
+
+/* ---- סכמת טיפול מלאה (חובש ומטפל בכיר) ---- */
+D['full-scheme']={eyebrow:'סכמת טיפול',title:'סכמת הטיפול בפצוע בודד',group:null,body:`
+<div class="lesson-card" style="padding:10px;">
+<div class="scheme-wrap">
+<table class="scheme-table">
+<tbody>
+<tr class="sec-row"><td colspan="2">🔴 טיפול תחת אש</td></tr>
+<tr><td><span class="ltr ltr-X">X</span></td><td>ביצוע תרגולת <b>חלץ-טפל</b> או טכניקה קרבית <b>פצוע בכוח</b></td></tr>
+<tr><td><span class="ltr ltr-X">X</span></td><td>הכרזה בשטח ובקשר על פצוע בכוח</td></tr>
+<tr><td><span class="ltr ltr-X">X</span></td><td>השגת עליונות באש</td></tr>
+<tr><td><span class="ltr ltr-X">X</span></td><td>הגעה למחסה ראשוני ע"י חילוץ עצמי או כוח שהוגדר לכך</td></tr>
+<tr><td><span class="ltr ltr-X">X</span></td><td>עצירת דימום פורץ עצמאית או ע"י לוחם / מטפל סמוך</td></tr>
+<tr class="sec-row"><td colspan="2">📋 סקר ראשוני</td></tr>
+<tr><td><span class="ltr ltr-X">X</span></td><td>הגעה לסביבה מאובטחת / בטוחה</td></tr>
+<tr><td><span class="ltr ltr-X">X</span></td><td>התרשמות ראשונית מהירה — מנגנון הפציעה, בחינה ויזואלית ופניה לפצוע, דחיפות</td></tr>
+<tr><td><span class="ltr ltr-X">X</span></td><td>דיווח אג"מי — פניה, הזדהות, תיאור האירוע, מיקום, מספר פצועים ודחיפות פינוי</td></tr>
+<tr><td><span class="ltr ltr-C">C</span></td><td>עצירת דימום פורץ. בוצע בדרג קודם ← וידוא שהדימום נעצר</td></tr>
+<tr><td><span class="ltr ltr-C">C</span></td><td>חיפוש פציעות ומקורות דימום בגו, גפיים ואזורים נסתרים — תוך <b>הפיכה והפשטה</b>: ראש, חזה, עורף, בתי שחי, גב, גפיים, עכוז ומפשעות</td></tr>
+<tr><td><span class="ltr ltr-C">C</span></td><td><b>הערכה קלינית:</b> הכרה לפי AVPU · בהיעדר נשימה/תגובה לכאב ← JT + AW · בטראומה לנתיב האוויר ← סילוק הפרשות + הושבה</td></tr>
+<tr><td><span class="ltr ltr-C">C</span></td><td>מדידת <b>ל"ד, דופק</b> (איכותי וכמותי), <b>סטורציה</b></td></tr>
+<tr><td><span class="ltr ltr-C">C</span></td><td>בהלם עמוק ← הנחיית הצוות להשגת גישה למחזור הדם + הכנת מוצרי דם. המשך הסכמה ע"י מט"ב — הפעולות ע"י חובשים בלבד בשלב זה.<div class="scheme-note">תחילת פינוי בהתאם למצב המבצעי ויכולת הטיפול בפינוי</div></td></tr>
+<tr><td><span class="ltr ltr-A">A</span></td><td>הערכת נתיב האוויר ומצוקה נשימתית — תוך פניה לפצוע</td></tr>
+<tr><td><span class="ltr ltr-A">A</span></td><td>אמצעים בסיסיים: פתיחת פה + סילוק הפרשות · הושבה · העשרה בחמצן</td></tr>
+<tr><td><span class="ltr ltr-R">R</span></td><td>בהיעדר נשימה ← הנשמה באמבו ומסיכה</td></tr>
+<tr><td><span class="ltr ltr-R">R</span></td><td>בחשד לפגיעה ← שמירה על עמש"צ</td></tr>
+<tr><td><span class="ltr ltr-R">R</span></td><td>חשיפת בית החזה והתרשמות מסימני חבלה</td></tr>
+<tr><td><span class="ltr ltr-E">E</span></td><td><b>הפשטה מלאה + הפיכה</b> — איתור כלל הפציעות, עצירת דימום שזוהה</td></tr>
+<tr><td><span class="ltr ltr-E">E</span></td><td>ראש — התרשמות מסימני חבלה</td></tr>
+<tr><td><span class="ltr ltr-E">E</span></td><td>עמש"צ — בחשד לפגיעה ← הנחת צווארון</td></tr>
+<tr><td><span class="ltr ltr-E">E</span></td><td>אגן — הערכה וביצוע כריכת אגן</td></tr>
+<tr><td><span class="ltr ltr-E">E</span></td><td>כיסוי, חימום והעמסה לאלונקה</td></tr>
+<tr><td><span class="ltr ltr-E">E</span></td><td>חיתוך מצב — סיכום ממצאים, הגדרת דחיפות הפינוי, מתן הנחיות לצוות</td></tr>
+<tr><td><span class="ltr ltr-E">E</span></td><td>העברת דיווח רפואי + השלמת תיעוד ב-101 (דיגיטלי / ידני)</td></tr>
+<tr class="sec-row"><td colspan="2">🔬 סקר שניוני</td></tr>
+<tr><td><span class="ltr ltr-C">C</span></td><td>הערכת הלם חוזרת + המשך החזר נפח לפצועים בהלם עמוק</td></tr>
+<tr><td><span class="ltr ltr-C">C</span></td><td>השגת גישה למחזור הדם וקיבוע</td></tr>
+<tr><td><span class="ltr ltr-C">C</span></td><td>מתן TXA</td></tr>
+<tr><td><span class="ltr ltr-C">C</span></td><td>הערכה חוזרת + המרת חסמי עורקים</td></tr>
+<tr><td><span class="ltr ltr-C">C</span></td><td>קיבוע ומתיחה של שבר בירך — סד תומאס</td></tr>
+<tr><td><span class="ltr ltr-C">C</span></td><td>השלמת עירוי פריפרי שני בפצוע שנזקק להחזר נפח</td></tr>
+<tr><td><span class="ltr ltr-A">A</span></td><td>הערכה חוזרת של נתיב אוויר — ניהול שמרני או ע"י התערבות</td></tr>
+<tr><td><span class="ltr ltr-R">R</span></td><td>העשרה בחמצן</td></tr>
+<tr><td><span class="ltr ltr-R">R</span></td><td>בפצוע מונשם — חיבור למנשם + הכנת תרופות הרדמה להמשך</td></tr>
+<tr><td><span class="ltr ltr-R">R</span></td><td>החדרת נקז חזה לפצוע חזה מונשם — במידת הצורך בלבד</td></tr>
+<tr><td><span class="ltr ltr-E">E</span></td><td>הערכת כאב וטיפול</td></tr>
+<tr><td><span class="ltr ltr-E">E</span></td><td>מניעת זיהומים — שטיפת פצעים, חבישה, טיפול אנטיביוטי</td></tr>
+<tr><td><span class="ltr ltr-E">E</span></td><td>הערכת GCS, תנועות גפיים, בדיקת אישונים</td></tr>
+<tr><td><span class="ltr ltr-E">E</span></td><td>סריקה גופנית מלאה — מקודקוד עד בהונות, טיפול בכל פציעה בדרך</td></tr>
+<tr><td><span class="ltr ltr-E">E</span></td><td>קיבוע שברים + וידוא כלל הקיבועים</td></tr>
+<tr><td><span class="ltr ltr-E">E</span></td><td>השלמת תיעוד ב-101 (דיגיטלי / ידני)</td></tr>
+<tr><td><span class="ltr ltr-E">E</span></td><td>הערכה לתגובת דחק / קרב + ביצוע התערבות יהלו"ם</td></tr>
+<tr><td><span class="ltr ltr-E">E</span></td><td>העברת דיווח רפואי חוזר</td></tr>
+<tr class="sec-row"><td colspan="2">🕐 PFC — טיפול מתמשך</td></tr>
+<tr><td><span class="ltr ltr-PFC">PFC</span></td><td>ניטור ותיעוד סימנים חיוניים באופן תדיר ומחזורי</td></tr>
+<tr><td><span class="ltr ltr-PFC">PFC</span></td><td>החדרת נקז חזה לפצוע חזה נושם עצמונית עם הדרדרות נשימתית</td></tr>
+<tr><td><span class="ltr ltr-PFC">PFC</span></td><td>מתן חוזר של טיפול תרופתי תוך-ורידי</td></tr>
+<tr><td><span class="ltr ltr-PFC">PFC</span></td><td>הכנסת צנתר שתן; בפצוע מונשם — הכנסת זונדה לניקוז הקיבה</td></tr>
+<tr><td><span class="ltr ltr-PFC">PFC</span></td><td>מניעת פצעי לחץ</td></tr>
+
+</tbody>
+</table>
+</div>
+</div>
+`};
+
+
+/* ---- ARN standalone ---- */
+D['arn']={eyebrow:'תו"ל',title:'תו"ל אר"ן',group:null,body:D['ls-arn'].body};
+
+/* ===== PROTOCOLS (slides 17-24 text) ===== */
+
+D['proto-pain']={eyebrow:'פרוטוקולים',title:'פרוטוקול טיפול בכאב',group:null,body:`
+<div class="lesson-card">
+  <h3>❓ הערכת כאב</h3>
+  <div class="flow-decision">האם הפצוע סובל מכאב?</div>
+  <div style="height:8px;"></div>
+  <div class="flow-wrap">
+    <div class="flow-step"><b>כאב קל-בינוני (פומי):</b><br>T. Optalgin 1000mg <b>או</b> T. Acamol 1000mg</div>
+    <div class="flow-arrow">או</div>
+    <div class="flow-step"><b>כאב חזק:</b><br>Actiq (OTFC) 800mcg</div>
+    <div class="flow-arrow">או</div>
+    <div class="flow-step"><b>כאב חזק + גישה ורידית:</b><br>IV Ketamine 25mg</div>
+  </div>
+</div>
+<div class="lesson-card">
+  <h3>📋 ניטור לאחר מתן</h3>
+  <ol>
+    <li>נטר את הפצוע: <b>נשימות / סטורציה / הכרה</b></li>
+    <li>בצע הערכה חוזרת של הכאב לאחר <b>15 דקות</b></li>
+    <li>פצוע שיכול לשתות — יטופל <b>גם פומית</b> באקמול או אופטלגין</li>
+  </ol>
+</div>`};
+
+D['proto-antibiotics']={eyebrow:'פרוטוקולים',title:'פרוטוקול הטיפול באנטיביוטיקה',group:null,body:`
+<div class="lesson-card">
+  <h3>🔍 מסלול ההחלטה</h3>
+  <div class="flow-wrap">
+    <div class="flow-decision">האם הפינוי צפוי להתעכב מעבר לשעה?</div>
+    <div class="flow-branch">
+      <div class="flow-no">אין צורך כעת בטיפול אנטיביוטי</div>
+      <div class="flow-yes">↓ המשך לשאלה הבאה</div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-decision">האם קיימת פציעה חודרת בבטן או בראש?</div>
+    <div class="flow-branch">
+      <div class="flow-yes">* Ceftriaxone 2g + ** IV Metronidazole 500mg</div>
+      <div class="flow-no">* Ceftriaxone 2g בלבד</div>
+    </div>
+  </div>
+</div>
+<div class="lesson-card">
+  <h3>💊 * אופן מתן Ceftriaxone 2g</h3>
+  <p>2 ויאלים (כל אחד מכיל 1g) מהולים ב-10 מ"ל מים להזרקה.</p>
+  <p><b>IV Push:</b> 2-4 דקות לפחות — פעם ב-24 שעות. (עדיף IV Push)</p>
+  <p><b>IM (אלטרנטיב):</b> שתי זריקות נפרדות של 1g מהול ב-3.5 מ"ל מים להזרקה או לידוקאין 1%.</p>
+  <div class="warn">אין לתת IM בפצוע הסובל מהלם — הספיגה פחותה משמעותית!</div>
+</div>`};
+
+D['proto-vascular']={eyebrow:'פרוטוקולים',title:'פרוטוקול השגת גישה למחזור הדם',group:null,body:`
+<div class="lesson-card">
+  <h3>🔍 מסלול ההחלטה</h3>
+  <div class="flow-wrap">
+    <div class="flow-decision">האם קיימת התווייה מוחלטת להשגת גישה ווסקולרית?</div>
+    <div class="flow-branch">
+      <div class="flow-yes">השג גישה IO — עדיפות טיביה על פני הומרוס</div>
+      <div class="flow-no">עד 4 ניסיונות גישה פריפרית</div>
+    </div>
+  </div>
+</div>
+<div class="lesson-card">
+  <h3>📋 התוויות לגישה ווסקולרית</h3>
+  <p><b>התווייה מוחלטת:</b></p>
+  <ul>
+    <li>טיפול במוצרי דם — לפי פרוטוקול החייאת בקרת נזקים בשדה</li>
+    <li>אינדוקציה לאינטובציה (כאשר נדרשת)</li>
+  </ul>
+  <p><b>התוויות לא מוחלטות:</b></p>
+  <ul>
+    <li>טיפול בכאב חמור — לפי פרוטוקול הטיפול בכאב בשדה</li>
+    <li>כל פצוע המוגדר כ<b>דחוף</b></li>
+  </ul>
+</div>`};
+
+D['proto-death']={eyebrow:'פרוטוקולים',title:'פרוטוקול סיום מאמצי החייאה וקביעת מוות',group:null,body:`
+<div class="lesson-card">
+  <h3>🔍 מסלול ההחלטה</h3>
+  <div class="flow-wrap">
+    <div class="flow-step">הערכה לפי "סכמת הטיפול בפצוע טראומה בשדה"</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-decision">האם קיים אחד מסימני החיים? (דופק / נשימה / ל"ד / תגובת אישונים)</div>
+    <div class="flow-branch">
+      <div class="flow-yes">המשך טיפול — הנשמה באמבו + מתן נפח ← הערכה חוזרת</div>
+      <div class="flow-no">↓ בחינה להפסקת מאמצים</div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-decision">מצב מלחמה / אר"ן בו עדיין נדרש טיפול בפצועים שלא הוגדרו "ממתינים"?</div>
+    <div class="flow-branch">
+      <div class="flow-yes">אי ביצוע מאמצי החייאה — קביעת מוות ע"י רופא</div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-decision">האם מדובר בחבלה קהה?</div>
+    <div class="flow-branch">
+      <div class="flow-yes">שקילת הפסקת מאמצים</div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-decision">האם מדובר באובדן סימני חיים תחת העיניים (במהלך הטיפול)?</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-decision">האם נראו סימני חיים ב-5 הדקות האחרונות, תנועות ספונטניות, או PEA מעל 40?</div>
+    <div class="flow-branch">
+      <div class="flow-yes">ביצוע הערכה חוזרת — חזרת סימן חיים אחד לפחות?</div>
+      <div class="flow-no">הפסקת מאמצי החייאה</div>
+    </div>
+  </div>
+</div>
+<div class="note">קביעת המוות הסופית — רק ע"י רופא/ה, על גבי טופס הודעת פטירה.</div>`};
+
+D['proto-chest-vent']={eyebrow:'פרוטוקולים',title:'פרוטוקול טיפול בפצוע חזה מונשם',group:null,body:`
+<div class="warn">יש לקחת בחשבון את הסכנות הכרוכות בהנשמת פצועי חזה</div>
+<div class="lesson-card">
+  <h3>🔍 מסלול ההחלטה</h3>
+  <div class="flow-wrap">
+    <div class="flow-decision">האם קיים הלם עמוק?</div>
+    <div class="flow-branch">
+      <div class="flow-yes">החזר נפח לפי "החייאת בקרת נזקים בשדה" — <b>אין לבצע ניקור חזה</b></div>
+    </div>
+    <div class="flow-arrow">↓ (ללא הלם)</div>
+    <div class="flow-decision">האם מתקיימים <b>כל</b> 4 התנאים הבאים?</div>
+    <div class="flow-step">
+      1. סימני ההלם העמוק החלו <b>לאחר</b> ההנשמה<br>
+      2. אין מקור דם המסביר את סימני ההלם<br>
+      3. סימן ממוקם לצד הפגוע<br>
+      4. ריווי חמצן ≤ 88% (או ללא מדידה אמינה)
+    </div>
+    <div class="flow-branch">
+      <div class="flow-yes">ניקור חזה</div>
+      <div class="flow-no"><b>המצב השכיח:</b> אין לבצע ניקור חזה ← פנה בהקדם עם ניטור רציף</div>
+    </div>
+  </div>
+</div>`};
+
+D['proto-chest-spont']={eyebrow:'פרוטוקולים',title:'פרוטוקול טיפול בפצוע חזה נושם ספונטנית',group:null,body:`
+<div class="lesson-card">
+  <h3>📋 הגדרת פציעת חזה</h3>
+  <p>פציעה מ<b>קו הטבור ועד לבסיס הצוואר</b> (מלפנים או מאחור) במנגנון חבלה חודרת או קהה.</p>
+  <p>מדוד: ל"ד, דופק, ריווי חמצן.</p>
+</div>
+<div class="lesson-card">
+  <h3>🔍 מסלול ההחלטה</h3>
+  <div class="flow-wrap">
+    <div class="flow-decision">האם קיים הלם עמוק?</div>
+    <div class="flow-branch">
+      <div class="flow-yes">החייאת בקרת נזקים בשדה</div>
+    </div>
+    <div class="flow-arrow">↓ (ללא הלם)</div>
+    <div class="flow-step"><b>טיפול תומך בפציעות חזה:</b><br>1. העשרה בחמצן<br>2. עידוד תנוחה המקלה על הנשימה<br>3. שיכוך כאב לפי מידת הכאב</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">הערכה חוזרת וניטור רציף</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-decision">האם מתקיימים <b>כל</b> 4 התנאים?</div>
+    <div class="flow-step">
+      1. סימן ממוקם לצד הפגוע<br>
+      2. מצוקה נשימתית במגמת <b>החמרה</b><br>
+      3. ריווי חמצן ≤ 88%<br>
+      4. חלפו לפחות <b>2 שעות</b> מהפציעה
+    </div>
+    <div class="flow-branch">
+      <div class="flow-yes">ניקור חזה ← הסקר השניוני / טיפול מתמשך</div>
+      <div class="flow-no"><b>המצב השכיח:</b> אין לבצע ניקור חזה ← פנה בהקדם עם ניטור</div>
+    </div>
+  </div>
+</div>`};
+
+D['proto-airway']={eyebrow:'פרוטוקולים',title:'פרוטוקול הערכת וניהול נתיב האוויר',group:null,body:`
+<div class="lesson-card">
+  <h3>🔍 מסלול ההחלטה</h3>
+  <div class="flow-wrap">
+    <div class="flow-step"><b>הערכת נתיב האוויר תוך פנייה לפצוע:</b><br>1. הפצוע בהכרה מלאה ועונה בקול תקין ← המשך לשלב הבא בסכמה האחודה<br>2. קיימת עדות ברורה לחסימה בנתיב האוויר ← המשך בפרוטוקול זה</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-decision">האם קיימת פגיעה באנטומיית הפנים/צוואר עם סטרידור/חרחורים וקושי משמעותי בנשימה שאינו משתפר בטיפול שמרני?<br><small>(מצבים נדירים ביותר!)</small></div>
+    <div class="flow-branch">
+      <div class="flow-yes"><b>אינטובציה עם בוז׳י</b></div>
+      <div class="flow-no">↓ אמצעים שמרניים</div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">
+      <b>אמצעים שמרניים:</b><br>
+      1. שינוי תנוחה — עדיפות להושבה<br>
+      2. פתיחת פה, סילוק הפרשות, שאיבה לאורך כל הפרוטוקול<br>
+      3. חמצן 100% במסכה עם שקית העשרה<br>
+      4. אם לא מגיב לכאב: מנתב אוויר פומי + דחיקת לסת
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-decision">נשימה עצמונית <b>וגם</b> ריווי חמצן > 88%?</div>
+    <div class="flow-branch">
+      <div class="flow-yes"><b>המצב השכיח:</b> אין לבצע נתיב אוויר דפיניטיבי ← פנה בהקדם בישיבה, נטר SpO₂</div>
+      <div class="flow-no">הנשמה באמבו ומסיכה מחוברים לחמצן ← הערכה חוזרת</div>
+    </div>
+  </div>
+</div>`};
+
+D['proto-damage-ctrl']={eyebrow:'פרוטוקולים',title:'פרוטוקול החייאת בקרת נזקים בשדה בפצוע מדמם',group:null,body:`
+<div class="note">השגת גישה למחזור הדם <b>מבלי לעכב את פינוי הפצוע!</b></div>
+<div class="lesson-card">
+  <h3>💉 TXA — הקסאקפרון</h3>
+  <p>במקרה של פציעה חודרת בגו / אזור מעבר <b>וגם</b> לא חלפו יותר מ-3 שעות מהפציעה — מתן <b>1 גרם הקסאקפרון IV.</b></p>
+  <div class="warn">מתן נפח <b>קודם</b> למתן הקסאקפרון (במקרים בהם נדרש נפח)!</div>
+</div>
+<div class="lesson-card">
+  <h3>🔍 מסלול ההחלטה</h3>
+  <div class="flow-wrap">
+    <div class="flow-decision">האם הפצוע בהלם עמוק?<br><small>1. ל"ד סיסטולי &lt;90 · או · 2. ל"ד שאינו נמדד + היעדר דופק רדיאלי · או · שינוי הכרה</small></div>
+    <div class="flow-branch">
+      <div class="flow-no">↓ בדיקת פציעה שטחית</div>
+    </div>
+    <div class="flow-arrow">↓ (כן — הלם עמוק)</div>
+    <div class="flow-step"><b>החזר נפח — סדר עדיפויות:</b><br>1. דם מלא (whole blood)<br>2. פלסמה מיובשת FDP + כדוריות PRBC<br>3. פלסמה מיובשת FDP בלבד<br><br>בהיעדר מוצרי דם: 500 מ"ל הארטמן *</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-decision">הערכה מחדש כל 10 דקות — האם הפצוע עדיין בהלם עמוק?</div>
+    <div class="flow-branch">
+      <div class="flow-yes">הפסקת החייאת נוזלים</div>
+      <div class="flow-no">המשך מנה נוספת</div>
+    </div>
+  </div>
+</div>
+<div class="lesson-card">
+  <h3>📋 פציעה שטחית?</h3>
+  <div class="flow-decision">ללא פציעה חודרת <b>וגם</b> ללא שינוי בהכרה <b>וגם</b> ללא מנגנון פציעה משמעותי?</div>
+  <div style="margin-top:8px;" class="flow-result">כן — סקר החייאה: השגת גישה וסקולרית ← הערכת המצב ← סיום</div>
+</div>`};
+
+/* ===== DRUGS (full text from tables) ===== */
+
+function drugCard(name, dose, indication, dosing, notes) {
+  return `<div class="drug-card">
+    <div class="drug-header">
+      <span class="drug-name">${name}</span>
+      <span class="drug-dose">${dose}</span>
+    </div>
+    <div class="drug-body">
+      <div class="drug-row"><span class="drug-lbl">התוויות</span><div class="drug-val">${indication}</div></div>
+      <div class="drug-row"><span class="drug-lbl">מינון</span><div class="drug-val">${dosing}</div></div>
+      <div class="drug-row"><span class="drug-lbl">דגשים</span><div class="drug-val">${notes}</div></div>
+    </div>
+  </div>`;
+}
+
+D['drug-sedation']={eyebrow:'תרופות',title:'הרדמה ואלחוש',group:null,body:`
+<div class="info">לשימוש אינדוקציה לאינטובציה ופרוצדורות</div>
+${[
+  ['קטמין (Ketalar)','500mg/10cc',
+   'אינדוקציה לאינטובציה.',
+   'IV: 3-4 מ"ג/ק"ג · אחזקה: 25-50 מ"ג כל 15 דקות (25 מ"ג בהלם עמוק) · העמקה: 75-100 מ"ג · בהלם עמוק: חצי מינון · ילדים: 2-3 מ"ג/ק"ג',
+   'תחילת פעולה תוך 1-2 דקות. שומר על יציבות המודינמית (אינו מוריד ל"ד), אינו מדכא נשימה. חסרונות: גורם לריור (שלב עם אטרופין 0.5mg) ולהזיות (שלב עם דורמיקום).'],
+  ['דורמיקום (Midazolam)','5mg/1cc',
+   'אינדוקציה לאינטובציה (בנוסף לקטמין) · פצוע מפרכס.',
+   'IV: 5 מ"ג · אחזקה: 1-1.5 מ"ג כל 15 דקות · בהלם עמוק: חצי מינון · פרכוס: 10 מ"ג IM או 5 מ"ג IV · ילדים: 0.05-0.1 מ"ג/ק"ג (מקס 5 מ"ג)',
+   'תחילת פעולה IV כ-3 דקות. מרפה שרירים, מדכא רפלקסים, גורם לשכחה, מאט פעילות מוחית. חסרונות: מוריד לחץ דם, עלול לדכא נשימה.'],
+  ['לידוקאין (Lidocaine) 2%','200mg/10cc',
+   'הרדמה מקומית לביצוע פרוצדורות (קוניוטומיה, נקז חזה).',
+   'מתן מקומי: 10cc (אמפולה שלמה) בשיטת הסננה.',
+   'בזרקה בשיטת Infiltration תוך שאיבה לאחור — לוודא שלא מזרקים לכלי דם. הזרקה לזרם הדם מסוכנת ועלולה לגרום להפרעות קצב. יש לחטא ראשית בספונג\'ט אלכוהול.']
+].map(d => drugCard(d[0],d[1],d[2],d[3],d[4])).join('')}
+`};
+
+D['drug-analgesia']={eyebrow:'תרופות',title:'אנלגטיקה — טיפול בכאב',group:null,body:`
+<div class="info">VAS 4 ומטה = כאב נסבל · VAS 5 ומעלה = כאב בלתי נסבל</div>
+${[
+  ['אקמול / אופטלגין','500 mg',
+   'טיפול בכאב נסבל (VAS 4 ומטה). אקמול ישמש גם בשילוב עם תרופות לכאב חמור.',
+   'PO: 1000 מ"ג (2 כדורים) · מקסימום 4000 מ"ג ב-24 שעות · ניתן לחזור כל 6 שעות · ילדים: לפי גיל (רשום על האריזה)',
+   'בסמכות חובש ומט"ב. נתחיל מאקמול — אם אין שיפור לאחר 15 דקות: אופטלגין. מתחיל לעבוד אחרי 10 דקות. אקמול: פרצטמול. אופטלגין: דיפירון. תופעות לוואי אופטלגין: אגרנולוציטוזיס — נדיר ביותר. התוויות נגד: אלרגיה, לא בהכרה מלאה, פגיעה חודרת בגו.'],
+  ['אקטיק (Fentanyl Citrate)','800 mcg',
+   'טיפול בכאב בלתי נסבל (VAS 5 ומעלה).',
+   'TM (טרנסמוקוזלית): סוכריה אחת (800 מיקרוגרם). אחזקה: ניטור 15 דקות + מנה נוספת אם נדרש (עד 2 סוכריות).',
+   'בסמכות חובש ומט"ב (2 בווסט חובש, 5 בווסט מט"ב). לחכך בפנים הלחי — לא לנגוס. תחילת פעולה 3-5 דקות. התוויות נגד: הלם עמוק, לא בהכרה, ילדים מתחת ל-40 ק"ג. ת/ל: בחילות (ניתן פראמין 10 מ"ג IV), גרד, ישנוניות.'],
+  ['מורפיום (Morphine)','10mg/1cc',
+   'טיפול בכאב בלתי נסבל (VAS 5 ומעלה).',
+   'IV: 5 מ"ג · בהלם עמוק: 2 מ"ג · ילדים: 0.05 מ"ג/ק"ג (הלם: 0.02 מ"ג/ק"ג)',
+   'בסמכות מט"ב. יש למהול עם 9 מ"ל נוזלים (לריכוז 1 מ"ג/מ"ל). אם לא ניתן במקביל לנוזלים — לשטוף ב-20 מ"ל סליין (מניעת flushing). ת/ל: ישנוניות, בחילות, מיוזיס. במינון גבוה: דיכוי נשימתי.'],
+  ['קטמין (Katler)','50mg/5cc',
+   'טיפול בכאב בלתי נסבל (VAS 5 ומעלה).',
+   'IV: 25 מ"ג · אחזקה: 25 מ"ג כל 45 דקות · ילדים: 0.3 מ"ג/ק"ג',
+   'בסמכות מט"ב. לשאוב 0.5 מ"ל למזרק 3 מ"ל ← לתת לווריד ← לשטוף ב-10 מ"ל סליין. יתרון: אינו מדכא נשימה ואינו מוריד ל"ד. ת/ל: הזיות, אי שקט, טכיקרדיה, ריור.']
+].map(d => drugCard(d[0],d[1],d[2],d[3],d[4])).join('')}
+`};
+
+D['drug-deep-shock']={eyebrow:'תרופות',title:'פצוע בהלם עמוק',group:null,body:`
+<div class="info">מתן נפח רק בהלם עמוק: ל"ד סיסטולי &lt;90, היעדר דופק רדיאלי, או שינוי הכרה</div>
+${[
+  ['הקסאקפרון (TXA)','500mg/5cc',
+   'פגיעה חודרת בגו / אזורי מעבר ו/או סימני הלם עמוק — ניתן ב-3 השעות הראשונות מהפציעה.',
+   'IV Push: 1000 מ"ג (10 מ"ל, 2 אמפולות) · אחזקה: מנה שנייה ואחרונה לאחר 3 שעות · ילדים עד 12: 15 מ"ג/ק"ג',
+   'מונעת פירוק קרישי דם. אם לא ידועה שעת הפציעה — יש לתת בכל זאת.'],
+  ['דם מלא (LTOWB)','מנת דם (400 מ"ל)',
+   'החזר נפח לפצוע בהלם עמוק (ל"ד סיסטולי <90). חובה לנסות למדוד ל"ד כמותי לפני מתן.',
+   'מבוגרים: מנה שלמה + הערכה חוזרת · ילדים: 20 מ"ל/ק"ג עד מנה מלאה',
+   'הנוזל המתאים ביותר להחייאה. בצה"ל מנות LTOWB (עדיפות O מינוס). אחסון: מקרר 2-6°C (בדיקה פעמיים ביום) או צידנית ייעודית עד 48 שעות.'],
+  ['פלזמה (FDP)','בקבוק זכוכית + 200 מ"ל מים סטריליים',
+   'החזר נפח וגורמי קרישה לפצוע בהלם עמוק.',
+   'IV בהתאם לפרוטוקול החייאת נוזלים.',
+   'מגיעה כאבקה. זמן הכנה עד 10 דקות. מוכנה לשימוש ל-6 שעות. חיי מדף: 15 חודשים ב-2-25°C.'],
+  ['קריסטלואידים (הארטמן / סליין)','—',
+   'הלם עמוק כאשר זמן הגעת דם/פלזמה עולה על 15 דקות.',
+   'IV לפי הצורך.',
+   'נוזל ההחייאה הגרוע ביותר. עדיפות הארטמן (pH~6.5) על סליין (pH~5.5).']
+].map(d => drugCard(d[0],d[1],d[2],d[3],d[4])).join('')}
+`};
+
+D['drug-antibiotics']={eyebrow:'תרופות',title:'אנטיביוטיקה',group:null,body:`
+<div class="warn">כוויות אינן התוויה לאנטיביוטיקה!</div>
+${[
+  ['Ceftriaxone (רוצפין)','1g',
+   'פצוע מפגיעה חודרת, והזמן עד הגעה לבי"ח ארוך משעה.',
+   'IV: 2 גרם (2 ויאלים) מהול כל אחד ב-10 מ"ל מים להזרקה, פוש IV של 2-4 דקות, פעם ב-24 שעות. IM: שתי זריקות נפרדות של 1 גרם מהול ב-3.5 מ"ל מים. ילדים: 100 מ"ג/ק"ג (עד 2 גרם) כל 24 שעות.',
+   '2 פלקונים בתיק מט"ב. אין להכין עם הארטמן! Bactericidal מממשפחת צפלוספורינים. לא לתת IM בפצוע בהלם — ספיגה פחותה משמעותית.'],
+  ['Metronidazole (פלג\'יל)','500mg/100cc',
+   'פגיעה חודרת בבטן או בראש + זמן עד בי"ח מעל שעה. פצוע עם התוויה למטרונידזול יקבל בהכרח גם רוצפין.',
+   'IV: 500 מ"ג ישיר מהבקבוקון. אחזקה: בעיכוב פינוי מעל 8 שעות — 500 מ"ג כל 8 שעות. ילדים: 10 מ"ג/ק"ג (עד 500 מ"ג) כל 8 שעות.',
+   '1 בקבוק בתיק מט"ב. Bacteriostatic מממשפחת אימידזולים. פעיל נגד אנאירוביים — רוצפין מכסה אירוביים, פלג׳יל מכסה אנאירוביים. השילוב נותן כיסוי מלא לפגיעות ראש ובטן.']
+].map(d => drugCard(d[0],d[1],d[2],d[3],d[4])).join('')}
+`};
+
+D['drug-crush']={eyebrow:'תרופות',title:'פצוע מעיכה',group:null,body:`
+<div class="info">רוב הטיפולים ברמת פלה"ק / בית חולים</div>
+${[
+  ['Calcium Gluconate 10%','10cc',
+   'פצוע מעיכה (פלה"ק / בי"ח).',
+   'IV בהתאם למדדי אק"ג.',
+   'מעלה רמת סידן ומצמצם השפעות שליליות של היפרקלמיה. ניתן כאשר מזוהים שינויים באק"ג המעידים על אשלגן גבוה.'],
+  ['Glucose 50%','50cc',
+   'חשד להיפוגליקמיה, או כחלק מטיפול מונע היפרקלמיה בפצוע מעיכה.',
+   'ניתן לשלב גלוקוז 5% (מהילת 25 גרם ב-500 מ"ל סליין).',
+   'ניתן יחד עם אינסולין — האינסולין מכניס גלוקוז ואשלגן לתאים ומפחית סיכוי להפרעות קצב. הגלוקוז מונע היפוגליקמיה מהאינסולין.'],
+  ['Sodium Bicarbonate 8.4%','סודיום ביקרבונט',
+   'פצוע מעיכה (פלה"ק / בי"ח).',
+   'IV מבוקר.',
+   'תרופה מבססת (מעלה pH) המגדילה מסיסות מיוגלובין ומשפרת את הפרשתו בכליות. מסייעת גם בהפחתת היפרקלמיה. ניתנת בפלה"ק/בי"ח בלבד — מחשש להבססת יתר.'],
+  ['Fusid (פוסיד)','20mg/2cc',
+   'חשד לתסמונת מעיכה בפצועים עם אוליגוריה/אנוריה וסימני גודש נוזלים.',
+   'IV: 40 מ"ג (2 אמפולות) חד פעמי ללא אחזקה. ילדים: 1 מ"ג/ק"ג (מקס 40 מ"ג).',
+   'משתן לולאה הפועל על לולאת הנלה. מעכב משאבת Na-K-2Cl, מגביר הפרשת נתרן, כלוריד, אשלגן ומים בשתן.']
+].map(d => drugCard(d[0],d[1],d[2],d[3],d[4])).join('')}
+`};
+
+D['drug-abc']={eyebrow:'תרופות',title:'אב"כ — חל"כ',group:null,body:`
+<div class="info">הרעלת זרחנים אורגניים / אנאפילקסיס / פרכוסים</div>
+${[
+  ['Solu-medrol','500 mg',
+   'תגובה אלרגית / אנאפילקסיס לאחר מוצר דם. פריחה קלה: סולומדרול בלבד. אנאפילקסיס: סולומדרול + אדרנלין IM.',
+   'IV: 125 מ"ג · ילדים: 2 מ"ג/ק"ג',
+   'מגיע ב-2 בקבוקונים (אבקה + מים). הכנה: שאיבת המים ← הזרקה לאבקה ← ערבוב ← שאיבת המנה.'],
+  ['אדרנלין (Epinephrine)','1mg/1cc',
+   'אנאפילקסיס לאחר מוצר דם. (שגרה: החייאה, אלרגיות, ברדיקרדיה קשה).',
+   'IM: 0.5 מ"ג · להחייאה: 1 מ"ג IV כל 3-5 דקות (ילדים 0.01 מ"ג/ק"ג)',
+   'אגוניסט אלפא ובטא: אלפא1 — כיווץ כלי דם ומעלה ל"ד; בטא1 — מגביר קצב לב; בטא2 — מרחיב סמפונות.'],
+  ['אטרופין (Atropine)','1mg/1cc או מזרק אוטומטי',
+   'ריור מוגבר (מקטמין) או הרעלת זרחנים אורגניים (מתאר אב"כ).',
+   'ריור: 0.5 מ"ג IV (ילדים: 0.02 מ"ג/ק"ג) · הרעלת זרחנים IM/IV: פצוע מהלך 2 מ"ג כל 20 דקות · פצוע שוכב 4 מ"ג כל 5 דקות',
+   'אנטיכולינרגי — חוסם קישור אצטיל-כולין לרצפטורים. בסמכות חובש (אב"כ בלבד) ומט"ב.'],
+  ['טוקסוגונין (Toxogonin)','250mg/1cc',
+   'עיכוב פינוי במתאר חל"כ (זרחנים אורגניים).',
+   'מנה של 250 מ"ג · פצוע מהלך: כל 6 שעות · פצוע שוכב: כל 4 שעות',
+   'מפריד בין הזרחן האורגני לאנזים אצטיל-כולין אסטרז ומשקם פעילות מע"צ.'],
+  ['מזרק TA (מזרק אטרופין אוטומטי)','—',
+   'חד פעמי לכל נפגע במתאר חל"כ.',
+   'פצוע מהלך: מזרק 1 · פצוע שוכב: 2 מזרקים · תכלת 0.5מ"ג (גיל 0-2) · ורוד 1מ"ג (גיל 2-10 / מעל 60) · צהוב 2מ"ג (גיל 10-60)',
+   'בסמכות מח"צ, חובש ומט"ב. להזרקה עצמית או הדדית מהירה בשטח.'],
+  ['נלוקסון / נרקן (Narcan)','10mg',
+   'הרעלת אופיאטים (מינון יתר קליני).',
+   'IM: 4 מ"ג · פצוע שוכב: 10 מ"ג IV/IM · אם יש תגובה: מנות חוזרות של 2 מ"ג',
+   'אנטידוט ייעודי למשפחת האופיאטים (מורפיום, פנטניל/אקטיק).'],
+  ['מזרק AA / מידאזולם (דורמיקום אוטומטי)','10mg Midazolam',
+   'פצועים מפרכסים או מחוסרי הכרה במתאר חל"כ.',
+   'IM שלם (10 מ"ג) · פרכוס: כל 5 דקות · מחוסר הכרה מהלך: כל 10 דקות · מנה אחת, ואחרי אינטובציה מנה נוספת',
+   'בסמכות חובש. לשליטה מהירה בפרכוסים ומניעת נזק מוחי משני.'],
+  ['Mannitol 25%','12.5g/50cc',
+   'הורדת לחץ תוך-גולגולתי (ICP) בפגיעות ראש (פלה"ק / בי"ח).',
+   'IV בהתאם לפרוטוקול.',
+   'סוכר כוהלי שאינו נספג במעי. שואב נוזלים לכלי הדם והשתנתם. ידוע ביכולתו לעבור את מחסום דם-מוח (BBB).'],
+  ['Pramin (פראמין)','10mg/2cc',
+   'בחילות ו/או הקאות.',
+   'IV: 10 מ"ג (ניתן גם IM) · ילדים מעל 6: 2.5-5 מ"ג · אין לתת מתחת לגיל 6',
+   'להקלת תסמיני מערכת העיכול, כולל תופעות לוואי של אופיאטים.']
+].map(d => drugCard(d[0],d[1],d[2],d[3],d[4])).join('')}
+`};
+
+D['drug-misc']={eyebrow:'תרופות',title:'שונות',group:null,body:`
+<div class="info">תרופות לשימוש כללי</div>
+${[
+  ['Solu-medrol','500 mg',
+   'תגובה אלרגית / אנאפילקסיס לאחר מוצר דם.',
+   'IV: 125 מ"ג · ילדים: 2 מ"ג/ק"ג',
+   'מגיע ב-2 בקבוקונים. שאיבת המים ← הזרקה לאבקה ← ערבוב ← שאיבת המנה.'],
+  ['אדרנלין (Epinephrine)','1mg/1cc',
+   'אנאפילקסיס. (שגרה: החייאה, אלרגיות, ברדיקרדיה קשה).',
+   'IM: 0.5 מ"ג · להחייאה: 1 מ"ג IV כל 3-5 דקות',
+   'אגוניסט אלפא ובטא. כיווץ כלי דם, מגביר קצב לב, מרחיב סמפונות.'],
+  ['Mannitol 25%','12.5g/50cc',
+   'הורדת לחץ תוך-גולגולתי (ICP) בפגיעות ראש.',
+   'IV בהתאם לפרוטוקול.',
+   'שואב נוזלים לכלי הדם. עובר מחסום דם-מוח (BBB).'],
+  ['Pramin (פראמין)','10mg/2cc',
+   'בחילות ו/או הקאות.',
+   'IV: 10 מ"ג (ניתן גם IM)',
+   'להקלת תסמיני מערכת העיכול, כולל תופעות לוואי של אופיאטים.']
+].map(d => drugCard(d[0],d[1],d[2],d[3],d[4])).join('')}
+`};
+
+/* ===== לקחי מלחמת התקומה ===== */
+D['lessons']={eyebrow:'לומדה',title:'לקחי מלחמת התקומה',group:null,body:`
+<div class="lesson-card">
+  <p>מסמך זה נכתב על סמך תחקור <b>15 אירועים</b> מחודשים ספטמבר-אוקטובר 2025 במסגרת לוב"א בראשות מר"פ. במהלך אותם חודשים נפגעו <b>672 נפגעים.</b></p>
+  <p class="center" style="color:var(--gold);font-weight:700;">שמרו על עצמכם והמשיכו להציל חיים!</p>
+</div>
+<div class="lesson-card">
+  <h3>📜 הנחיות חיל הרפואה — מחייבות</h3>
+  <ul>
+    <li>אין לעשות שימוש בציוד רפואי שאינו מאושר.</li>
+    <li>מטפל שאינו מוכר ע"י חיל הרפואה — יטפל בסמכויות <b>מח"צ בלבד.</b></li>
+    <li>מטפלים תחת צה"ל מחויבים להנחיות חיל הרפואה גם אם בזירה נוכחים מטפלים מארגונים אחרים.</li>
+  </ul>
+</div>
+<div class="lesson-card">
+  <h3>🎯 מבצעי</h3>
+  <ul>
+    <li>נוהל קרב מדוקדק וקפ"ק פינוי יומי הכולל כוחות רפואה ומפקדים רלוונטיים (לרוב ציר סגנים) — <b>המפתח להצלחת מאמץ הפינוי.</b> הנוהל יכלול: כוחות הפינוי וכשירותם (כולל מיקום הדם המלא), מיקומם, תדרי דיווח (מחו"פ, מנו"ח ורשתות נוספות), צירי פינוי, קווי תיאום, נקודות שחלוף, מנחתים וכח אג"מי מנחית. מומלץ לקיים קפ"ק פינוי חטיבתי על רשת מנו"ח.</li>
+    <li>יש לתכנן את <b>"שרשרת הפיקוד והמענה הרפואי"</b> במקרה שכוח רפואי נפגע.</li>
+    <li>חבירת כלל הכוחות המטפלים והמפנים לתדר מנו"ח — יש להדגיש לפני כח מסייע לחבור לתדר מנו"ח של הכוח המסתייע.</li>
+    <li>אין לשבץ מט"ב ללא חובשים. חוליה רפואית = מפקד חוליה + מט"ב + 2 חובשים. כל רידוד יעשה אך ורק באישור דרג ממונה.</li>
+    <li>מומלץ לייצר נוהל חבירה לגזרה לכל יחידה נקלטת: מנחתים, שיח עם כוחות שכנים, צירי פינוי, תחקיר דגל רפואי, תרגול חבירה.</li>
+    <li>ייעוד בנות הפינוי הוא <b>פינוי בלבד</b> — אין להשתמש בהן לוגיסטית.</li>
+  </ul>
+</div>
+<div class="lesson-card">
+  <h3>📡 שליטה, תיעוד ודיווח</h3>
+  <p>יש לדווח <b>מוקדם ככל הניתן</b> לצורך בניית תמונת מצב והבאת משאבים.</p>
+  <p>תיעוד על גבי <b>טופס 101</b> (דיגיטלי/ידני) <b>ומנפ"ץ</b> לכל פצוע — גם אם לא פונה. גם פעולות שהחלו ולא הושלמו מחויבות בהעברת מקל ודיווח.</p>
+</div>
+<div class="lesson-card">
+  <h3>🪖 אר"ן וטריאז'</h3>
+  <ul>
+    <li>הכרז אר"ן <b>מוקדם ככל האפשר</b> — הן בשטח והן בדרגי המפקדות.</li>
+    <li>הגדרת "ממתין" באר"ן: <b>פצוע שאינו נושם באופן ספונטני.</b></li>
+    <li>יש לבצע סכמת טיפול מלאה כולל לקיחת מדדים בכל פצוע טראומה (למעט אר"ן).</li>
+    <li>פצוע שאינו בהכרה יוגדר כ<b>דחוף</b> — גם אם אין פציעה נראית לעין.</li>
+  </ul>
+</div>
+<div class="lesson-card">
+  <h3>☠️ אובדן סימני חיים</h3>
+  <p>ניתן להחליט על הפסקת / אי ביצוע מאמצי החייאה על ידי כל מטפל בכיר (רופא / פרמדיק) בהיעדר נשימה, דופק, תגובת אישונים ול"ד. יש למלא טופס 101 הכולל את הפעולות והסימנים שהובילו להחלטה.</p>
+  <p>קביעת המוות הסופית — <b>רק ע"י רופא/ה</b>, על גבי טופס הודעת פטירה.</p>
+</div>
+<div class="lesson-card">
+  <h3>🩸 עצירת דימומים</h3>
+  <ul>
+    <li>בקיאות ב: CAT, First Care ועצירת דימומים ע"י נקודות לחיצה.</li>
+    <li>דימום מפציעות מפשעה שכיח — <b>הפשטה מלאה</b> (דגש על תחתונים) וסריקה יסודית.</li>
+    <li>הערכה חוזרת בכל העברת מקל — בעדיפות ע"י מט"ב.</li>
+  </ul>
+</div>
+<div class="lesson-card">
+  <h3>💉 החזר נפח</h3>
+  <ul>
+    <li>מתן נפח <b>רק</b> בהלם עמוק (ל"ד &lt;90 / היעדר דופק רדיאלי / שינוי הכרה). מומלץ למדוד ל"ד לפני הפינוי.</li>
+    <li>בפצוע המחובר למנת נפח — יש לסיים את המנה ורק אז להעריך מחדש.</li>
+    <li>קיבוע גישה למחזור הדם חלק בלתי נפרד מההתערבות — נרשמו מקרים של שליפת עירוי/IO בחבירה למוסק.</li>
+    <li>גישה ורידית מוקדמת + סף החלטה נמוך למעבר ל-IO בהלם עמוק — <b>מצילת חיים.</b></li>
+    <li>TXA: הלם עמוק או פציעה חודרת בגו / אזורי מעבר.</li>
+  </ul>
+</div>
+<div class="lesson-card">
+  <h3>🌬️ נתיב אוויר וחזה</h3>
+  <ul>
+    <li>בבעיה בנתיב האוויר — התחל בטיפול שמרני: הושבה, סילוק הפרשות, חמצן.</li>
+    <li>הנשמה בלחץ חיובי בפצוע מדמם תרע את מצבו ההמודינמי — הימנע מהתערבויות מיותרות.</li>
+    <li>בית החזה: מבסיס הצוואר עד קו הטבור. <b>אין Packing / לחץ ישיר ב-FC בחזה.</b></li>
+  </ul>
+</div>
+<div class="lesson-card">
+  <h3>🧠 פציעות ראש</h3>
+  <ul>
+    <li>לאחר טיפול בפגיעות מסכנות חיים — ניטור תדיר: הכרה, אישונים, GCS.</li>
+    <li>שמירה: ל"ד סיסטולי &gt;90 · סטורציה &gt;90% · מניעת היפותרמיה.</li>
+    <li>קושי משמעותי בהערכת חומרת חבלת ראש טרם בית חולים — <b>בכל ספק: דחוף.</b></li>
+  </ul>
+</div>
+<div class="lesson-card">
+  <h3>💊 טיפול בכאב</h3>
+  <p>בתום סקר החייאה, לאחר הערכה המודינמית. התווית נגד לאקטיק: הלם עמוק.</p>
+  <p>כאב עוצמה 5+ + גישה ורידית ← <b>קטמין IV 25 מ"ג.</b></p>
+</div>
+<div class="lesson-card">
+  <h3>🩹 סקר שניוני</h3>
+  <p>שטיפת פצע כבר בדרג השטח — דגש על פצעים עמוקים ו"מלוכלכים". קיבוע לאלונקה בכל שלבי הפינוי — לא סותר כיסוי בשמיכת מילוט.</p>
+</div>
+<div class="lesson-card">
+  <h3>🚁 חבירה לפינוי מוסק</h3>
+  <ul>
+    <li>קיבוע ציוד לפני הגעת מסוק (שמיכת מילוט!).</li>
+    <li>אין להעביר דרישת קיצור — רק הזנקה; אם לא נדרש: חזל"ש.</li>
+    <li>טריאז' במנחת ע"י המפקד הרפואי <b>בלבד</b> ← הוא מעביר מידע למסוק.</li>
+    <li>פינוי עד <b>2 פצועים</b> בינשוף.</li>
+    <li>בקשר: <b>"הפצועים מוכנים במנחת".</b></li>
+    <li>בכשל קשר: ציר עוקף דרך חמ"ל חטיבה–אוגדה.</li>
+  </ul>
+</div>`};
+
+/* ===== GROUPS ===== */
+const GROUPS={
+  ls:['ls-chaltz','ls-bleed','ls-scheme','ls-arn','ls-yahalom'],
+  md:['md-X','md-C','md-volflow','md-AR','md-E'],
+};
+const ROLE_HOME={ls:'menu',md:'menu'};
+
+/* ===== ROLES (sidebar + direct entry) ===== */
+const ROLE_DEF={
+  ls:{title:'מח"צ',emoji:'🪖',first:'ls-chaltz',items:[
+    {go:'lesson:ls-chaltz',label:'1. חלץ טפל'},
+    {go:'lesson:ls-bleed',label:'2. עצירת דימומים'},
+    {go:'lesson:ls-scheme',label:'3. סכמת הטיפול בפצוע בודד'},
+    {go:'lesson:ls-arn',label:'4. אר"ן'},
+    {go:'lesson:ls-yahalom',label:'5. יהלו"ם — תגובת קרב'},
+  ]},
+  md:{title:'חובש',emoji:'🩹',first:'md-X',items:[
+    {go:'lesson:md-X',label:'X — חילוץ'},
+    {go:'lesson:md-C',label:'C — עצירת דימומים'},
+    {go:'lesson:md-volflow',label:'C — החזר נפח והמרת CAT'},
+    {go:'lesson:md-AR',label:'A/R — נתיב אוויר ונשימה'},
+    {go:'lesson:md-E',label:'E — פינוי והכנה'},
+    {go:'lesson:md-yahalom',label:'💎 יהלו"ם'},
+    {go:'lesson:full-scheme',label:'📊 סכמת הטיפול'},
+  ]},
+  sr:{title:'מטפל בכיר',emoji:'⚕️',first:'md-X',items:[
+    {go:'lesson:md-X',label:'X — חילוץ'},
+    {go:'lesson:md-C',label:'C — עצירת דימומים'},
+    {go:'lesson:md-volflow',label:'C — החזר נפח והמרת CAT'},
+    {go:'lesson:md-AR',label:'A/R — נתיב אוויר ונשימה'},
+    {go:'lesson:md-E',label:'E — פינוי והכנה'},
+    {go:'lesson:md-yahalom',label:'💎 יהלו"ם'},
+    {go:'sr-protocols',label:'📋 פרוטוקולים'},
+    {go:'sr-drugs',label:'💊 תרופות'},
+    {go:'lesson:full-scheme',label:'📊 סכמת הטיפול'},
+  ]},
+};
+let currentRole=null;
+function renderSidebar(){
+  const sec=document.getElementById('sm-role-section');
+  if(!currentRole){sec.innerHTML='';return;}
+  const r=ROLE_DEF[currentRole];
+  let html='<h4>'+r.emoji+' '+r.title+'</h4>';
+  r.items.forEach(it=>{html+='<div class="item" data-go="'+it.go+'">'+it.label+'</div>';});
+  sec.innerHTML=html;
+}
+function enterRole(role){
+  currentRole=role;
+  renderSidebar();
+  go('lesson:'+ROLE_DEF[role].first);
+}
+
+/* ===== NAV ===== */
+let _hist=['splash'];
+const NUM_EMOJI=new RegExp('^[1-9]\\uFE0F?\\u20E3');
+function buildStepNav(total,goTo){
+  const nav=document.createElement('div');
+  nav.className='stepper-nav';
+  const prev=document.createElement('div');prev.className='step-btn';prev.textContent='‹ הקודם';
+  const counter=document.createElement('div');counter.className='stepper-counter';
+  const next=document.createElement('div');next.className='step-btn primary';next.textContent='המשך ›';
+  nav.appendChild(prev);nav.appendChild(counter);nav.appendChild(next);
+  let cur=0;
+  function render(){
+    counter.textContent=(cur+1)+' / '+total;
+    prev.classList.toggle('disabled',cur===0);
+    next.classList.toggle('disabled',cur===total-1);
+    goTo(cur);
+  }
+  prev.addEventListener('click',()=>{if(cur>0){cur--;render();}});
+  next.addEventListener('click',()=>{if(cur<total-1){cur++;render();}});
+  render();
+  return nav;
+}
+function enhanceInteractivity(){
+  const body=document.getElementById('lessonBody');
+  // numbered flow-step sequences (e.g. CAT application, First Care)
+  body.querySelectorAll('.flow-wrap').forEach(fw=>{
+    if(fw.dataset.enhanced)return;
+    const steps=[...fw.children].filter(c=>c.classList.contains('flow-step'));
+    if(steps.length<2||!NUM_EMOJI.test(steps[0].textContent.trim()))return;
+    fw.dataset.enhanced='1';
+    fw.classList.add('stepper');
+    const nav=buildStepNav(steps.length,i=>steps.forEach((s,j)=>s.classList.toggle('cur',j===i)));
+    fw.after(nav);
+  });
+  // numbered card sequences (e.g. שלבי אר"ן)
+  const cards=[...body.querySelectorAll('.lesson-card')];
+  let i=0;
+  while(i<cards.length){
+    const h3=cards[i].querySelector('h3');
+    const isStep=h3&&/שלב\s*\d/.test(h3.textContent.trim());
+    if(isStep){
+      let j=i;
+      while(j<cards.length){
+        const hh=cards[j].querySelector('h3');
+        if(hh&&/שלב\s*\d/.test(hh.textContent.trim()))j++;else break;
+      }
+      if(j-i>=2&&!cards[i].dataset.enhanced){
+        const group=cards.slice(i,j);
+        group.forEach(c=>c.dataset.enhanced='1');
+        const wrap=document.createElement('div');
+        wrap.className='card-stepper-wrap';
+        cards[i].before(wrap);
+        group.forEach(c=>wrap.appendChild(c));
+        const nav=buildStepNav(group.length,k=>group.forEach((c,m)=>c.classList.toggle('cur',m===k)));
+        wrap.after(nav);
+      }
+      i=j;
+    } else i++;
+  }
+}
+function renderLesson(key){
+  const d=D[key];if(!d)return;
+  document.getElementById('lessonEyebrow').textContent=d.eyebrow;
+  document.getElementById('lessonTitle').textContent=d.title;
+  document.getElementById('lessonBody').innerHTML=d.body;
+  enhanceInteractivity();
+  const se=document.getElementById('lessonSteps');
+  se.innerHTML='';
+  if(d.group&&GROUPS[d.group]){
+    const arr=GROUPS[d.group],idx=arr.indexOf(key);
+    arr.forEach((_,i)=>{const dot=document.createElement('div');dot.className='dot'+(i===idx?' cur':(i<idx?' done':''));se.appendChild(dot);});
+  }
+  const ac=document.getElementById('lessonActions');
+  ac.innerHTML='';
+  if(d.group&&GROUPS[d.group]){
+    const arr=GROUPS[d.group],idx=arr.indexOf(key);
+    if(idx<arr.length-1){const nx=document.createElement('div');nx.className='btn btn-primary';nx.textContent='הלאה ⟵';nx.onclick=()=>go('lesson:'+arr[idx+1]);ac.appendChild(nx);}
+    else{const fin=document.createElement('div');fin.className='btn btn-primary';fin.textContent='סיום ✓';fin.onclick=()=>go(ROLE_HOME[d.group]);ac.appendChild(fin);}
+    const bk=document.createElement('div');bk.className='btn btn-ghost';bk.textContent='תפריט';bk.onclick=()=>go(ROLE_HOME[d.group]);ac.appendChild(bk);
+  } else {
+    const bk=document.createElement('div');bk.className='btn btn-ghost btn-wide';bk.textContent='⟵ חזור';bk.onclick=()=>navBack();ac.appendChild(bk);
+  }
+}
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  const el=document.getElementById('screen-'+id);if(el)el.classList.add('active');
+  document.getElementById('mainHeader').style.display=(id==='splash')?'none':'flex';
+  window.scrollTo(0,0);
+}
+function go(target,push=true){
+  if(push)_hist.push(target);
+  closeMenu();
+  if(target.startsWith('lesson:')){const key=target.slice(7);renderLesson(key);showScreen('lesson');}
+  else if(D[target]){renderLesson(target);showScreen('lesson');}
+  else{showScreen(target);}
+}
+function navBack(){
+  if(_hist.length>1){
+    _hist.pop();
+    const prev=_hist[_hist.length-1];
+    if(prev==='splash'){_hist=['menu'];go('menu',false);}
+    else go(prev,false);
+  } else go('menu');
+}
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-go]');if(!t)return;
+  const tgt=t.getAttribute('data-go');
+  if(tgt.startsWith('role:'))enterRole(tgt.slice(5));
+  else go(tgt);
+});
+document.getElementById('btnEnter').addEventListener('click',()=>{
+  const splash = document.getElementById('screen-splash');
+  splash.style.transition = 'opacity .4s ease';
+  splash.style.opacity = '0';
+  setTimeout(()=>{
+    splash.style.display = 'none';
+    _hist = ['menu'];
+    showScreen('menu');
+  }, 380);
+});
+document.getElementById('btnHome').addEventListener('click',()=>{_hist=['menu'];showScreen('menu');});
+document.getElementById('btnMenu').addEventListener('click',()=>{document.getElementById('sidemenu-overlay').classList.add('active');document.getElementById('sidemenu').classList.add('active');});
+document.getElementById('btnCloseMenu').addEventListener('click',closeMenu);
+document.getElementById('sidemenu-overlay').addEventListener('click',e=>{if(e.target.id==='sidemenu-overlay')closeMenu();});
+function closeMenu(){document.getElementById('sidemenu-overlay').classList.remove('active');document.getElementById('sidemenu').classList.remove('active');}
+</script>
+</body>
+</html>
