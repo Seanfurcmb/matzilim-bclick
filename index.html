@@ -7,7 +7,7 @@
 <style>
 :root{
   --navy-dark:#0c1f33;--navy:#16314f;--navy-mid:#2a4d72;--navy-light:#5483a8;
-  --card:#22405f;--card-2:#1b3450;--orange:#ff8e3c;--red:#c81e2c;
+  --card:#22405f;--card-2:#1b3450;--orange:#ff8e3c;
   --cream:#eef3f7;--muted:#9fb4c8;--gold:#e2c22d;--good:#3fae64;--danger-light:#ffb3b8;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
@@ -49,7 +49,6 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
 .row2 .role-btn{flex:1;font-size:14px;padding:15px 8px;}
 .role-btn.small{font-size:14px;padding:13px 10px;}
 .role-btn.ghost{background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.25);color:var(--muted);font-weight:600;font-size:14px;}
-.role-btn.accent{background:linear-gradient(135deg,rgba(255,142,60,.15),rgba(226,194,45,.08));border-color:rgba(255,142,60,.35);color:var(--orange);}
 
 /* CONTENT CARDS */
 .lesson-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:16px;margin-bottom:13px;}
@@ -179,7 +178,6 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
 .muted{color:var(--muted);}
 .small{font-size:12.5px;}
 .center{text-align:center;}
-.placeholder-card{background:rgba(255,255,255,.03);border:1px dashed rgba(255,255,255,.15);border-radius:12px;padding:20px;text-align:center;color:var(--muted);font-size:14px;}
 
 /* DRUG CARDS */
 .drug-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;margin-bottom:12px;overflow:hidden;}
@@ -237,7 +235,7 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
   <img class="logo" src="assets/logo.png" alt="ענף רפואה קרבית">
   <h1>מצילים חיים<br>בקליק</h1>
   <div class="bounce-down" id="btnEnter"><svg viewBox="0 0 24 24" fill="none" stroke="#ff8e3c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="4" x2="12" y2="20"/><polyline points="6 14 12 20 18 14"/></svg></div>
-  <div class="muted small">לומדה דיגיטלית לאנשי הרפואה במילואים</div>
+  <div class="muted small">לומדה דיגיטלית לאנשי הרפואה</div>
 </section>
 
 <!-- MAIN MENU -->
@@ -270,7 +268,10 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
     <div class="proto-item" data-go="lesson:proto-airway"><span class="pi-num">7</span><span class="pi-label">פרוטוקול הערכת וניהול נתיב אוויר</span><span class="pi-arrow">‹</span></div>
     <div class="proto-item" data-go="lesson:proto-damage-ctrl"><span class="pi-num">8</span><span class="pi-label">פרוטוקול החייאת בקרת נזקים בשדה בפצוע מדמם</span><span class="pi-arrow">‹</span></div>
   </div>
-  <div class="bottom-actions"><div class="btn btn-ghost btn-wide" data-go="menu">⟵ חזרה</div></div>
+  <div class="bottom-actions">
+    <div class="btn btn-ghost" data-go="menu">תפריט</div>
+    <div class="btn btn-primary" data-go="sr-drugs">תרופות <span dir="ltr">←</span></div>
+  </div>
 </section>
 
 <!-- DRUGS MENU -->
@@ -286,7 +287,10 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
     <div class="proto-item" data-go="lesson:drug-abc"><span class="pi-label">אב"כ</span><span class="pi-arrow">‹</span></div>
     <div class="proto-item" data-go="lesson:drug-misc"><span class="pi-label">שונות</span><span class="pi-arrow">‹</span></div>
   </div>
-  <div class="bottom-actions"><div class="btn btn-ghost btn-wide" data-go="menu">⟵ חזרה</div></div>
+  <div class="bottom-actions">
+    <div class="btn btn-ghost" data-go="menu">תפריט</div>
+    <div class="btn btn-primary" data-go="lesson:full-scheme">סכמת הטיפול בפצוע בודד <span dir="ltr">←</span></div>
+  </div>
 </section>
 
 <!-- כלי פינוי -->
@@ -410,7 +414,7 @@ document.getElementById('evacModal').addEventListener('click',e=>{if(e.target.id
 const D={};
 
 /* ---- מח"צ: חלץ טפל ---- */
-D['ls-chaltz']={eyebrow:'מח"צ',title:'חלץ טפל',group:'ls',seq:0,body:`
+D['ls-chaltz']={eyebrow:'מח"צ',title:'חלץ טפל',group:'ls',body:`
 <div class="lesson-card">
   <h3>🎯 הכרזה ופתיחת האירוע</h3>
   <p><b>הכרזה: "פצוע בכוח" / "נפצעתי"</b> + השבה באש.</p>
@@ -435,7 +439,7 @@ D['ls-chaltz']={eyebrow:'מח"צ',title:'חלץ טפל',group:'ls',seq:0,body:`
 </div>`};
 
 /* ---- מח"צ: עצירת דימומים ---- */
-D['ls-bleed']={eyebrow:'מח"צ',title:'עצירת דימומים',group:'ls',seq:1,body:`
+D['ls-bleed']={eyebrow:'מח"צ',title:'עצירת דימומים',group:'ls',body:`
 <div class="lesson-card">
   <h3>🩸 שיטות עצירת דימום</h3>
   <div class="flow-wrap">
@@ -500,15 +504,15 @@ D['ls-bleed']={eyebrow:'מח"צ',title:'עצירת דימומים',group:'ls',se
 </div>`};
 
 /* ---- מח"צ: סכמת SABC ---- */
-D['ls-scheme']={eyebrow:'מח"צ',title:'סכמת הטיפול בפצוע בודד',group:'ls',seq:2,body:`
+D['ls-scheme']={eyebrow:'מח"צ',title:'סכמת הטיפול בפצוע בודד',group:'ls',body:`
 <div class="lesson-card">
   <h3>🛡️ S — Safety (בטיחות)</h3>
   <p>בטיחות המטפל והמטופל: הרחקה מגורם מסכן, נטרול אויב, הסרת נשק ונצירתו.</p>
   <p><b>עצירת דימומים פורצים:</b> ח"ע בראש גפה, F.C, נקודת לחיצה.</p>
   <p>דיווח ראשוני ודרישה לפינוי — לפי שיטת <b>5 המ"מים:</b></p>
   <ul>
-    <li>מי אני ולמי אני פונה</li>
     <li>מיקום</li>
+    <li>מתאר/מנגנון</li>
     <li>מה קרה</li>
     <li>מתי קרה</li>
     <li>מספר פצועים ומצבם</li>
@@ -534,10 +538,10 @@ D['ls-scheme']={eyebrow:'מח"צ',title:'סכמת הטיפול בפצוע בוד
 `};
 
 /* ---- מח"צ: ARN ---- */
-D['ls-arn']={eyebrow:'מח"צ',title:'אר"ן — אירוע רב נפגעים',group:'ls',seq:3,body:`
+D['ls-arn']={eyebrow:'מח"צ',title:'אר"ן — אירוע רב נפגעים',group:'ls',body:`
 <div class="lesson-card">
   <h3>📖 הגדרה</h3>
-  <p>אר"ן = אירוע בו מספר הנפגעים וחומרת הפציעות <b>גוברים על המשאבים הקיימים</b> בשטח ועל יכולת הצוות הרפואי להעניק טיפול מיטבי לכלל הפצועים.</p>
+  <p>אר"ן = אירוע בו <b>הטיפול בפצוע אחד יפגע באיכות הטיפול או פינוי פצוע אחר.</b></p>
   <p>באר"ן נתמקד באיתור מוקדם של <b>הפצועים בני ההצלה</b> ונשקיע את משאבי הפינוי והטיפול לטובתם.</p>
 </div>
 
@@ -615,7 +619,7 @@ D['ls-arn']={eyebrow:'מח"צ',title:'אר"ן — אירוע רב נפגעים',
 `};
 
 /* ---- מח"צ: יהלו"ם ---- */
-D['ls-yahalom']={eyebrow:'מח"צ',title:'יהלו"ם — תגובת קרב',group:'ls',seq:4,body:`
+D['ls-yahalom']={eyebrow:'מח"צ',title:'יהלו"ם — תגובת קרב',group:'ls',body:`
 <div class="lesson-card">
   <h3>💎 מה זה יהלו"ם?</h3>
   <p>סכמת יהלו"ם <b>מפחיתה בעשרות אחוזים</b> את הסיכויים לפוסט-טראומה.</p>
@@ -633,7 +637,7 @@ D['ls-yahalom']={eyebrow:'מח"צ',title:'יהלו"ם — תגובת קרב',gro
 <div class="lesson-card">
   <h3>🔵 ל — לברר עובדות</h3>
   <p>שאלות קצרות וממוקדות עובדות.</p>
-  <p>"איך קוראים לך?" · "מי המפקד שלך?"</p>
+  <p>"איך קוראים לך?, מה המספר האישי שלך?"</p>
 </div>
 <div class="lesson-card">
   <h3>🔵 ו — וידוא סדר התרחשות</h3>
@@ -648,7 +652,7 @@ D['ls-yahalom']={eyebrow:'מח"צ',title:'יהלו"ם — תגובת קרב',gro
 </div>`};
 
 /* ---- חובש: X ---- */
-D['md-X']={eyebrow:'חובש',title:'X — חילוץ',group:'md',seq:0,body:`
+D['md-X']={eyebrow:'חובש',title:'X — חילוץ',group:'md',body:`
 <div class="lesson-card">
   <h3>🎯 חלץ טפל / פצוע בכוח</h3>
   <p>הכרזה בשטח ובקשר על <b>פצוע בכוח</b>, השגת עליונות באש, הגעה למחסה ראשוני על ידי חילוץ עצמי או על ידי כוח שהוגדר לכך, עצירת דימום פורץ על ידי לוחם / מטפל סמוך.</p>
@@ -663,7 +667,7 @@ D['md-X']={eyebrow:'חובש',title:'X — חילוץ',group:'md',seq:0,body:`
 </div>`};
 
 /* ---- חובש: C עצירת דימומים ---- */
-D['md-C']={eyebrow:'חובש',title:'C — עצירת דימומים',group:'md',seq:1,body:`
+D['md-C']={eyebrow:'חובש',title:'C — עצירת דימומים',group:'md',body:`
 <div class="lesson-card">
   <h3>🔴 CAT — חוסם עורקים</h3>
   <p><b>התוויות (א.ת.ק.ל.ח):</b> אר"ן, תחת אש, קטיעה, לחץ ישיר שנכשל, חוסר הכרה שלא כתוצאה מחבלת ראש / תרופות.</p>
@@ -697,7 +701,7 @@ D['md-C']={eyebrow:'חובש',title:'C — עצירת דימומים',group:'md'
 </div>`};
 
 /* ---- חובש: C החזר נפח ---- */
-D['md-volflow']={eyebrow:'חובש',title:'C — החזר נפח והמרת CAT',group:'md',seq:2,body:`
+D['md-volflow']={eyebrow:'חובש',title:'C — החזר נפח והמרת CAT',group:'md',body:`
 <div class="lesson-card">
   <h3>🚨 קריטריונים להלם עמוק</h3>
   <ul>
@@ -747,15 +751,15 @@ D['md-volflow']={eyebrow:'חובש',title:'C — החזר נפח והמרת CAT'
 </div>`};
 
 /* ---- חובש: A/R ---- */
-D['md-AR']={eyebrow:'חובש',title:'A/R — נתיב אוויר ונשימה',group:'md',seq:3,body:`
+D['md-AR']={eyebrow:'חובש',title:'A/R — נתיב אוויר ונשימה',group:'md',body:`
 <div class="lesson-card">
   <h3>🌬️ טיפול נשימתי תומך</h3>
   <p>דגש על טיפול תומך: <b>הושבה · מתן חמצן · סילוק הפרשות · פתיחת פה.</b></p>
-  <div class="warn">הנשמה בלחץ חיובי בפצוע מדמם תרע את מצבו ההמודינמי. יש להימנע מהתערבויות מיותרות.</div>
+  <div class="warn">ההנשמה בלחץ חיובי תחמיר את המצב ההמודינמי בפצועי חזה.</div>
 </div>
 <div class="lesson-card">
   <h3>💨 מנשם</h3>
-  <p>לחבר את המנשם למקור חמצן ולמעגל החולה ← להפעיל על תוכנית <b>PSVC</b>.</p>
+  <p>לחבר את המנשם למקור חמצן ולמעגל החולה ← להפעיל על תוכנית <b>SIMV-VCPS</b>.</p>
 </div>
 <div class="lesson-card">
   <h3>🫁 פציעות חזה</h3>
@@ -764,7 +768,7 @@ D['md-AR']={eyebrow:'חובש',title:'A/R — נתיב אוויר ונשימה',
 </div>`};
 
 /* ---- חובש: E ---- */
-D['md-E']={eyebrow:'חובש',title:'E — פינוי והכנה',group:'md',seq:4,body:`
+D['md-E']={eyebrow:'חובש',title:'E — הכנה ופינוי',group:'md',body:`
 <div class="lesson-card">
   <h3>🩹 הכנה לפינוי</h3>
   <div class="flow-wrap">
@@ -784,7 +788,7 @@ D['md-E']={eyebrow:'חובש',title:'E — פינוי והכנה',group:'md',seq
 </div>`};
 
 /* ---- יהלו"ם (shared) ---- */
-D['md-yahalom']={eyebrow:'חובש',title:'יהלו"ם — תגובת קרב',group:null,body:D['ls-yahalom'].body};
+D['md-yahalom']={eyebrow:'חובש',title:'יהלו"ם — תגובת קרב',group:'md',body:D['ls-yahalom'].body};
 
 /* ---- סכמת טיפול מלאה (חובש ומטפל בכיר) ---- */
 D['full-scheme']={eyebrow:'סכמת טיפול',title:'סכמת הטיפול בפצוע בודד',group:null,body:`
@@ -1356,7 +1360,7 @@ D['lessons']={eyebrow:'לומדה',title:'לקחי מלחמת התקומה',grou
 /* ===== GROUPS ===== */
 const GROUPS={
   ls:['ls-chaltz','ls-bleed','ls-scheme','ls-arn','ls-yahalom'],
-  md:['md-X','md-C','md-volflow','md-AR','md-E'],
+  md:['md-X','md-C','md-volflow','md-AR','md-E','md-yahalom'],
 };
 const ROLE_HOME={ls:'menu',md:'menu'};
 
@@ -1374,7 +1378,7 @@ const ROLE_DEF={
     {go:'lesson:md-C',label:'C — עצירת דימומים'},
     {go:'lesson:md-volflow',label:'C — החזר נפח והמרת CAT'},
     {go:'lesson:md-AR',label:'A/R — נתיב אוויר ונשימה'},
-    {go:'lesson:md-E',label:'E — פינוי והכנה'},
+    {go:'lesson:md-E',label:'E — הכנה ופינוי'},
     {go:'lesson:md-yahalom',label:'💎 יהלו"ם'},
     {go:'lesson:full-scheme',label:'📊 סכמת הטיפול'},
   ]},
@@ -1383,7 +1387,7 @@ const ROLE_DEF={
     {go:'lesson:md-C',label:'C — עצירת דימומים'},
     {go:'lesson:md-volflow',label:'C — החזר נפח והמרת CAT'},
     {go:'lesson:md-AR',label:'A/R — נתיב אוויר ונשימה'},
-    {go:'lesson:md-E',label:'E — פינוי והכנה'},
+    {go:'lesson:md-E',label:'E — הכנה ופינוי'},
     {go:'lesson:md-yahalom',label:'💎 יהלו"ם'},
     {go:'sr-protocols',label:'📋 פרוטוקולים'},
     {go:'sr-drugs',label:'💊 תרופות'},
@@ -1411,9 +1415,9 @@ const NUM_EMOJI=new RegExp('^[1-9]\\uFE0F?\\u20E3');
 function buildStepNav(total,goTo){
   const nav=document.createElement('div');
   nav.className='stepper-nav';
-  const prev=document.createElement('div');prev.className='step-btn';prev.textContent='‹ הקודם';
+  const prev=document.createElement('div');prev.className='step-btn';prev.textContent='הקודם ›';
   const counter=document.createElement('div');counter.className='stepper-counter';
-  const next=document.createElement('div');next.className='step-btn primary';next.textContent='המשך ›';
+  const next=document.createElement('div');next.className='step-btn primary';next.innerHTML='המשך <span dir="ltr">←</span>';
   nav.appendChild(prev);nav.appendChild(counter);nav.appendChild(next);
   let cur=0;
   function render(){
@@ -1467,7 +1471,7 @@ function enhanceInteractivity(){
 }
 function renderLesson(key){
   const d=D[key];if(!d)return;
-  document.getElementById('lessonEyebrow').textContent=d.eyebrow;
+  document.getElementById('lessonEyebrow').textContent=(currentRole==='sr'&&d.eyebrow==='חובש')?'מט"ב':d.eyebrow;
   document.getElementById('lessonTitle').textContent=d.title;
   document.getElementById('lessonBody').innerHTML=d.body;
   enhanceInteractivity();
@@ -1481,9 +1485,11 @@ function renderLesson(key){
   ac.innerHTML='';
   if(d.group&&GROUPS[d.group]){
     const arr=GROUPS[d.group],idx=arr.indexOf(key);
-    if(idx<arr.length-1){const nx=document.createElement('div');nx.className='btn btn-primary';nx.textContent='הלאה ⟵';nx.onclick=()=>go('lesson:'+arr[idx+1]);ac.appendChild(nx);}
-    else{const fin=document.createElement('div');fin.className='btn btn-primary';fin.textContent='סיום ✓';fin.onclick=()=>go(ROLE_HOME[d.group]);ac.appendChild(fin);}
     const bk=document.createElement('div');bk.className='btn btn-ghost';bk.textContent='תפריט';bk.onclick=()=>go(ROLE_HOME[d.group]);ac.appendChild(bk);
+    if(idx<arr.length-1){const nx=document.createElement('div');nx.className='btn btn-primary';const nextKey=arr[idx+1];nx.innerHTML=(nextKey==='md-yahalom'?'יהלום':'המשך')+' <span dir="ltr">←</span>';nx.onclick=()=>go('lesson:'+nextKey);ac.appendChild(nx);}
+    else if(currentRole==='sr'&&key==='md-yahalom'){const nx=document.createElement('div');nx.className='btn btn-primary';nx.innerHTML='פרוטוקולים <span dir="ltr">←</span>';nx.onclick=()=>go('sr-protocols');ac.appendChild(nx);}
+    else if(currentRole==='md'&&key==='md-yahalom'){const nx=document.createElement('div');nx.className='btn btn-primary';nx.innerHTML='סכמת הטיפול בפצוע בודד <span dir="ltr">←</span>';nx.onclick=()=>go('lesson:full-scheme');ac.appendChild(nx);}
+    else{const fin=document.createElement('div');fin.className='btn btn-primary';fin.textContent='סיום ✓';fin.onclick=()=>go(ROLE_HOME[d.group]);ac.appendChild(fin);}
   } else {
     const bk=document.createElement('div');bk.className='btn btn-ghost btn-wide';bk.textContent='⟵ חזור';bk.onclick=()=>navBack();ac.appendChild(bk);
   }
