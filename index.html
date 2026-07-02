@@ -145,8 +145,10 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
 .btn-evac:active{transform:scale(.96);}
 
 /* EVAC MODAL */
-#evacModal{position:absolute;inset:0;background:rgba(0,0,0,.65);z-index:100;display:none;align-items:flex-end;justify-content:center;}
+#evacModal{position:absolute;inset:0;background:rgba(0,0,0,.65);z-index:100;display:none;flex-direction:column;align-items:center;justify-content:flex-end;}
 #evacModal.open{display:flex;}
+.evac-handle{width:64px;height:32px;border-radius:32px 32px 0 0;background:rgba(255,255,255,.09);border:1.5px solid rgba(255,255,255,.18);border-bottom:none;cursor:pointer;flex-shrink:0;transition:.15s;}
+.evac-handle:hover{background:rgba(255,255,255,.15);}
 .evac-modal-box{background:linear-gradient(180deg,#1b3450,#0c1f33);border:1px solid rgba(255,255,255,.12);border-top-left-radius:20px;border-top-right-radius:20px;width:100%;max-height:82vh;overflow-y:auto;padding:20px 18px 40px;box-shadow:0 -8px 32px rgba(0,0,0,.5);animation:slideUp .25s ease-out;position:relative;}
 @keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
 .evac-hero-wrap{position:relative;margin:-20px -18px 14px;overflow:hidden;border-top-left-radius:20px;border-top-right-radius:20px;height:170px;background:#0c1f33;}
@@ -259,14 +261,14 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
   <div class="page-title">מטפל בכיר</div>
   <div class="page-heading">פרוטוקולים</div>
   <div class="proto-list">
-    <div class="proto-item" data-go="lesson:proto-pain"><span class="pi-num">1</span><span class="pi-label">פרוטוקול טיפול בכאב</span><span class="pi-arrow">‹</span></div>
-    <div class="proto-item" data-go="lesson:proto-antibiotics"><span class="pi-num">2</span><span class="pi-label">פרוטוקול הטיפול באנטיביוטיקה</span><span class="pi-arrow">‹</span></div>
-    <div class="proto-item" data-go="lesson:proto-vascular"><span class="pi-num">3</span><span class="pi-label">פרוטוקול השגת גישה למחזור הדם</span><span class="pi-arrow">‹</span></div>
-    <div class="proto-item" data-go="lesson:proto-death"><span class="pi-num">4</span><span class="pi-label">פרוטוקול סיום מאמצי החייאה וקביעת מוות</span><span class="pi-arrow">‹</span></div>
-    <div class="proto-item" data-go="lesson:proto-chest-vent"><span class="pi-num">5</span><span class="pi-label">פרוטוקול טיפול בפצוע חזה מונשם</span><span class="pi-arrow">‹</span></div>
-    <div class="proto-item" data-go="lesson:proto-chest-spont"><span class="pi-num">6</span><span class="pi-label">פרוטוקול טיפול בפצוע חזה נושם ספונטנית</span><span class="pi-arrow">‹</span></div>
-    <div class="proto-item" data-go="lesson:proto-airway"><span class="pi-num">7</span><span class="pi-label">פרוטוקול הערכת וניהול נתיב אוויר</span><span class="pi-arrow">‹</span></div>
-    <div class="proto-item" data-go="lesson:proto-damage-ctrl"><span class="pi-num">8</span><span class="pi-label">פרוטוקול החייאת בקרת נזקים בשדה בפצוע מדמם</span><span class="pi-arrow">‹</span></div>
+    <div class="proto-item" data-go="lesson:proto-pain"><span class="pi-num">1</span><span class="pi-label">פרוטוקול טיפול בכאב</span><span class="pi-arrow" dir="ltr">›</span></div>
+    <div class="proto-item" data-go="lesson:proto-antibiotics"><span class="pi-num">2</span><span class="pi-label">פרוטוקול הטיפול באנטיביוטיקה</span><span class="pi-arrow" dir="ltr">›</span></div>
+    <div class="proto-item" data-go="lesson:proto-vascular"><span class="pi-num">3</span><span class="pi-label">פרוטוקול השגת גישה למחזור הדם</span><span class="pi-arrow" dir="ltr">›</span></div>
+    <div class="proto-item" data-go="lesson:proto-death"><span class="pi-num">4</span><span class="pi-label">פרוטוקול סיום מאמצי החייאה וקביעת מוות</span><span class="pi-arrow" dir="ltr">›</span></div>
+    <div class="proto-item" data-go="lesson:proto-chest-vent"><span class="pi-num">5</span><span class="pi-label">פרוטוקול טיפול בפצוע חזה מונשם</span><span class="pi-arrow" dir="ltr">›</span></div>
+    <div class="proto-item" data-go="lesson:proto-chest-spont"><span class="pi-num">6</span><span class="pi-label">פרוטוקול טיפול בפצוע חזה נושם ספונטנית</span><span class="pi-arrow" dir="ltr">›</span></div>
+    <div class="proto-item" data-go="lesson:proto-airway"><span class="pi-num">7</span><span class="pi-label">פרוטוקול הערכת וניהול נתיב אוויר</span><span class="pi-arrow" dir="ltr">›</span></div>
+    <div class="proto-item" data-go="lesson:proto-damage-ctrl"><span class="pi-num">8</span><span class="pi-label">פרוטוקול החייאת בקרת נזקים בשדה בפצוע מדמם</span><span class="pi-arrow" dir="ltr">›</span></div>
   </div>
   <div class="bottom-actions">
     <div class="btn btn-ghost" data-go="menu">תפריט</div>
@@ -279,13 +281,13 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
   <div class="page-title">מטפל בכיר</div>
   <div class="page-heading">תרופות</div>
   <div class="proto-list">
-    <div class="proto-item" data-go="lesson:drug-sedation"><span class="pi-label">הרדמה ואלחוש</span><span class="pi-arrow">‹</span></div>
-    <div class="proto-item" data-go="lesson:drug-analgesia"><span class="pi-label">אנלגטיקה</span><span class="pi-arrow">‹</span></div>
-    <div class="proto-item" data-go="lesson:drug-deep-shock"><span class="pi-label">פצוע בהלם עמוק</span><span class="pi-arrow">‹</span></div>
-    <div class="proto-item" data-go="lesson:drug-antibiotics"><span class="pi-label">אנטיביוטיקה</span><span class="pi-arrow">‹</span></div>
-    <div class="proto-item" data-go="lesson:drug-crush"><span class="pi-label">פצוע מעיכה</span><span class="pi-arrow">‹</span></div>
-    <div class="proto-item" data-go="lesson:drug-abc"><span class="pi-label">אב"כ</span><span class="pi-arrow">‹</span></div>
-    <div class="proto-item" data-go="lesson:drug-misc"><span class="pi-label">שונות</span><span class="pi-arrow">‹</span></div>
+    <div class="proto-item" data-go="lesson:drug-sedation"><span class="pi-label">הרדמה ואלחוש</span><span class="pi-arrow" dir="ltr">›</span></div>
+    <div class="proto-item" data-go="lesson:drug-analgesia"><span class="pi-label">אנלגטיקה</span><span class="pi-arrow" dir="ltr">›</span></div>
+    <div class="proto-item" data-go="lesson:drug-deep-shock"><span class="pi-label">פצוע בהלם עמוק</span><span class="pi-arrow" dir="ltr">›</span></div>
+    <div class="proto-item" data-go="lesson:drug-antibiotics"><span class="pi-label">אנטיביוטיקה</span><span class="pi-arrow" dir="ltr">›</span></div>
+    <div class="proto-item" data-go="lesson:drug-crush"><span class="pi-label">פצוע מעיכה</span><span class="pi-arrow" dir="ltr">›</span></div>
+    <div class="proto-item" data-go="lesson:drug-abc"><span class="pi-label">אב"כ</span><span class="pi-arrow" dir="ltr">›</span></div>
+    <div class="proto-item" data-go="lesson:drug-misc"><span class="pi-label">שונות</span><span class="pi-arrow" dir="ltr">›</span></div>
   </div>
   <div class="bottom-actions">
     <div class="btn btn-ghost" data-go="menu">תפריט</div>
@@ -312,6 +314,7 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
   </div>
   <div class="bottom-actions"><div class="btn btn-ghost btn-wide" data-go="menu">⟵ חזרה לתפריט הראשי</div></div>
   <div id="evacModal">
+    <div class="evac-handle" onclick="closeEvac()"></div>
     <div class="evac-modal-box">
       <button class="evac-close" onclick="closeEvac()">✕</button>
       <div class="evac-hero-wrap" id="eHeroWrap">
@@ -424,7 +427,7 @@ D['ls-chaltz']={eyebrow:'מח"צ',title:'חלץ טפל',group:'ls',body:`
   <div class="flow-wrap">
     <div class="flow-step">1️⃣ השגת עליונות באש</div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">2️⃣ חילוץ עצמי / חילוץ הפצוע למחסה ראשוני על ידי כוח שהוגדר לכך</div>
+    <div class="flow-step">2️⃣ חילוץ הפצוע למחסה ראשוני על ידי חילוץ עצמי או כוח שהוגדר לכך</div>
     <div class="flow-arrow">↓</div>
     <div class="flow-step">3️⃣ עצירת דימום פורץ על ידי לוחם / מטפל סמוך</div>
     <div class="flow-arrow">↓</div>
@@ -1415,7 +1418,7 @@ const NUM_EMOJI=new RegExp('^[1-9]\\uFE0F?\\u20E3');
 function buildStepNav(total,goTo){
   const nav=document.createElement('div');
   nav.className='stepper-nav';
-  const prev=document.createElement('div');prev.className='step-btn';prev.textContent='הקודם ›';
+  const prev=document.createElement('div');prev.className='step-btn';prev.innerHTML='<span dir="ltr">→</span> הקודם';
   const counter=document.createElement('div');counter.className='stepper-counter';
   const next=document.createElement('div');next.className='step-btn primary';next.innerHTML='המשך <span dir="ltr">←</span>';
   nav.appendChild(prev);nav.appendChild(counter);nav.appendChild(next);
@@ -1491,7 +1494,7 @@ function renderLesson(key){
     else if(currentRole==='md'&&key==='md-yahalom'){const nx=document.createElement('div');nx.className='btn btn-primary';nx.innerHTML='סכמת הטיפול בפצוע בודד <span dir="ltr">←</span>';nx.onclick=()=>go('lesson:full-scheme');ac.appendChild(nx);}
     else{const fin=document.createElement('div');fin.className='btn btn-primary';fin.textContent='סיום ✓';fin.onclick=()=>go(ROLE_HOME[d.group]);ac.appendChild(fin);}
   } else {
-    const bk=document.createElement('div');bk.className='btn btn-ghost btn-wide';bk.textContent='⟵ חזור';bk.onclick=()=>navBack();ac.appendChild(bk);
+    const bk=document.createElement('div');bk.className='btn btn-ghost btn-wide';bk.textContent='⟵ חזור';bk.onclick=()=>go('menu');ac.appendChild(bk);
   }
 }
 function showScreen(id){
