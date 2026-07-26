@@ -308,14 +308,16 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
   <div class="page-heading">כלי פינוי</div>
   <div class="evac-table-wrap">
     <table class="evac-table">
-      <thead><tr><th>כלי</th><th>מהירות</th><th>מיגון</th><th></th></tr></thead>
+      <thead><tr><th>כלי</th><th>מהירות מקסימלית</th><th>מיגון</th><th></th></tr></thead>
       <tbody>
-        <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/nagmash.jpg" alt="נגמ&quot;ש פינוי" loading="lazy"><span class="evac-name">נגמ"ש פינוי</span></div></td><td>40 קמ"ש</td><td><span class="badge-armor">נק"ל</span></td><td><button class="btn-evac" onclick="openEvac('p1')">פרטים</button></td></tr>
-        <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/NAMER.jpg" alt="נמ&quot;ר פינוי" loading="lazy"><span class="evac-name">נמ"ר פינוי</span></div></td><td>60 קמ"ש</td><td><span class="badge-armor">נק"ל + נ"ט</span></td><td><button class="btn-evac" onclick="openEvac('p2')">פרטים</button></td></tr>
-        <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/Achzarit.jpg" alt="אכזרית פינוי" loading="lazy"><span class="evac-name">אכזרית פינוי</span></div></td><td>40 קמ"ש</td><td><span class="badge-armor">נק"ל + נ"ט</span></td><td><button class="btn-evac" onclick="openEvac('p3')">פרטים</button></td></tr>
-        <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/hammer.jpg" alt="האמר גנרי" loading="lazy"><span class="evac-name">האמר גנרי</span></div></td><td>70 קמ"ש</td><td><span class="badge-armor">לא ממוגן</span></td><td><button class="btn-evac" onclick="openEvac('p4')">פרטים</button></td></tr>
+        <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/nagmash.jpg" alt="נגמ&quot;ש פינוי" loading="lazy"><span class="evac-name">נגמ"ש פינוי</span></div></td><td>30 קמ"ש</td><td><span class="badge-armor">נק"ל</span></td><td><button class="btn-evac" onclick="openEvac('p1')">פרטים</button></td></tr>
+        <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/NAMER.jpg" alt="נמ&quot;ר פינוי" loading="lazy"><span class="evac-name">נמ"ר פינוי</span></div></td><td>40 קמ"ש</td><td><span class="badge-armor">נק"ל + נ"ט</span></td><td><button class="btn-evac" onclick="openEvac('p2')">פרטים</button></td></tr>
+        <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/Achzarit.jpg" alt="אכזרית פינוי" loading="lazy"><span class="evac-name">אכזרית פינוי</span></div></td><td>30 קמ"ש</td><td><span class="badge-armor">נק"ל + נ"ט</span></td><td><button class="btn-evac" onclick="openEvac('p3')">פרטים</button></td></tr>
+        <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/hammer.jpg" alt="האמר גנרי" loading="lazy"><span class="evac-name">האמר גנרי</span></div></td><td>65 קמ"ש</td><td><span class="badge-armor">לא ממוגן</span></td><td><button class="btn-evac" onclick="openEvac('p4')">פרטים</button></td></tr>
         <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/yanshuf.jpg" alt="ינשוף" loading="lazy"><span class="evac-name">ינשוף</span></div></td><td>מהיר</td><td><span class="badge-armor">לא ממוגן</span></td><td><button class="btn-evac" onclick="openEvac('p5')">פרטים</button></td></tr>
         <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/yasur.jpg" alt="יסעור" loading="lazy"><span class="evac-name">יסעור</span></div></td><td>מהיר</td><td><span class="badge-armor">לא ממוגן</span></td><td><button class="btn-evac" onclick="openEvac('p6')">פרטים</button></td></tr>
+        <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/ford.jpg" alt="פורד בולנס" loading="lazy"><span class="evac-name">פורד בולנס</span></div></td><td>90 קמ"ש</td><td><span class="badge-armor">לא ממוגן</span></td><td><button class="btn-evac" onclick="openEvac('p7')">פרטים</button></td></tr>
+        <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/sprinter.jpg" alt="ספרינטר" loading="lazy"><span class="evac-name">ספרינטר</span></div></td><td>90 קמ"ש</td><td><span class="badge-armor">לא ממוגן</span></td><td><button class="btn-evac" onclick="openEvac('p8')">פרטים</button></td></tr>
       </tbody>
     </table>
   </div>
@@ -340,7 +342,8 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
         <div class="evac-row"><div class="evac-lbl">כוח רפואי</div><div class="evac-val" id="eCrew"></div></div>
         <div class="evac-row"><div class="evac-lbl">העמסת נפגעים</div><div class="evac-val" id="eCapacity"></div></div>
         <div class="evac-row"><div class="evac-lbl">מיגון</div><div class="evac-val" id="eArmor"></div></div>
-        <div class="evac-row"><div class="evac-lbl">מהירות</div><div class="evac-val" id="eSpeed"></div></div>
+        <div class="evac-row"><div class="evac-lbl">מהירות מקסימלית</div><div class="evac-val" id="eSpeed"></div></div>
+        <div class="evac-row" id="eTerrainRow"><div class="evac-lbl">עבירות</div><div class="evac-val" id="eTerrain"></div></div>
       </div>
       <div class="evac-panel" id="epanel-pc">
         <div class="evac-pros"><span class="evac-pros-title">✅ יתרונות</span><span id="ePros"></span></div>
@@ -363,12 +366,14 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
 <script>
 /* ---- EVAC DATA ---- */
 const evacData={
-  p1:{title:'נגמ"ש פינוי',img:'assets/nagmash.jpg',crew:'מט"ב + 2 חובשים',capacity:'2 בשכיבה עם יכולת טיפול · 4 בשכיבה ללא טיפול · 6 בישיבה',armor:'נק"ל',speed:'40 קמ"ש',pros:'יכולת טיפול בנסיעה · מתקון ייעודי · עבירות בשטח',cons:'איטי מאוד · מיגון מנק"ל בלבד'},
-  p2:{title:'נמ"ר פינוי',img:'assets/NAMER.jpg',crew:'מט"ב + 2 חובשים',capacity:'2 בשכיבה עם יכולת טיפול · 5 בישיבה עם טיפול מוגבל',armor:'נק"ל + נ"ט',speed:'60 קמ"ש',pros:'מתקון ייעודי · טיפול תוך כדי נסיעה',cons:'צפוף'},
-  p3:{title:'אכזרית פינוי',img:'assets/Achzarit.jpg',video:'assets/achzarit.mp4',crew:'מט"ב + 2 חובשים',capacity:'עד 3 בשכיבה (טיפול ב-1 בלבד) · 4 בישיבה עם טיפול מוגבל',armor:'נק"ל + נ"ט',speed:'40 קמ"ש',pros:'טיפול תוך כדי נסיעה',cons:'העמסה מורכבת — מסדרון צר · איטי · אין מתקון לאלונקות'},
-  p4:{title:'האמר גנרי',img:'assets/hammer.jpg',crew:'חובש אורגני + מט"ב במידת האפשר',capacity:'2 בשכיבה עם טיפול מוגבל · 4 בשכיבה ללא טיפול',armor:'לא ממוגן',speed:'70 קמ"ש',pros:'עבירות גבוהה · מהיר · מתקון ייעודי · טיפול וניטור',cons:'לא ממוגן · לא מואר · בפינוי אין מקום ללוחמים'},
-  p5:{title:'ינשוף',img:'assets/yanshuf.jpg',crew:'חובשים + 1-2 מט"בים',capacity:'2 בשכיבה דחופים · 6 בישיבה',armor:'לא ממוגן',speed:'מהירות גבוהה',pros:'מהיר · טיפול וליווי נמרץ · העמסת ציוד',cons:'לא ממוגן · אין מתקון'},
-  p6:{title:'יסעור',img:'assets/yasur.jpg',crew:'חובשים + 3 מט"בים',capacity:'4 בשכיבה עם טיפול · 7 ללא טיפול · 42 בישיבה',armor:'לא ממוגן',speed:'מהירות גבוהה',pros:'מהיר · טיפול וליווי נמרץ · העמסת ציוד',cons:'לא ממוגן · מאסיבי ורועש · אין מתקון'}
+  p1:{title:'נגמ"ש פינוי',img:'assets/nagmash.jpg',crew:'מט"ב + 2 חובשים',capacity:'2 בשכיבה עם יכולת טיפול · 4 בשכיבה ללא טיפול · 6 בישיבה',armor:'נק"ל',speed:'30 קמ"ש',terrain:'גבוהה',pros:'יכולת טיפול בנסיעה · מתקון ייעודי · עבירות בשטח',cons:'איטי מאוד · מיגון מנק"ל בלבד'},
+  p2:{title:'נמ"ר פינוי',img:'assets/NAMER.jpg',crew:'מט"ב + 3 חובשים',capacity:'2 פצועים בשכיבה עם יכולת טיפול · 4 פצועים בשכיבה ללא יכולת טיפול',armor:'נק"ל + נ"ט',speed:'40 קמ"ש',terrain:'גבוהה',pros:'מתקון ייעודי · טיפול תוך כדי נסיעה',cons:'צפוף'},
+  p3:{title:'אכזרית פינוי',img:'assets/Achzarit.jpg',video:'assets/achzarit.mp4',crew:'מט"ב + שלושה חובשים',capacity:'2 בשכיבה',armor:'נק"ל + נ"ט',speed:'30 קמ"ש',terrain:'גבוהה',pros:'טיפול תוך כדי נסיעה',cons:'העמסה מורכבת — מסדרון צר · איטי · אין מתקון לאלונקות'},
+  p4:{title:'האמר גנרי',img:'assets/hammer.jpg',crew:'מט"ב + שלושה חובשים',capacity:'2 בשכיבה עם טיפול מוגבל · 4 בשכיבה ללא טיפול',armor:'לא ממוגן',speed:'65 קמ"ש',terrain:'בינונית',pros:'עבירות גבוהה · מהיר · מתקון ייעודי · טיפול וניטור',cons:'לא ממוגן · לא מואר · בפינוי אין מקום ללוחמים'},
+  p5:{title:'ינשוף',img:'assets/yanshuf.jpg',crew:'2 מט"בים + 2 לוחמים חובשים',capacity:'2 בשכיבה',armor:'לא ממוגן',speed:'מהירות גבוהה',pros:'מהיר · טיפול וליווי נמרץ · העמסת ציוד',cons:'לא ממוגן · אין מתקון'},
+  p6:{title:'יסעור',img:'assets/yasur.jpg',crew:'3-4 מט"בים + 4 חובשים לוחמים',capacity:'4 בשכיבה עם טיפול · 7 ללא טיפול · 42 בישיבה',armor:'לא ממוגן',speed:'מהירות גבוהה',pros:'מהיר · טיפול וליווי נמרץ · העמסת ציוד',cons:'לא ממוגן · מאסיבי ורועש · אין מתקון'},
+  p7:{title:'פורד בולנס',img:'assets/ford.jpg',crew:'2 ספסלים ומושב למט"ב',capacity:'2 עם יכולת טיפול · 4 בלי יכולת טיפול',armor:'לא ממוגן',speed:'90 קמ"ש',terrain:'4X4',pros:'מהיר · מתקון ותאורה ייעודיים · טיפול וניטור',cons:'לא ממוגן · עבירות לא מותאמת לצירים קשים'},
+  p8:{title:'ספרינטר',img:'assets/sprinter.jpg',crew:'מט"ב + שני חובשים בחלק האחורי',capacity:'2 בשכיבה עם טיפול · 3 בשכיבה ללא טיפול',armor:'לא ממוגן',speed:'90 קמ"ש',terrain:'4X4',pros:'מהיר · מתקון ותאורה ייעודיים · יכולות טיפול וניטור',cons:'לא ממוגן · עבירות לא מותאמת לצירים קשים'}
 };
 function openEvac(id){
   const d=evacData[id];if(!d)return;
@@ -387,6 +392,9 @@ function openEvac(id){
   document.getElementById('eCapacity').textContent=d.capacity;
   document.getElementById('eArmor').textContent=d.armor;
   document.getElementById('eSpeed').textContent=d.speed;
+  const terrainRow=document.getElementById('eTerrainRow');
+  if(d.terrain){document.getElementById('eTerrain').textContent=d.terrain;terrainRow.style.display='';}
+  else{terrainRow.style.display='none';}
   document.getElementById('ePros').textContent=d.pros;
   document.getElementById('eCons').textContent=d.cons;
   document.querySelectorAll('.evac-tab').forEach(t=>t.classList.remove('active'));
@@ -525,92 +533,82 @@ D['ls-bleed']={eyebrow:'מח"צ',title:'עצירת דימומים',group:'ls',bo
   <!-- ── עורק ברכיאלי ── -->
   <svg viewBox="0 0 280 162" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:8px;direction:ltr;">
     <rect width="280" height="162" fill="#182f4a" rx="8"/>
-    <!-- shoulder -->
-    <ellipse cx="70" cy="27" rx="28" ry="15" fill="#243e5a" stroke="#3a5f82" stroke-width="1.2"/>
-    <!-- upper arm body -->
-    <path d="M 50,30 C 42,42 38,62 40,88 L 44,138 C 44,150 54,157 68,157 C 82,157 92,150 92,138 L 90,85 C 88,58 86,40 88,30 Z" fill="#243e5a" stroke="#3a5f82" stroke-width="1.5"/>
-    <!-- lateral contour -->
-    <path d="M 40,60 C 32,74 34,96 40,110" fill="none" stroke="#3a5f82" stroke-width="1.5" opacity="0.45"/>
-    <!-- medial groove dashed -->
-    <line x1="91" y1="44" x2="91" y2="132" stroke="#5483a8" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.4"/>
-    <!-- glow -->
-    <circle cx="91" cy="82" r="20" fill="#ff8e3c" opacity="0.07"/>
-    <!-- dot -->
+    <!-- shoulder cap -->
+    <ellipse cx="65" cy="20" rx="28" ry="14" fill="#243e5a" stroke="#4a7aa8" stroke-width="1.5"/>
+    <!-- arm body -->
+    <path d="M 42,24 C 36,38 32,60 34,88 L 38,142 C 39,152 50,158 65,158 C 80,158 90,152 90,142 L 92,86 C 94,58 90,38 88,24 Z" fill="#243e5a" stroke="#4a7aa8" stroke-width="1.5"/>
+    <!-- humerus centerline -->
+    <line x1="65" y1="28" x2="65" y2="148" stroke="#5a8ab8" stroke-width="1" stroke-dasharray="4,4" opacity="0.35"/>
+    <!-- medial edge marker -->
+    <line x1="90" y1="34" x2="90" y2="138" stroke="#4a7aa8" stroke-width="1" stroke-dasharray="2,3" opacity="0.5"/>
+    <text x="96" y="58" font-family="Arial,sans-serif" font-size="7" fill="#6fa8d0" opacity="0.75" text-anchor="start">מדיאלי</text>
+    <!-- glow + dot -->
+    <circle cx="91" cy="82" r="18" fill="#ff8e3c" opacity="0.08"/>
     <circle cx="91" cy="82" r="7" fill="#ff8e3c"/>
-    <circle cx="91" cy="82" r="11" fill="none" stroke="#ff8e3c" stroke-width="1.5" opacity="0.35"/>
+    <circle cx="91" cy="82" r="11" fill="none" stroke="#ff8e3c" stroke-width="1.5" opacity="0.4"/>
     <!-- connector -->
-    <line x1="102" y1="79" x2="132" y2="72" stroke="#ff8e3c" stroke-width="1.2" opacity="0.6"/>
+    <line x1="103" y1="79" x2="135" y2="70" stroke="#ff8e3c" stroke-width="1.3" opacity="0.65"/>
     <!-- labels -->
-    <text x="200" y="64" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#eef3f7" text-anchor="middle">עורק ברכיאלי</text>
-    <text x="200" y="79" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">הצד המדיאלי של הזרוע</text>
-    <text x="200" y="92" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">4 אצבעות מתחת לשריר</text>
+    <text x="205" y="58" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#eef3f7" text-anchor="middle">עורק ברכיאלי</text>
+    <text x="205" y="74" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">הצד המדיאלי של הזרוע</text>
+    <text x="205" y="87" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">4 אצבעות מתחת לשריר</text>
     <!-- technique tag -->
-    <rect x="133" y="122" width="134" height="22" rx="4" fill="#ff8e3c" fill-opacity="0.1"/>
-    <text x="200" y="137" font-family="Arial,sans-serif" font-size="9.5" fill="#ff8e3c" text-anchor="middle">לחיצה על גבי עצם הזרוע</text>
+    <rect x="136" y="122" width="130" height="22" rx="4" fill="#ff8e3c" fill-opacity="0.12"/>
+    <text x="201" y="137" font-family="Arial,sans-serif" font-size="9.5" fill="#ff8e3c" text-anchor="middle">לחיצה על גבי עצם הזרוע</text>
   </svg>
 
   <!-- ── עורק תת-בריחי ── -->
   <svg viewBox="0 0 280 162" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:8px;direction:ltr;">
     <rect width="280" height="162" fill="#182f4a" rx="8"/>
     <!-- neck -->
-    <path d="M 58,5 C 54,12 52,24 54,38 L 58,48 C 62,51 70,53 70,53 C 70,53 78,51 82,48 L 86,38 C 88,24 86,12 82,5 Z" fill="#243e5a" stroke="#3a5f82" stroke-width="1.2"/>
+    <path d="M 56,4 C 52,12 50,26 52,40 L 56,50 C 60,53 69,55 69,55 C 69,55 78,53 82,50 L 86,40 C 88,26 86,12 82,4 Z" fill="#243e5a" stroke="#4a7aa8" stroke-width="1.2"/>
     <!-- torso -->
-    <path d="M 18,56 C 13,62 10,82 14,110 L 17,158 L 123,158 L 126,110 C 130,82 127,62 122,56 L 82,48 C 78,51 70,53 70,53 C 70,53 62,51 58,48 Z" fill="#243e5a" stroke="#3a5f82" stroke-width="1.5"/>
-    <!-- left shoulder bump -->
-    <path d="M 18,56 C 6,55 1,67 4,82 L 10,96 C 14,107 22,110 28,105" fill="#243e5a" stroke="#3a5f82" stroke-width="1.2"/>
+    <path d="M 14,60 C 9,66 7,86 10,116 L 13,160 L 125,160 L 128,116 C 131,86 129,66 124,60 L 82,50 C 78,53 69,55 69,55 C 69,55 60,53 56,50 Z" fill="#243e5a" stroke="#4a7aa8" stroke-width="1.5"/>
+    <!-- left shoulder/arm stub -->
+    <path d="M 14,60 C 2,58 -2,72 2,88 L 8,102 C 12,112 20,114 26,110" fill="#243e5a" stroke="#4a7aa8" stroke-width="1.2"/>
     <!-- left clavicle (highlighted) -->
-    <path d="M 70,59 C 55,55 38,57 20,65" fill="none" stroke="#6fa8d0" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 69,58 C 52,54 34,56 14,64" fill="none" stroke="#6fa8d0" stroke-width="2.5" stroke-linecap="round"/>
     <!-- right clavicle (dim) -->
-    <path d="M 70,59 C 85,55 102,57 120,65" fill="none" stroke="#6fa8d0" stroke-width="2" stroke-linecap="round" opacity="0.35"/>
+    <path d="M 69,58 C 86,54 104,56 124,64" fill="none" stroke="#6fa8d0" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
     <!-- clavicle label -->
-    <text x="42" y="78" font-family="Arial,sans-serif" font-size="7.5" fill="#6fa8d0" text-anchor="middle">עצם הבריח</text>
-    <!-- glow -->
-    <circle cx="36" cy="50" r="18" fill="#ff8e3c" opacity="0.07"/>
-    <!-- dot -->
-    <circle cx="36" cy="50" r="7" fill="#ff8e3c"/>
-    <circle cx="36" cy="50" r="11" fill="none" stroke="#ff8e3c" stroke-width="1.5" opacity="0.35"/>
+    <text x="36" y="50" font-family="Arial,sans-serif" font-size="8" fill="#6fa8d0" text-anchor="middle">עצם הבריח</text>
+    <!-- glow + dot at supraclavicular fossa -->
+    <circle cx="34" cy="49" r="16" fill="#ff8e3c" opacity="0.08"/>
+    <circle cx="34" cy="49" r="7" fill="#ff8e3c"/>
+    <circle cx="34" cy="49" r="11" fill="none" stroke="#ff8e3c" stroke-width="1.5" opacity="0.4"/>
     <!-- connector -->
-    <line x1="47" y1="47" x2="132" y2="55" stroke="#ff8e3c" stroke-width="1.2" opacity="0.6"/>
+    <line x1="45" y1="46" x2="135" y2="50" stroke="#ff8e3c" stroke-width="1.3" opacity="0.65"/>
     <!-- labels -->
-    <text x="200" y="47" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#eef3f7" text-anchor="middle">עורק תת-בריחי</text>
-    <text x="200" y="62" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">שקע עצם הבריח</text>
-    <text x="200" y="75" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">מהכיוון הסופריורי</text>
+    <text x="205" y="44" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#eef3f7" text-anchor="middle">עורק תת-בריחי</text>
+    <text x="205" y="59" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">שקע עצם הבריח</text>
+    <text x="205" y="72" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">מהכיוון הסופריורי</text>
     <!-- technique tag -->
-    <rect x="133" y="122" width="134" height="22" rx="4" fill="#ff8e3c" fill-opacity="0.1"/>
-    <text x="200" y="137" font-family="Arial,sans-serif" font-size="9.5" fill="#ff8e3c" text-anchor="middle">לחיצה על גבי עצם הבריח</text>
+    <rect x="136" y="122" width="130" height="22" rx="4" fill="#ff8e3c" fill-opacity="0.12"/>
+    <text x="201" y="137" font-family="Arial,sans-serif" font-size="9.5" fill="#ff8e3c" text-anchor="middle">לחיצה על גבי עצם הבריח</text>
   </svg>
 
   <!-- ── עורק פמורלי ── -->
   <svg viewBox="0 0 280 162" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:8px;direction:ltr;">
     <rect width="280" height="162" fill="#182f4a" rx="8"/>
-    <!-- left ilium (hip wing) -->
-    <path d="M 4,38 C 4,22 18,10 36,12 L 56,18 C 66,22 68,32 63,44 L 58,56 L 42,60 C 26,62 8,54 4,44 Z" fill="#243e5a" stroke="#3a5f82" stroke-width="1.5"/>
-    <!-- right ilium -->
-    <path d="M 134,38 C 134,22 120,10 102,12 L 82,18 C 72,22 70,32 75,44 L 80,56 L 96,60 C 112,62 130,54 134,44 Z" fill="#243e5a" stroke="#3a5f82" stroke-width="1.5"/>
-    <!-- pubic symphysis -->
-    <path d="M 63,44 C 63,54 64,62 65,68 L 69,73 L 73,68 C 74,62 75,54 75,44 Z" fill="#243e5a" stroke="#3a5f82" stroke-width="1.2"/>
-    <!-- left thigh -->
-    <path d="M 20,84 C 14,96 12,122 16,146 L 22,162 L 56,162 L 60,146 C 64,122 62,96 56,84 Z" fill="#243e5a" stroke="#3a5f82" stroke-width="1.5"/>
-    <!-- inguinal ligament (dashed diagonal) -->
-    <line x1="20" y1="63" x2="65" y2="70" stroke="#6fa8d0" stroke-width="2" stroke-dasharray="4,3" stroke-linecap="round" opacity="0.75"/>
-    <!-- femoral triangle fill hint -->
-    <path d="M 20,63 L 65,70 L 20,108 Z" fill="#ff8e3c" fill-opacity="0.04"/>
-    <!-- ligament label -->
-    <text x="40" y="58" font-family="Arial,sans-serif" font-size="7.5" fill="#6fa8d0" text-anchor="middle">רצועה מפשעתית</text>
-    <!-- glow -->
-    <circle cx="38" cy="82" r="18" fill="#ff8e3c" opacity="0.07"/>
-    <!-- dot -->
-    <circle cx="38" cy="82" r="7" fill="#ff8e3c"/>
-    <circle cx="38" cy="82" r="11" fill="none" stroke="#ff8e3c" stroke-width="1.5" opacity="0.35"/>
+    <!-- upper thigh only — no pelvic anatomy -->
+    <path d="M 30,6 C 22,6 14,14 12,28 L 8,82 C 6,106 10,134 16,157 L 24,162 L 72,162 L 78,157 C 84,134 86,106 84,82 L 80,28 C 78,14 70,6 62,6 Z" fill="#243e5a" stroke="#4a7aa8" stroke-width="1.5"/>
+    <!-- femur centerline -->
+    <line x1="46" y1="10" x2="46" y2="155" stroke="#5a8ab8" stroke-width="1" stroke-dasharray="4,4" opacity="0.38"/>
+    <!-- bone label -->
+    <text x="46" y="148" font-family="Arial,sans-serif" font-size="7.5" fill="#6fa8d0" text-anchor="middle">עצם הירך</text>
+    <!-- glow + dot near top of thigh -->
+    <circle cx="46" cy="30" r="18" fill="#ff8e3c" opacity="0.08"/>
+    <circle cx="46" cy="30" r="7" fill="#ff8e3c"/>
+    <circle cx="46" cy="30" r="11" fill="none" stroke="#ff8e3c" stroke-width="1.5" opacity="0.4"/>
     <!-- connector -->
-    <line x1="49" y1="79" x2="132" y2="68" stroke="#ff8e3c" stroke-width="1.2" opacity="0.6"/>
+    <line x1="58" y1="27" x2="135" y2="46" stroke="#ff8e3c" stroke-width="1.3" opacity="0.65"/>
     <!-- labels -->
-    <text x="200" y="62" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#eef3f7" text-anchor="middle">עורק פמורלי</text>
-    <text x="200" y="77" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">אזור המפשעה</text>
-    <text x="200" y="90" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">מתחת לרצועה המפשעתית</text>
+    <text x="205" y="42" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#eef3f7" text-anchor="middle">עורק פמורלי</text>
+    <text x="205" y="58" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">חלק עליון של הירך</text>
+    <text x="205" y="71" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">מישוש דופק ← לחץ על עצם הירך</text>
     <!-- technique tag -->
-    <rect x="133" y="122" width="134" height="22" rx="4" fill="#ff8e3c" fill-opacity="0.1"/>
-    <text x="200" y="137" font-family="Arial,sans-serif" font-size="9.5" fill="#ff8e3c" text-anchor="middle">אגרוף + משקל הגוף על עצם הירך</text>
+    <rect x="136" y="122" width="130" height="22" rx="4" fill="#ff8e3c" fill-opacity="0.12"/>
+    <text x="201" y="137" font-family="Arial,sans-serif" font-size="9.5" fill="#ff8e3c" text-anchor="middle">אגרוף + משקל הגוף על עצם הירך</text>
   </svg>
 
   </div>
@@ -843,60 +841,82 @@ D['md-C']={eyebrow:'חובש',title:'C — עצירת דימומים',group:'md'
   <!-- ── עורק ברכיאלי ── -->
   <svg viewBox="0 0 280 162" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:8px;direction:ltr;">
     <rect width="280" height="162" fill="#182f4a" rx="8"/>
-    <ellipse cx="70" cy="27" rx="28" ry="15" fill="#243e5a" stroke="#3a5f82" stroke-width="1.2"/>
-    <path d="M 50,30 C 42,42 38,62 40,88 L 44,138 C 44,150 54,157 68,157 C 82,157 92,150 92,138 L 90,85 C 88,58 86,40 88,30 Z" fill="#243e5a" stroke="#3a5f82" stroke-width="1.5"/>
-    <path d="M 40,60 C 32,74 34,96 40,110" fill="none" stroke="#3a5f82" stroke-width="1.5" opacity="0.45"/>
-    <line x1="91" y1="44" x2="91" y2="132" stroke="#5483a8" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.4"/>
-    <circle cx="91" cy="82" r="20" fill="#ff8e3c" opacity="0.07"/>
+    <!-- shoulder cap -->
+    <ellipse cx="65" cy="20" rx="28" ry="14" fill="#243e5a" stroke="#4a7aa8" stroke-width="1.5"/>
+    <!-- arm body -->
+    <path d="M 42,24 C 36,38 32,60 34,88 L 38,142 C 39,152 50,158 65,158 C 80,158 90,152 90,142 L 92,86 C 94,58 90,38 88,24 Z" fill="#243e5a" stroke="#4a7aa8" stroke-width="1.5"/>
+    <!-- humerus centerline -->
+    <line x1="65" y1="28" x2="65" y2="148" stroke="#5a8ab8" stroke-width="1" stroke-dasharray="4,4" opacity="0.35"/>
+    <!-- medial edge marker -->
+    <line x1="90" y1="34" x2="90" y2="138" stroke="#4a7aa8" stroke-width="1" stroke-dasharray="2,3" opacity="0.5"/>
+    <text x="96" y="58" font-family="Arial,sans-serif" font-size="7" fill="#6fa8d0" opacity="0.75" text-anchor="start">מדיאלי</text>
+    <!-- glow + dot -->
+    <circle cx="91" cy="82" r="18" fill="#ff8e3c" opacity="0.08"/>
     <circle cx="91" cy="82" r="7" fill="#ff8e3c"/>
-    <circle cx="91" cy="82" r="11" fill="none" stroke="#ff8e3c" stroke-width="1.5" opacity="0.35"/>
-    <line x1="102" y1="79" x2="132" y2="72" stroke="#ff8e3c" stroke-width="1.2" opacity="0.6"/>
-    <text x="200" y="64" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#eef3f7" text-anchor="middle">עורק ברכיאלי</text>
-    <text x="200" y="79" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">הצד המדיאלי של הזרוע</text>
-    <text x="200" y="92" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">4 אצבעות מתחת לשריר</text>
-    <rect x="133" y="122" width="134" height="22" rx="4" fill="#ff8e3c" fill-opacity="0.1"/>
-    <text x="200" y="137" font-family="Arial,sans-serif" font-size="9.5" fill="#ff8e3c" text-anchor="middle">לחיצה על גבי עצם הזרוע</text>
+    <circle cx="91" cy="82" r="11" fill="none" stroke="#ff8e3c" stroke-width="1.5" opacity="0.4"/>
+    <!-- connector -->
+    <line x1="103" y1="79" x2="135" y2="70" stroke="#ff8e3c" stroke-width="1.3" opacity="0.65"/>
+    <!-- labels -->
+    <text x="205" y="58" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#eef3f7" text-anchor="middle">עורק ברכיאלי</text>
+    <text x="205" y="74" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">הצד המדיאלי של הזרוע</text>
+    <text x="205" y="87" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">4 אצבעות מתחת לשריר</text>
+    <!-- technique tag -->
+    <rect x="136" y="122" width="130" height="22" rx="4" fill="#ff8e3c" fill-opacity="0.12"/>
+    <text x="201" y="137" font-family="Arial,sans-serif" font-size="9.5" fill="#ff8e3c" text-anchor="middle">לחיצה על גבי עצם הזרוע</text>
   </svg>
 
   <!-- ── עורק תת-בריחי ── -->
   <svg viewBox="0 0 280 162" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:8px;direction:ltr;">
     <rect width="280" height="162" fill="#182f4a" rx="8"/>
-    <path d="M 58,5 C 54,12 52,24 54,38 L 58,48 C 62,51 70,53 70,53 C 70,53 78,51 82,48 L 86,38 C 88,24 86,12 82,5 Z" fill="#243e5a" stroke="#3a5f82" stroke-width="1.2"/>
-    <path d="M 18,56 C 13,62 10,82 14,110 L 17,158 L 123,158 L 126,110 C 130,82 127,62 122,56 L 82,48 C 78,51 70,53 70,53 C 70,53 62,51 58,48 Z" fill="#243e5a" stroke="#3a5f82" stroke-width="1.5"/>
-    <path d="M 18,56 C 6,55 1,67 4,82 L 10,96 C 14,107 22,110 28,105" fill="#243e5a" stroke="#3a5f82" stroke-width="1.2"/>
-    <path d="M 70,59 C 55,55 38,57 20,65" fill="none" stroke="#6fa8d0" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M 70,59 C 85,55 102,57 120,65" fill="none" stroke="#6fa8d0" stroke-width="2" stroke-linecap="round" opacity="0.35"/>
-    <text x="42" y="78" font-family="Arial,sans-serif" font-size="7.5" fill="#6fa8d0" text-anchor="middle">עצם הבריח</text>
-    <circle cx="36" cy="50" r="18" fill="#ff8e3c" opacity="0.07"/>
-    <circle cx="36" cy="50" r="7" fill="#ff8e3c"/>
-    <circle cx="36" cy="50" r="11" fill="none" stroke="#ff8e3c" stroke-width="1.5" opacity="0.35"/>
-    <line x1="47" y1="47" x2="132" y2="55" stroke="#ff8e3c" stroke-width="1.2" opacity="0.6"/>
-    <text x="200" y="47" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#eef3f7" text-anchor="middle">עורק תת-בריחי</text>
-    <text x="200" y="62" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">שקע עצם הבריח</text>
-    <text x="200" y="75" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">מהכיוון הסופריורי</text>
-    <rect x="133" y="122" width="134" height="22" rx="4" fill="#ff8e3c" fill-opacity="0.1"/>
-    <text x="200" y="137" font-family="Arial,sans-serif" font-size="9.5" fill="#ff8e3c" text-anchor="middle">לחיצה על גבי עצם הבריח</text>
+    <!-- neck -->
+    <path d="M 56,4 C 52,12 50,26 52,40 L 56,50 C 60,53 69,55 69,55 C 69,55 78,53 82,50 L 86,40 C 88,26 86,12 82,4 Z" fill="#243e5a" stroke="#4a7aa8" stroke-width="1.2"/>
+    <!-- torso -->
+    <path d="M 14,60 C 9,66 7,86 10,116 L 13,160 L 125,160 L 128,116 C 131,86 129,66 124,60 L 82,50 C 78,53 69,55 69,55 C 69,55 60,53 56,50 Z" fill="#243e5a" stroke="#4a7aa8" stroke-width="1.5"/>
+    <!-- left shoulder/arm stub -->
+    <path d="M 14,60 C 2,58 -2,72 2,88 L 8,102 C 12,112 20,114 26,110" fill="#243e5a" stroke="#4a7aa8" stroke-width="1.2"/>
+    <!-- left clavicle (highlighted) -->
+    <path d="M 69,58 C 52,54 34,56 14,64" fill="none" stroke="#6fa8d0" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- right clavicle (dim) -->
+    <path d="M 69,58 C 86,54 104,56 124,64" fill="none" stroke="#6fa8d0" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+    <!-- clavicle label -->
+    <text x="36" y="50" font-family="Arial,sans-serif" font-size="8" fill="#6fa8d0" text-anchor="middle">עצם הבריח</text>
+    <!-- glow + dot at supraclavicular fossa -->
+    <circle cx="34" cy="49" r="16" fill="#ff8e3c" opacity="0.08"/>
+    <circle cx="34" cy="49" r="7" fill="#ff8e3c"/>
+    <circle cx="34" cy="49" r="11" fill="none" stroke="#ff8e3c" stroke-width="1.5" opacity="0.4"/>
+    <!-- connector -->
+    <line x1="45" y1="46" x2="135" y2="50" stroke="#ff8e3c" stroke-width="1.3" opacity="0.65"/>
+    <!-- labels -->
+    <text x="205" y="44" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#eef3f7" text-anchor="middle">עורק תת-בריחי</text>
+    <text x="205" y="59" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">שקע עצם הבריח</text>
+    <text x="205" y="72" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">מהכיוון הסופריורי</text>
+    <!-- technique tag -->
+    <rect x="136" y="122" width="130" height="22" rx="4" fill="#ff8e3c" fill-opacity="0.12"/>
+    <text x="201" y="137" font-family="Arial,sans-serif" font-size="9.5" fill="#ff8e3c" text-anchor="middle">לחיצה על גבי עצם הבריח</text>
   </svg>
 
   <!-- ── עורק פמורלי ── -->
   <svg viewBox="0 0 280 162" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:8px;direction:ltr;">
     <rect width="280" height="162" fill="#182f4a" rx="8"/>
-    <path d="M 4,38 C 4,22 18,10 36,12 L 56,18 C 66,22 68,32 63,44 L 58,56 L 42,60 C 26,62 8,54 4,44 Z" fill="#243e5a" stroke="#3a5f82" stroke-width="1.5"/>
-    <path d="M 134,38 C 134,22 120,10 102,12 L 82,18 C 72,22 70,32 75,44 L 80,56 L 96,60 C 112,62 130,54 134,44 Z" fill="#243e5a" stroke="#3a5f82" stroke-width="1.5"/>
-    <path d="M 63,44 C 63,54 64,62 65,68 L 69,73 L 73,68 C 74,62 75,54 75,44 Z" fill="#243e5a" stroke="#3a5f82" stroke-width="1.2"/>
-    <path d="M 20,84 C 14,96 12,122 16,146 L 22,162 L 56,162 L 60,146 C 64,122 62,96 56,84 Z" fill="#243e5a" stroke="#3a5f82" stroke-width="1.5"/>
-    <line x1="20" y1="63" x2="65" y2="70" stroke="#6fa8d0" stroke-width="2" stroke-dasharray="4,3" stroke-linecap="round" opacity="0.75"/>
-    <path d="M 20,63 L 65,70 L 20,108 Z" fill="#ff8e3c" fill-opacity="0.04"/>
-    <text x="40" y="58" font-family="Arial,sans-serif" font-size="7.5" fill="#6fa8d0" text-anchor="middle">רצועה מפשעתית</text>
-    <circle cx="38" cy="82" r="18" fill="#ff8e3c" opacity="0.07"/>
-    <circle cx="38" cy="82" r="7" fill="#ff8e3c"/>
-    <circle cx="38" cy="82" r="11" fill="none" stroke="#ff8e3c" stroke-width="1.5" opacity="0.35"/>
-    <line x1="49" y1="79" x2="132" y2="68" stroke="#ff8e3c" stroke-width="1.2" opacity="0.6"/>
-    <text x="200" y="62" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#eef3f7" text-anchor="middle">עורק פמורלי</text>
-    <text x="200" y="77" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">אזור המפשעה</text>
-    <text x="200" y="90" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">מתחת לרצועה המפשעתית</text>
-    <rect x="133" y="122" width="134" height="22" rx="4" fill="#ff8e3c" fill-opacity="0.1"/>
-    <text x="200" y="137" font-family="Arial,sans-serif" font-size="9.5" fill="#ff8e3c" text-anchor="middle">אגרוף + משקל הגוף על עצם הירך</text>
+    <!-- upper thigh only — no pelvic anatomy -->
+    <path d="M 30,6 C 22,6 14,14 12,28 L 8,82 C 6,106 10,134 16,157 L 24,162 L 72,162 L 78,157 C 84,134 86,106 84,82 L 80,28 C 78,14 70,6 62,6 Z" fill="#243e5a" stroke="#4a7aa8" stroke-width="1.5"/>
+    <!-- femur centerline -->
+    <line x1="46" y1="10" x2="46" y2="155" stroke="#5a8ab8" stroke-width="1" stroke-dasharray="4,4" opacity="0.38"/>
+    <!-- bone label -->
+    <text x="46" y="148" font-family="Arial,sans-serif" font-size="7.5" fill="#6fa8d0" text-anchor="middle">עצם הירך</text>
+    <!-- glow + dot near top of thigh -->
+    <circle cx="46" cy="30" r="18" fill="#ff8e3c" opacity="0.08"/>
+    <circle cx="46" cy="30" r="7" fill="#ff8e3c"/>
+    <circle cx="46" cy="30" r="11" fill="none" stroke="#ff8e3c" stroke-width="1.5" opacity="0.4"/>
+    <!-- connector -->
+    <line x1="58" y1="27" x2="135" y2="46" stroke="#ff8e3c" stroke-width="1.3" opacity="0.65"/>
+    <!-- labels -->
+    <text x="205" y="42" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#eef3f7" text-anchor="middle">עורק פמורלי</text>
+    <text x="205" y="58" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">חלק עליון של הירך</text>
+    <text x="205" y="71" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">מישוש דופק ← לחץ על עצם הירך</text>
+    <!-- technique tag -->
+    <rect x="136" y="122" width="130" height="22" rx="4" fill="#ff8e3c" fill-opacity="0.12"/>
+    <text x="201" y="137" font-family="Arial,sans-serif" font-size="9.5" fill="#ff8e3c" text-anchor="middle">אגרוף + משקל הגוף על עצם הירך</text>
   </svg>
 
   </div>
