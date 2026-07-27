@@ -4,160 +4,171 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>מצילים חיים בקליק</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --navy-dark:#0c1f33;--navy:#16314f;--navy-mid:#2a4d72;--navy-light:#5483a8;
-  --card:#22405f;--card-2:#1b3450;--orange:#ff8e3c;
-  --cream:#eef3f7;--muted:#9fb4c8;--gold:#e2c22d;--good:#3fae64;--danger-light:#ffb3b8;
-}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html,body{margin:0;padding:0;}
-body{font-family:'Segoe UI',Arial,sans-serif;background:#08111c;color:var(--cream);min-height:100vh;display:flex;justify-content:center;}
-#app{width:100%;max-width:480px;min-height:100vh;background:radial-gradient(circle at 30% 0%,rgba(84,131,168,.35),transparent 55%),linear-gradient(165deg,var(--navy-dark) 0%,var(--navy) 45%,var(--navy-mid) 100%);position:relative;overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.6);}
+body{font-family:'Plus Jakarta Sans','Segoe UI',Arial,sans-serif;background:#08111c;color:#f3f7fa;min-height:100vh;display:flex;justify-content:center;}
+#app{--radius-card:16px;--radius-pill:9999px;width:100%;max-width:480px;min-height:100vh;position:relative;overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.6);transition:background .25s ease;}
+#app[data-theme="tactical"]{
+  --navy-dark:#0a1522;--navy:#13253c;--navy-mid:#22405e;--navy-light:#5b8fb8;
+  --card:#1d3652;--card-2:#152a41;--orange:#ff9d4d;--accent:#ffd02f;
+  --cream:#f3f7fa;--muted:#a9bcce;--gold:#ffd02f;--good:#33d999;--danger-light:#ffc6c6;
+  --surf-soft:rgba(255,255,255,.055);--surf:rgba(255,255,255,.08);--surf-strong:rgba(255,255,255,.11);
+  --line:rgba(255,255,255,.12);--line-soft:rgba(255,255,255,.08);--line-strong:rgba(255,255,255,.20);
+  --t-good-bg:rgba(51,217,153,.12);--t-good-bd:rgba(51,217,153,.32);--t-good-tx:#5fe3ad;
+  --t-good2-bg:rgba(51,217,153,.16);--t-good2-bd:rgba(51,217,153,.48);--t-good2-tx:#b3f2d6;
+  --t-bad-bg:rgba(255,153,153,.14);--t-bad-bd:rgba(255,153,153,.38);--t-bad-tx:#ffcfcf;
+  --t-info-bg:rgba(91,143,184,.16);--t-info-bd:rgba(91,143,184,.4);--t-info-tx:#bcdaf0;
+  --t-note-bg:rgba(255,208,47,.14);--t-note-bd:rgba(255,208,47,.4);
+  --btn1:#ffd02f;--btn2:#fcb900;--btn-tx:#1c1c1e;
+  background:radial-gradient(circle at 30% 0%,rgba(91,143,184,.28),transparent 55%),linear-gradient(165deg,var(--navy-dark) 0%,var(--navy) 45%,var(--navy-mid) 100%);
+}
+#app[data-theme="miro"]{
+  --navy-dark:#ffffff;--navy:#ffffff;--navy-mid:#ffffff;--navy-light:#c7cad5;
+  --card:#ffffff;--card-2:#f7f8fa;--orange:#a8580a;--accent:#746019;
+  --cream:#1c1c1e;--muted:#555a6a;--gold:#746019;--good:#00874f;--danger-light:#8a1f1f;
+  --surf-soft:#f7f8fa;--surf:#f2f3f6;--surf-strong:#eceef2;
+  --line:#e0e2e8;--line-soft:#eef0f3;--line-strong:#c7cad5;
+  --t-good-bg:#e3f7ee;--t-good-bd:rgba(0,135,79,.25);--t-good-tx:#0a6b45;
+  --t-good2-bg:#d3f2e4;--t-good2-bd:rgba(0,135,79,.4);--t-good2-tx:#054a30;
+  --t-bad-bg:#fbd4d4;--t-bad-bd:rgba(96,0,0,.18);--t-bad-tx:#600000;
+  --t-info-bg:#eef1ff;--t-info-bd:rgba(66,98,255,.25);--t-info-tx:#2a41b6;
+  --t-note-bg:#fff4c4;--t-note-bd:rgba(116,96,25,.22);
+  --btn1:#ffd02f;--btn2:#fcb900;--btn-tx:#1c1c1e;
+  background:#ffffff;
+}
+#app[data-theme="miro"] .texture{display:none;}
 .texture{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0px,rgba(255,255,255,.015) 1px,transparent 1px,transparent 3px);pointer-events:none;mix-blend-mode:overlay;}
-
-/* HEADER */
-header{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px;background:linear-gradient(180deg,rgba(8,17,28,.92),rgba(8,17,28,.55) 80%,transparent);backdrop-filter:blur(2px);}
-header .icon-btn{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);color:var(--cream);cursor:pointer;transition:.15s;}
-header .icon-btn:hover{background:rgba(255,255,255,.16);}
+header{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px;backdrop-filter:blur(2px);}
+#app[data-theme="tactical"] header{background:linear-gradient(180deg,rgba(8,17,28,.92),rgba(8,17,28,.55) 80%,transparent);}
+#app[data-theme="miro"] header{background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.7) 80%,transparent);}
+header .icon-group{display:flex;gap:8px;}
+header .icon-btn{width:38px;height:38px;border-radius:var(--radius-pill);display:flex;align-items:center;justify-content:center;background:var(--surf);border:1px solid var(--line-strong);color:var(--cream);cursor:pointer;transition:.15s;}
+header .icon-btn:hover{background:var(--surf-strong);}
 header .icon-btn svg{width:19px;height:19px;}
 header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 10px rgba(0,0,0,.5);}
-
-/* SCREENS */
 .screen{display:none;padding:0 18px 110px;animation:fadein .25s ease;}
 .screen.active{display:block;}
 @keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
-
-/* SPLASH */
+#app[data-motion="off"] .screen{animation:none;}
+#app[data-motion="off"] .bounce-down{animation:none;}
+#app[data-motion="off"] .evac-modal-box{animation:none;}
+#app[data-motion="off"] .flow-wrap.stepper .flow-step,#app[data-motion="off"] .card-stepper-wrap .lesson-card{animation:none;}
+#app[data-density="compact"] .lesson-card{padding:11px 13px;margin-bottom:8px;}
+#app[data-density="compact"] .lesson-card h3{margin:0 0 6px;font-size:14.5px;}
+#app[data-density="compact"] .lesson-card p,#app[data-density="compact"] .lesson-card li{font-size:13px;line-height:1.55;margin-bottom:3px;}
+#app[data-density="compact"] .note,#app[data-density="compact"] .warn,#app[data-density="compact"] .info{padding:7px 10px;font-size:12px;margin-bottom:8px;line-height:1.45;}
+#app[data-density="compact"] .flow-step,#app[data-density="compact"] .flow-decision{padding:8px 11px;font-size:13px;line-height:1.45;}
+#app[data-density="compact"] .role-btn{padding:12px 20px;font-size:15.5px;}
+#app[data-density="compact"] .drug-row{padding:6px 12px;}
+#app[data-density="compact"] .drug-val{font-size:12.5px;line-height:1.5;}
+#app[data-density="compact"] .scheme-table td{padding:6px 8px;}
+#app[data-density="compact"] .proto-item{padding:10px 13px;}
 #screen-splash{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:26px;padding-top:0;}
-#screen-splash img.logo{width:170px;height:170px;filter:drop-shadow(0 6px 18px rgba(0,0,0,.55));}
-#screen-splash h1{color:var(--gold);font-size:30px;margin:0;line-height:1.3;}
+#screen-splash img.logo{width:170px;height:170px;filter:drop-shadow(0 6px 18px rgba(0,0,0,.35));}
+#screen-splash h1{color:var(--gold);font-size:30px;font-weight:600;margin:0;line-height:1.3;letter-spacing:-0.3px;}
 .bounce-down{width:62px;height:62px;border:2px solid var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;animation:bounce 1.6s infinite;}
 @keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(10px);}}
-
-/* PAGE TITLES */
-.page-title{text-align:center;color:var(--gold);font-size:14px;letter-spacing:.5px;opacity:.85;margin:4px 0 2px;}
-.page-heading{text-align:center;font-size:24px;font-weight:800;color:var(--cream);margin:0 0 16px;}
-
-/* MENU BUTTONS */
+.page-title{text-align:center;color:var(--gold);font-size:11px;letter-spacing:.6px;text-transform:uppercase;font-weight:600;opacity:.9;margin:4px 0 2px;}
+.page-heading{text-align:center;font-size:24px;font-weight:600;color:var(--cream);margin:0 0 16px;letter-spacing:-0.2px;}
 .menu-list{display:flex;flex-direction:column;gap:13px;margin-top:6px;}
-.role-btn{background:linear-gradient(180deg,var(--card),var(--card-2));border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:17px 16px;color:var(--cream);font-size:18px;font-weight:700;text-align:center;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,.3);transition:.15s;display:flex;align-items:center;justify-content:center;gap:10px;}
+.role-btn{background:linear-gradient(180deg,var(--card),var(--card-2));border:1px solid var(--line-soft);border-radius:var(--radius-pill);padding:17px 26px;color:var(--cream);font-size:18px;font-weight:600;text-align:center;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,.12);transition:.15s;display:flex;align-items:center;justify-content:center;gap:10px;}
 .role-btn:active{transform:scale(.98);}
 .role-btn:hover{border-color:var(--orange);}
 .role-btn .emoji{font-size:22px;}
 .row2{display:flex;gap:12px;}
-.row2 .role-btn{flex:1;font-size:14px;padding:15px 8px;}
-.role-btn.small{font-size:14px;padding:13px 10px;}
-.role-btn.ghost{background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.25);color:var(--muted);font-weight:600;font-size:14px;}
-
-/* CONTENT CARDS */
-.lesson-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:16px;margin-bottom:13px;}
-.lesson-card h3{margin:0 0 10px;color:var(--orange);font-size:16px;display:flex;align-items:center;gap:8px;}
-.lesson-card p{margin:0 0 8px;font-size:14px;line-height:1.85;}
+.row2 .role-btn{flex:1;font-size:14px;padding:15px 12px;}
+.role-btn.small{font-size:14px;padding:13px 14px;}
+.role-btn.ghost{background:transparent;border:1px dashed var(--line-strong);color:var(--muted);font-weight:600;font-size:14px;box-shadow:none;}
+.lesson-card{background:var(--surf-soft);border:1px solid var(--line);border-radius:var(--radius-card);padding:16px;margin-bottom:13px;}
+.lesson-card h3{margin:0 0 10px;color:var(--orange);font-size:16px;font-weight:600;display:flex;align-items:center;gap:8px;}
+.lesson-card p{margin:0 0 8px;font-size:14px;line-height:1.85;color:var(--cream);}
 .lesson-card ul{margin:4px 0;padding-inline-start:18px;}
-.lesson-card li{font-size:14px;line-height:1.85;margin-bottom:5px;}
+.lesson-card li{font-size:14px;line-height:1.85;margin-bottom:5px;color:var(--cream);}
 .lesson-card b{color:var(--gold);}
-.note{background:rgba(226,194,45,.1);border:1px solid rgba(226,194,45,.35);color:var(--gold);padding:10px 12px;border-radius:10px;font-size:13px;margin-bottom:12px;line-height:1.65;}
-.warn{background:rgba(200,30,44,.12);border:1px solid rgba(200,30,44,.45);color:var(--danger-light);padding:10px 12px;border-radius:10px;font-size:13px;margin-bottom:12px;line-height:1.65;}
-.info{background:rgba(84,131,168,.12);border:1px solid rgba(84,131,168,.35);color:#a8c8e8;padding:10px 12px;border-radius:10px;font-size:13px;margin-bottom:12px;line-height:1.65;}
-
-/* FLOW / PROTOCOL RENDERING */
+.note{background:var(--t-note-bg);border:1px solid var(--t-note-bd);color:var(--gold);padding:10px 12px;border-radius:12px;font-size:13px;margin-bottom:12px;line-height:1.65;}
+.warn{background:var(--t-bad-bg);border:1px solid var(--t-bad-bd);color:var(--t-bad-tx);padding:10px 12px;border-radius:12px;font-size:13px;margin-bottom:12px;line-height:1.65;}
+.info{background:var(--t-info-bg);border:1px solid var(--t-info-bd);color:var(--t-info-tx);padding:10px 12px;border-radius:12px;font-size:13px;margin-bottom:12px;line-height:1.65;}
 .flow-wrap{display:flex;flex-direction:column;gap:0;}
-.flow-step{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 14px;font-size:14px;line-height:1.7;}
-.flow-decision{background:rgba(226,194,45,.1);border:1px solid rgba(226,194,45,.3);border-radius:10px;padding:12px 14px;font-size:14px;font-weight:600;color:var(--gold);line-height:1.6;}
+.flow-step{background:var(--surf);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14px;line-height:1.7;color:var(--cream);}
+.flow-decision{background:var(--t-note-bg);border:1px solid var(--t-note-bd);border-radius:10px;padding:12px 14px;font-size:14px;font-weight:600;color:var(--gold);line-height:1.6;}
 .flow-arrow{text-align:center;color:var(--muted);font-size:18px;padding:3px 0;line-height:1;}
 .flow-branch{display:flex;flex-direction:column;gap:6px;padding:4px 0 4px 0;}
-
-/* NUMBERED STEP-BY-STEP (flow-wrap stepper, e.g. CAT application) */
 .flow-wrap.stepper .flow-step{display:none;animation:stepFade .3s ease both;}
 .flow-wrap.stepper .flow-step.cur{display:block;}
 .flow-wrap.stepper .flow-arrow{display:none;}
 @keyframes stepFade{from{opacity:0;transform:translateX(-8px);}to{opacity:1;transform:translateX(0);}}
 .stepper-nav{display:flex;align-items:center;gap:10px;margin-top:10px;}
-.stepper-nav .step-btn{flex:1;padding:10px;border-radius:10px;text-align:center;font-size:14px;font-weight:700;cursor:pointer;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--cream);transition:.15s;user-select:none;}
+.stepper-nav .step-btn{flex:1;padding:10px;border-radius:var(--radius-pill);text-align:center;font-size:14px;font-weight:600;cursor:pointer;border:1px solid var(--line-strong);background:var(--surf);color:var(--cream);transition:.15s;user-select:none;}
 .stepper-nav .step-btn:active{transform:scale(.96);}
-.stepper-nav .step-btn.primary{background:linear-gradient(180deg,#3c6e93,#27496b);border-color:transparent;}
+.stepper-nav .step-btn.primary{background:linear-gradient(180deg,var(--btn1),var(--btn2));color:var(--btn-tx);border-color:transparent;}
 .stepper-nav .step-btn.disabled{opacity:.35;pointer-events:none;}
 .stepper-counter{font-size:12px;color:var(--muted);white-space:nowrap;min-width:54px;text-align:center;}
-
-/* NUMBERED CARD STEPPER (e.g. שלבי אר"ן) */
 .card-stepper-wrap .lesson-card{display:none;}
 .card-stepper-wrap .lesson-card.cur{display:block;animation:stepFade .3s ease both;}
-.flow-yes{background:rgba(63,174,100,.1);border:1px solid rgba(63,174,100,.3);border-radius:9px;padding:10px 12px;font-size:13.5px;line-height:1.7;}
-.flow-yes::before{content:"✅ כן — ";font-weight:700;color:#a8e6bc;}
-.flow-no{background:rgba(200,30,44,.1);border:1px solid rgba(200,30,44,.3);border-radius:9px;padding:10px 12px;font-size:13.5px;line-height:1.7;}
-.flow-no::before{content:"❌ לא — ";font-weight:700;color:var(--danger-light);}
-.flow-result{background:rgba(84,131,168,.12);border:1px solid rgba(84,131,168,.3);border-radius:9px;padding:10px 12px;font-size:13.5px;line-height:1.7;color:#a8c8e8;}
+.flow-yes{background:var(--t-good-bg);border:1px solid var(--t-good-bd);border-radius:9px;padding:10px 12px;font-size:13.5px;line-height:1.7;color:var(--cream);}
+.flow-yes::before{content:"✅ כן — ";font-weight:600;color:var(--t-good-tx);}
+.flow-no{background:var(--t-bad-bg);border:1px solid var(--t-bad-bd);border-radius:9px;padding:10px 12px;font-size:13.5px;line-height:1.7;color:var(--cream);}
+.flow-no::before{content:"❌ לא — ";font-weight:600;color:var(--t-bad-tx);}
+.flow-result{background:var(--t-info-bg);border:1px solid var(--t-info-bd);border-radius:9px;padding:10px 12px;font-size:13.5px;line-height:1.7;color:var(--t-info-tx);}
 .flow-note{font-size:12.5px;color:var(--muted);padding:4px 10px;line-height:1.6;font-style:italic;}
-.flow-main{background:rgba(30,140,75,.15);border:1.5px solid rgba(30,140,75,.45);border-radius:10px;padding:10px 14px;font-size:13.5px;font-weight:600;line-height:1.65;color:#a8efc0;}
+.flow-main{background:var(--t-good2-bg);border:1.5px solid var(--t-good2-bd);border-radius:10px;padding:10px 14px;font-size:13.5px;font-weight:600;line-height:1.65;color:var(--t-good2-tx);}
 .flow-row{display:flex;gap:8px;padding:4px 0;}
 .flow-row>.flow-yes,.flow-row>.flow-no{flex:1;}
-
-/* STEPS ROW */
 .steps-row{display:flex;gap:6px;justify-content:center;margin-bottom:14px;}
-.steps-row .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.18);}
+.steps-row .dot{width:9px;height:9px;border-radius:50%;background:var(--surf-strong);}
 .steps-row .dot.done{background:var(--good);}
 .steps-row .dot.cur{background:var(--orange);width:22px;border-radius:6px;}
-
-/* BUTTONS */
 .bottom-actions{display:flex;gap:10px;margin-top:16px;}
-.btn{flex:1;padding:14px 10px;border-radius:12px;text-align:center;font-size:15px;font-weight:700;cursor:pointer;border:1px solid rgba(255,255,255,.12);transition:.15s;user-select:none;}
+.btn{flex:1;padding:14px 10px;border-radius:var(--radius-pill);text-align:center;font-size:15px;font-weight:600;cursor:pointer;border:1px solid var(--line-strong);transition:.15s;user-select:none;}
 .btn:active{transform:scale(.97);}
-.btn-primary{background:linear-gradient(180deg,#3c6e93,#27496b);color:#fff;}
+.btn-primary{background:linear-gradient(180deg,var(--btn1),var(--btn2));color:var(--btn-tx);border-color:transparent;}
 .btn-primary:hover{border-color:var(--orange);}
-.btn-ghost{background:rgba(255,255,255,.05);color:var(--muted);}
-.btn-ghost:hover{color:#fff;}
+.btn-ghost{background:transparent;color:var(--muted);}
+.btn-ghost:hover{color:var(--cream);}
 .btn-wide{width:100%;}
-
-/* SIDE MENU */
 #sidemenu-overlay{position:absolute;inset:0;background:rgba(0,0,0,.55);z-index:80;display:none;}
 #sidemenu-overlay.active{display:block;}
-#sidemenu{position:absolute;top:0;right:0;bottom:0;width:78%;max-width:340px;background:linear-gradient(180deg,var(--navy-dark),var(--navy));z-index:90;transform:translateX(100%);transition:transform .25s ease;padding:20px 16px;overflow-y:auto;box-shadow:-8px 0 24px rgba(0,0,0,.5);}
+#sidemenu{position:absolute;top:0;right:0;bottom:0;width:78%;max-width:340px;background:var(--card);z-index:90;transform:translateX(100%);transition:transform .25s ease;padding:20px 16px;overflow-y:auto;box-shadow:-8px 0 24px rgba(0,0,0,.3);}
 #sidemenu.active{transform:translateX(0);}
-#sidemenu h4{color:var(--gold);font-size:13px;margin:18px 0 8px;opacity:.8;}
+#sidemenu h4{color:var(--gold);font-size:13px;margin:18px 0 8px;opacity:.85;}
 #sidemenu .item{padding:12px 10px;border-radius:10px;color:var(--cream);font-size:15px;cursor:pointer;display:flex;align-items:center;gap:10px;}
-#sidemenu .item:hover{background:rgba(255,255,255,.07);}
+#sidemenu .item:hover{background:var(--surf);}
 #sidemenu .close-x{position:absolute;top:16px;left:16px;cursor:pointer;color:var(--muted);font-size:22px;}
-
-/* SIDE MENU — ROLE SECTION */
 #sm-role-section:empty{display:none;}
-
-/* PROTOCOL / DRUG LIST */
 .proto-list{display:flex;flex-direction:column;gap:10px;}
-.proto-item{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:.15s;}
-.proto-item:hover{border-color:var(--orange);background:rgba(255,255,255,.08);}
+.proto-item{background:var(--surf-soft);border:1px solid var(--line);border-radius:var(--radius-card);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:.15s;}
+.proto-item:hover{border-color:var(--orange);background:var(--surf);}
 .proto-item .pi-label{font-size:14.5px;font-weight:600;color:var(--cream);flex:1;}
-.proto-item .pi-num{font-size:11px;color:var(--muted);background:rgba(255,255,255,.08);padding:2px 8px;border-radius:8px;margin-left:8px;white-space:nowrap;}
+.proto-item .pi-num{font-size:11px;color:var(--muted);background:var(--surf-strong);padding:2px 8px;border-radius:var(--radius-pill);margin-left:8px;white-space:nowrap;}
 .proto-item .pi-arrow{color:var(--muted);font-size:18px;}
-
-/* EVAC TABLE */
-#screen-evac-tools .evac-table-wrap{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;overflow:hidden;margin-bottom:16px;}
+#screen-evac-tools .evac-table-wrap{background:var(--surf-soft);border:1px solid var(--line);border-radius:var(--radius-card);overflow:hidden;margin-bottom:16px;}
 .evac-table{width:100%;border-collapse:collapse;}
-.evac-table thead th{background:rgba(255,255,255,.08);color:var(--gold);font-size:13px;font-weight:700;padding:11px 12px;text-align:right;}
+.evac-table thead th{background:var(--surf-strong);color:var(--gold);font-size:13px;font-weight:600;padding:11px 12px;text-align:right;}
 .evac-table thead th:last-child{text-align:center;}
-.evac-table tbody tr{border-top:1px solid rgba(255,255,255,.06);}
-.evac-table tbody tr:hover{background:rgba(255,255,255,.03);}
-.evac-table td{padding:11px 12px;font-size:13.5px;vertical-align:middle;}
+.evac-table tbody tr{border-top:1px solid var(--line-soft);}
+.evac-table tbody tr:hover{background:var(--surf-soft);}
+.evac-table td{padding:11px 12px;font-size:13.5px;vertical-align:middle;color:var(--cream);}
 .evac-table td:last-child{text-align:center;min-width:70px;}
 .evac-name-row{display:flex;align-items:center;gap:10px;}
-.evac-thumb{width:46px;height:34px;border-radius:8px;object-fit:cover;flex-shrink:0;border:1px solid rgba(255,255,255,.14);box-shadow:0 2px 8px rgba(0,0,0,.4),inset 0 0 0 1px rgba(0,0,0,.15);filter:brightness(.9) saturate(.9) contrast(1.05);}
-.evac-name{font-weight:700;}
+.evac-thumb{width:46px;height:34px;border-radius:8px;object-fit:cover;flex-shrink:0;border:1px solid var(--line-strong);box-shadow:0 2px 8px rgba(0,0,0,.2);}
+.evac-name{font-weight:600;}
 .evac-name small{display:block;font-weight:400;color:var(--muted);font-size:12px;}
-.badge-armor{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;background:rgba(255,255,255,.08);color:var(--muted);}
-.btn-evac{background:linear-gradient(180deg,#3c6e93,#27496b);color:#fff;border:none;border-radius:8px;padding:7px 11px;font-size:13px;font-weight:700;cursor:pointer;transition:.15s;}
+.badge-armor{display:inline-block;font-size:11px;padding:2px 8px;border-radius:var(--radius-pill);background:var(--surf-strong);color:var(--muted);}
+.btn-evac{background:linear-gradient(180deg,var(--btn1),var(--btn2));color:var(--btn-tx);border:none;border-radius:var(--radius-pill);padding:7px 14px;font-size:13px;font-weight:600;cursor:pointer;transition:.15s;}
 .btn-evac:active{transform:scale(.96);}
-
-/* EVAC MODAL */
-#evacModal{position:absolute;inset:0;background:rgba(0,0,0,.65);z-index:100;display:none;flex-direction:column;align-items:center;justify-content:flex-end;}
+#evacModal{position:absolute;inset:0;background:rgba(0,0,0,.55);z-index:100;display:none;flex-direction:column;align-items:center;justify-content:flex-end;}
 #evacModal.open{display:flex;}
-.evac-handle{width:64px;height:32px;border-radius:32px 32px 0 0;background:rgba(255,255,255,.09);border:1.5px solid rgba(255,255,255,.18);border-bottom:none;cursor:pointer;flex-shrink:0;transition:.15s;}
-.evac-handle:hover{background:rgba(255,255,255,.15);}
-.evac-modal-box{background:linear-gradient(180deg,#1b3450,#0c1f33);border:1px solid rgba(255,255,255,.12);border-top-left-radius:20px;border-top-right-radius:20px;width:100%;max-height:82vh;overflow-y:auto;padding:20px 18px 40px;box-shadow:0 -8px 32px rgba(0,0,0,.5);animation:slideUp .25s ease-out;position:relative;}
+.evac-handle{width:64px;height:32px;border-radius:32px 32px 0 0;background:var(--surf);border:1.5px solid var(--line-strong);border-bottom:none;cursor:pointer;flex-shrink:0;transition:.15s;}
+.evac-handle:hover{background:var(--surf-strong);}
+.evac-modal-box{background:var(--card);border:1px solid var(--line);border-top-left-radius:20px;border-top-right-radius:20px;width:100%;max-height:82vh;overflow-y:auto;padding:20px 18px 40px;box-shadow:0 -8px 32px rgba(0,0,0,.2);animation:slideUp .25s ease-out;position:relative;}
 @keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
-.evac-hero-wrap{position:relative;margin:-20px -18px 14px;overflow:hidden;border-top-left-radius:20px;border-top-right-radius:20px;height:170px;background:#0c1f33;}
+.evac-hero-wrap{position:relative;margin:-20px -18px 14px;overflow:hidden;border-top-left-radius:20px;border-top-right-radius:20px;height:170px;background:var(--card-2);}
 .evac-hero-bg{position:absolute;inset:-12px;background-size:cover;background-position:center;filter:blur(22px) brightness(.5) saturate(1.1);transform:scale(1.15);}
-.evac-hero-wrap img{position:relative;width:100%;height:100%;object-fit:contain;object-position:center;display:block;filter:brightness(.94) saturate(.95) contrast(1.05);}
-.evac-hero-fade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,31,51,0) 55%,rgba(20,42,66,.7) 84%,#1b3450 100%);pointer-events:none;}
+.evac-hero-wrap img{position:relative;width:100%;height:100%;object-fit:contain;object-position:center;display:block;}
+.evac-hero-fade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.3) 84%,var(--card) 100%);pointer-events:none;}
 .evac-hero-wrap video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;display:none;}
 .evac-hero-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:50%;background:rgba(8,17,28,.6);backdrop-filter:blur(3px);border:1px solid rgba(255,255,255,.3);display:none;align-items:center;justify-content:center;color:#fff;font-size:20px;cursor:pointer;transition:transform .15s;}
 .evac-hero-play:active{transform:translate(-50%,-50%) scale(.92);}
@@ -165,64 +176,63 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
 .evac-hero-wrap.has-video .evac-hero-play{display:flex;}
 .evac-hero-wrap.playing .evac-hero-bg,.evac-hero-wrap.playing .evac-hero-fade,.evac-hero-wrap.playing .evac-hero-play,.evac-hero-wrap.playing img{display:none;}
 .evac-hero-wrap.playing video{display:block;}
-.evac-modal-box h3{color:var(--gold);margin:0 0 16px;font-size:19px;}
-.evac-close{position:absolute;top:16px;left:16px;background:rgba(8,17,28,.55);backdrop-filter:blur(3px);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.15);color:#fff;font-size:20px;cursor:pointer;line-height:1;}
+.evac-modal-box h3{color:var(--gold);margin:0 0 16px;font-size:19px;font-weight:600;}
+.evac-close{position:absolute;top:16px;left:16px;background:rgba(8,17,28,.5);backdrop-filter:blur(3px);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.2);color:#fff;font-size:20px;cursor:pointer;line-height:1;}
 .evac-tabs{display:flex;gap:4px;margin-bottom:16px;}
-.evac-tab{flex:1;padding:10px 6px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(--muted);font-size:14px;font-weight:600;cursor:pointer;text-align:center;transition:.15s;}
-.evac-tab.active{background:rgba(84,131,168,.25);border-color:var(--navy-light);color:var(--cream);}
+.evac-tab{flex:1;padding:10px 6px;border-radius:var(--radius-pill);background:var(--surf);border:1px solid var(--line);color:var(--muted);font-size:14px;font-weight:600;cursor:pointer;text-align:center;transition:.15s;}
+.evac-tab.active{background:var(--t-info-bg);border-color:var(--navy-light);color:var(--cream);}
 .evac-panel{display:none;}
 .evac-panel.active{display:block;}
-.evac-row{margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.06);}
+.evac-row{margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--line-soft);}
 .evac-row:last-child{border-bottom:none;}
 .evac-lbl{font-size:12px;color:var(--muted);margin-bottom:3px;}
 .evac-val{font-size:15px;color:var(--cream);font-weight:500;}
-.evac-pros{background:rgba(63,174,100,.12);border:1px solid rgba(63,174,100,.3);color:#a8e6bc;padding:12px;border-radius:10px;margin-bottom:12px;font-size:14px;line-height:1.7;}
-.evac-cons{background:rgba(200,30,44,.12);border:1px solid rgba(200,30,44,.35);color:var(--danger-light);padding:12px;border-radius:10px;font-size:14px;line-height:1.7;}
-.evac-pros-title,.evac-cons-title{font-weight:700;margin-bottom:6px;display:block;font-size:13px;}
-
+.evac-pros{background:var(--t-good-bg);border:1px solid var(--t-good-bd);color:var(--t-good-tx);padding:12px;border-radius:12px;margin-bottom:12px;font-size:14px;line-height:1.7;}
+.evac-cons{background:var(--t-bad-bg);border:1px solid var(--t-bad-bd);color:var(--t-bad-tx);padding:12px;border-radius:12px;font-size:14px;line-height:1.7;}
+.evac-pros-title,.evac-cons-title{font-weight:600;margin-bottom:6px;display:block;font-size:13px;}
 .muted{color:var(--muted);}
 .small{font-size:12.5px;}
 .center{text-align:center;}
-
-/* DRUG CARDS */
-.drug-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;margin-bottom:12px;overflow:hidden;}
-.drug-header{background:rgba(255,255,255,.06);padding:12px 14px;display:flex;align-items:baseline;justify-content:space-between;gap:8px;border-bottom:1px solid rgba(255,255,255,.07);}
-.drug-name{font-size:15px;font-weight:700;color:var(--cream);}
+.drug-card{background:var(--surf-soft);border:1px solid var(--line);border-radius:var(--radius-card);margin-bottom:12px;overflow:hidden;}
+.drug-header{background:var(--surf);padding:12px 14px;display:flex;align-items:baseline;justify-content:space-between;gap:8px;border-bottom:1px solid var(--line-soft);}
+.drug-name{font-size:15px;font-weight:600;color:var(--cream);}
 .drug-dose{font-size:12px;color:var(--muted);white-space:nowrap;font-family:monospace;}
 .drug-body{padding:4px 0;}
-.drug-row{padding:9px 14px;border-bottom:1px solid rgba(255,255,255,.05);display:flex;flex-direction:column;gap:3px;}
+.drug-row{padding:9px 14px;border-bottom:1px solid var(--line-soft);display:flex;flex-direction:column;gap:3px;}
 .drug-row:last-child{border-bottom:none;}
-.drug-lbl{font-size:11px;color:var(--gold);font-weight:700;letter-spacing:.4px;text-transform:uppercase;}
-.matav-badge{display:inline-block;font-size:10.5px;font-weight:700;color:var(--accent);border:1px solid rgba(255,142,60,.5);border-radius:10px;padding:1px 7px;cursor:pointer;letter-spacing:.2px;white-space:nowrap;transition:background .15s;vertical-align:middle}
+.drug-lbl{font-size:11px;color:var(--gold);font-weight:600;letter-spacing:.4px;text-transform:uppercase;}
+.matav-badge{display:inline-block;font-size:10.5px;font-weight:600;color:var(--accent);border:1px solid rgba(255,142,60,.45);border-radius:var(--radius-pill);padding:1px 9px;cursor:pointer;letter-spacing:.2px;white-space:nowrap;transition:background .15s;vertical-align:middle}
 .matav-badge:hover{background:rgba(255,142,60,.15)}
 .drug-val{font-size:13.5px;color:var(--cream);line-height:1.75;}
-
-/* SCHEME TABLE */
 .scheme-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:14px;}
 .scheme-table{width:100%;border-collapse:collapse;font-size:13.5px;}
-.scheme-table .sec-row td{background:rgba(255,255,255,.08);color:var(--gold);font-weight:700;font-size:13px;padding:9px 12px;letter-spacing:.3px;}
-.scheme-table tr:not(.sec-row){border-bottom:1px solid rgba(255,255,255,.05);}
-.scheme-table tr:not(.sec-row):hover{background:rgba(255,255,255,.03);}
-.scheme-table td{padding:9px 10px;vertical-align:top;line-height:1.65;}
+.scheme-table .sec-row td{background:var(--surf-strong);color:var(--gold);font-weight:600;font-size:13px;padding:9px 12px;letter-spacing:.3px;}
+.scheme-table tr:not(.sec-row){border-bottom:1px solid var(--line-soft);}
+.scheme-table tr:not(.sec-row):hover{background:var(--surf-soft);}
+.scheme-table td{padding:9px 10px;vertical-align:top;line-height:1.65;color:var(--cream);}
 .scheme-table td:first-child{width:42px;text-align:center;padding-right:4px;}
-.ltr{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;font-weight:800;font-size:13px;flex-shrink:0;}
-.ltr-X{background:rgba(192,57,43,.25);color:#e74c3c;border:1px solid rgba(192,57,43,.4);}
-.ltr-C{background:rgba(44,95,138,.35);color:#5dade2;border:1px solid rgba(44,95,138,.5);}
-.ltr-A{background:rgba(30,125,92,.25);color:#58d68d;border:1px solid rgba(30,125,92,.4);}
-.ltr-R{background:rgba(108,52,131,.25);color:#c39bd3;border:1px solid rgba(108,52,131,.4);}
-.ltr-E{background:rgba(211,84,0,.25);color:#f0b27a;border:1px solid rgba(211,84,0,.4);}
-.ltr-PFC{background:rgba(125,102,8,.25);color:var(--gold);border:1px solid rgba(125,102,8,.4);font-size:10px;width:36px;}
+.ltr{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;font-weight:600;font-size:13px;flex-shrink:0;}
+.ltr-X{background:rgba(192,57,43,.22);color:#e74c3c;border:1px solid rgba(192,57,43,.4);}
+.ltr-C{background:rgba(44,95,138,.3);color:#5dade2;border:1px solid rgba(44,95,138,.5);}
+.ltr-A{background:rgba(30,125,92,.22);color:#58d68d;border:1px solid rgba(30,125,92,.4);}
+.ltr-R{background:rgba(108,52,131,.22);color:#c39bd3;border:1px solid rgba(108,52,131,.4);}
+.ltr-E{background:rgba(211,84,0,.22);color:#f0b27a;border:1px solid rgba(211,84,0,.4);}
+.ltr-PFC{background:rgba(125,102,8,.22);color:var(--gold);border:1px solid rgba(125,102,8,.4);font-size:10px;width:36px;border-radius:12px;}
 .scheme-note{font-size:12px;color:var(--muted);padding:6px 10px 10px;line-height:1.6;font-style:italic;}
 </style>
 </head>
 <body>
-<div id="app">
+<div id="app" data-theme="tactical">
 <div class="texture"></div>
 
 <header id="mainHeader" style="display:none;">
-  <div class="icon-btn" id="btnMenu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></div>
-  <div class="logo-wrap"><img src="assets/logo.png" alt="לוגו"></div>
-  <div class="icon-btn" id="btnHome"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></div>
+  <div class="icon-btn" id="btnMenu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div>
+  <div class="logo-wrap"></div>
+  <div class="icon-group">
+    <div class="icon-btn" id="btnTheme" title="החלף ערכת נושא"><svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg></div>
+    <div class="icon-btn" id="btnHome"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"></path><path d="M5 10v10h14V10"></path></svg></div>
+  </div>
+  <img src="assets/logo.png" alt="לוגו" style="position:absolute;top:9px;left:50%;transform:translateX(-50%);width:54px;height:54px;border-radius:50%;">
 </header>
 
 <div id="sidemenu-overlay"><div id="sidemenu">
@@ -232,7 +242,7 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
   <div class="item" data-go="menu">🏠 מי אני?</div>
   <div id="sm-role-section"></div>
   <h4>כלים נוספים</h4>
-  <div class="item" data-go="evac-tools">🚑 כלי פינוי</div>
+  <div class="item" style="opacity:.45;cursor:default;pointer-events:none;">🚑 כלי פינוי <span style="font-size:10px;font-weight:600;background:var(--orange);color:#fff;border-radius:var(--radius-pill);padding:2px 7px;margin-right:4px;">בפיתוח</span></div>
   <div class="item" data-go="lesson:arn">📋 תו"ל אר"ן</div>
   <div class="item" data-go="lesson:lessons">📖 לקחי מלחמת התקומה</div>
 </div></div>
@@ -250,14 +260,14 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
   <div class="page-title">מצילים חיים בקליק</div>
   <div class="page-heading">מי אני?</div>
   <div class="menu-list">
-    <div class="role-btn" data-go="role:ls"><span class="emoji">🪖</span> מח"צ — מציל חיים צבאי</div>
-    <div class="role-btn" data-go="role:md"><span class="emoji">🩹</span> חובש</div>
-    <div class="role-btn" data-go="role:sr"><span class="emoji">⚕️</span> מטפל בכיר</div>
+    <div class="role-btn" style="background:linear-gradient(180deg,#1e4f80,#102d52);border-color:rgba(91,143,184,.5);" data-go="role:ls"><span class="emoji">🪖</span> מח"צ — מציל חיים צבאי</div>
+    <div class="role-btn" style="background:linear-gradient(180deg,#1e4f80,#102d52);border-color:rgba(91,143,184,.5);" data-go="role:md"><span class="emoji">🩹</span> חובש</div>
+    <div class="role-btn" style="background:linear-gradient(180deg,#1e4f80,#102d52);border-color:rgba(91,143,184,.5);" data-go="role:sr"><span class="emoji">⚕️</span> מטפל בכיר</div>
     <div class="row2">
-      <div class="role-btn small" data-go="evac-tools">🚑 כלי פינוי</div>
-      <div class="role-btn small" data-go="lesson:arn">📋 תו"ל אר"ן</div>
+      <div class="role-btn small" style="opacity:.45;cursor:default;pointer-events:none;position:relative;">🚑 כלי פינוי <span style="font-size:10px;font-weight:600;background:var(--orange);color:#fff;border-radius:var(--radius-pill);padding:2px 7px;margin-right:4px;vertical-align:middle;">בפיתוח</span></div>
+      <div class="role-btn small" style="background:linear-gradient(180deg,var(--btn1),var(--btn2));color:var(--btn-tx);border-color:transparent;" data-go="lesson:arn">📋 תו"ל אר"ן</div>
     </div>
-    <div class="role-btn ghost" data-go="lesson:lessons">📖 לקחי מלחמת התקומה</div>
+    <div class="role-btn" style="background:linear-gradient(180deg,var(--btn1),var(--btn2));color:var(--btn-tx);border-color:transparent;" data-go="lesson:lessons">📖 לקחי מלחמת התקומה</div>
   </div>
 </section>
 
@@ -528,90 +538,6 @@ D['ls-bleed']={eyebrow:'מח"צ',title:'עצירת דימומים',group:'ls',bo
     <li><b>עורק תת-בריחי:</b> יש להכניס שתי אצבעות לתוך השקע של עצם הבריח מהכיוון הסופריורי, למצוא את העורק ע"י מישוש דופק, וללחוץ את העורק על גבי עצם הבריח.</li>
     <li><b>עורק פמורלי:</b> יש למצוא את העורק הפמורלי ע"י מישוש הדופק באזור המפשעה, וללחוץ את העורק על גבי עצם הירך. בזמן הלחיצה היד צריכה להיות באגרוף, לנעול את המרפק, ולהפעיל לחץ עם משקל הגוף.</li>
   </ul>
-  <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px;">
-
-  <!-- ── עורק ברכיאלי ── -->
-  <svg viewBox="0 0 280 162" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:8px;direction:ltr;">
-    <rect width="280" height="162" fill="#182f4a" rx="8"/>
-    <!-- shoulder cap -->
-    <ellipse cx="65" cy="20" rx="28" ry="14" fill="#243e5a" stroke="#4a7aa8" stroke-width="1.5"/>
-    <!-- arm body -->
-    <path d="M 42,24 C 36,38 32,60 34,88 L 38,142 C 39,152 50,158 65,158 C 80,158 90,152 90,142 L 92,86 C 94,58 90,38 88,24 Z" fill="#243e5a" stroke="#4a7aa8" stroke-width="1.5"/>
-    <!-- humerus centerline -->
-    <line x1="65" y1="28" x2="65" y2="148" stroke="#5a8ab8" stroke-width="1" stroke-dasharray="4,4" opacity="0.35"/>
-    <!-- medial edge marker -->
-    <line x1="90" y1="34" x2="90" y2="138" stroke="#4a7aa8" stroke-width="1" stroke-dasharray="2,3" opacity="0.5"/>
-    <text x="96" y="58" font-family="Arial,sans-serif" font-size="7" fill="#6fa8d0" opacity="0.75" text-anchor="start">מדיאלי</text>
-    <!-- glow + dot -->
-    <circle cx="91" cy="82" r="18" fill="#ff8e3c" opacity="0.08"/>
-    <circle cx="91" cy="82" r="7" fill="#ff8e3c"/>
-    <circle cx="91" cy="82" r="11" fill="none" stroke="#ff8e3c" stroke-width="1.5" opacity="0.4"/>
-    <!-- connector -->
-    <line x1="103" y1="79" x2="135" y2="70" stroke="#ff8e3c" stroke-width="1.3" opacity="0.65"/>
-    <!-- labels -->
-    <text x="205" y="58" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#eef3f7" text-anchor="middle">עורק ברכיאלי</text>
-    <text x="205" y="74" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">הצד המדיאלי של הזרוע</text>
-    <text x="205" y="87" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">4 אצבעות מתחת לשריר</text>
-    <!-- technique tag -->
-    <rect x="136" y="122" width="130" height="22" rx="4" fill="#ff8e3c" fill-opacity="0.12"/>
-    <text x="201" y="137" font-family="Arial,sans-serif" font-size="9.5" fill="#ff8e3c" text-anchor="middle">לחיצה על גבי עצם הזרוע</text>
-  </svg>
-
-  <!-- ── עורק תת-בריחי ── -->
-  <svg viewBox="0 0 280 162" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:8px;direction:ltr;">
-    <rect width="280" height="162" fill="#182f4a" rx="8"/>
-    <!-- neck -->
-    <path d="M 56,4 C 52,12 50,26 52,40 L 56,50 C 60,53 69,55 69,55 C 69,55 78,53 82,50 L 86,40 C 88,26 86,12 82,4 Z" fill="#243e5a" stroke="#4a7aa8" stroke-width="1.2"/>
-    <!-- torso -->
-    <path d="M 14,60 C 9,66 7,86 10,116 L 13,160 L 125,160 L 128,116 C 131,86 129,66 124,60 L 82,50 C 78,53 69,55 69,55 C 69,55 60,53 56,50 Z" fill="#243e5a" stroke="#4a7aa8" stroke-width="1.5"/>
-    <!-- left shoulder/arm stub -->
-    <path d="M 14,60 C 2,58 -2,72 2,88 L 8,102 C 12,112 20,114 26,110" fill="#243e5a" stroke="#4a7aa8" stroke-width="1.2"/>
-    <!-- left clavicle (highlighted) -->
-    <path d="M 69,58 C 52,54 34,56 14,64" fill="none" stroke="#6fa8d0" stroke-width="2.5" stroke-linecap="round"/>
-    <!-- right clavicle (dim) -->
-    <path d="M 69,58 C 86,54 104,56 124,64" fill="none" stroke="#6fa8d0" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
-    <!-- clavicle label -->
-    <text x="36" y="50" font-family="Arial,sans-serif" font-size="8" fill="#6fa8d0" text-anchor="middle">עצם הבריח</text>
-    <!-- glow + dot at supraclavicular fossa -->
-    <circle cx="34" cy="49" r="16" fill="#ff8e3c" opacity="0.08"/>
-    <circle cx="34" cy="49" r="7" fill="#ff8e3c"/>
-    <circle cx="34" cy="49" r="11" fill="none" stroke="#ff8e3c" stroke-width="1.5" opacity="0.4"/>
-    <!-- connector -->
-    <line x1="45" y1="46" x2="135" y2="50" stroke="#ff8e3c" stroke-width="1.3" opacity="0.65"/>
-    <!-- labels -->
-    <text x="205" y="44" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#eef3f7" text-anchor="middle">עורק תת-בריחי</text>
-    <text x="205" y="59" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">שקע עצם הבריח</text>
-    <text x="205" y="72" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">מהכיוון הסופריורי</text>
-    <!-- technique tag -->
-    <rect x="136" y="122" width="130" height="22" rx="4" fill="#ff8e3c" fill-opacity="0.12"/>
-    <text x="201" y="137" font-family="Arial,sans-serif" font-size="9.5" fill="#ff8e3c" text-anchor="middle">לחיצה על גבי עצם הבריח</text>
-  </svg>
-
-  <!-- ── עורק פמורלי ── -->
-  <svg viewBox="0 0 280 162" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:8px;direction:ltr;">
-    <rect width="280" height="162" fill="#182f4a" rx="8"/>
-    <!-- upper thigh only — no pelvic anatomy -->
-    <path d="M 30,6 C 22,6 14,14 12,28 L 8,82 C 6,106 10,134 16,157 L 24,162 L 72,162 L 78,157 C 84,134 86,106 84,82 L 80,28 C 78,14 70,6 62,6 Z" fill="#243e5a" stroke="#4a7aa8" stroke-width="1.5"/>
-    <!-- femur centerline -->
-    <line x1="46" y1="10" x2="46" y2="155" stroke="#5a8ab8" stroke-width="1" stroke-dasharray="4,4" opacity="0.38"/>
-    <!-- bone label -->
-    <text x="46" y="148" font-family="Arial,sans-serif" font-size="7.5" fill="#6fa8d0" text-anchor="middle">עצם הירך</text>
-    <!-- glow + dot near top of thigh -->
-    <circle cx="46" cy="30" r="18" fill="#ff8e3c" opacity="0.08"/>
-    <circle cx="46" cy="30" r="7" fill="#ff8e3c"/>
-    <circle cx="46" cy="30" r="11" fill="none" stroke="#ff8e3c" stroke-width="1.5" opacity="0.4"/>
-    <!-- connector -->
-    <line x1="58" y1="27" x2="135" y2="46" stroke="#ff8e3c" stroke-width="1.3" opacity="0.65"/>
-    <!-- labels -->
-    <text x="205" y="42" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#eef3f7" text-anchor="middle">עורק פמורלי</text>
-    <text x="205" y="58" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">חלק עליון של הירך</text>
-    <text x="205" y="71" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">מישוש דופק ← לחץ על עצם הירך</text>
-    <!-- technique tag -->
-    <rect x="136" y="122" width="130" height="22" rx="4" fill="#ff8e3c" fill-opacity="0.12"/>
-    <text x="201" y="137" font-family="Arial,sans-serif" font-size="9.5" fill="#ff8e3c" text-anchor="middle">אגרוף + משקל הגוף על עצם הירך</text>
-  </svg>
-
-  </div>
 </div>
 <div class="lesson-card">
   <h3>🦿 גדם קטיעה — ח"ע חובה</h3>
@@ -836,90 +762,6 @@ D['md-C']={eyebrow:'חובש',title:'C — עצירת דימומים',group:'md'
     <li><b>עורק תת-בריחי:</b> יש להכניס שתי אצבעות לתוך השקע של עצם הבריח מהכיוון הסופריורי, למצוא את העורק ע"י מישוש דופק, וללחוץ את העורק על גבי עצם הבריח.</li>
     <li><b>עורק פמורלי:</b> יש למצוא את העורק הפמורלי ע"י מישוש הדופק באזור המפשעה, וללחוץ את העורק על גבי עצם הירך. בזמן הלחיצה היד צריכה להיות באגרוף, לנעול את המרפק, ולהפעיל לחץ עם משקל הגוף.</li>
   </ul>
-  <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px;">
-
-  <!-- ── עורק ברכיאלי ── -->
-  <svg viewBox="0 0 280 162" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:8px;direction:ltr;">
-    <rect width="280" height="162" fill="#182f4a" rx="8"/>
-    <!-- shoulder cap -->
-    <ellipse cx="65" cy="20" rx="28" ry="14" fill="#243e5a" stroke="#4a7aa8" stroke-width="1.5"/>
-    <!-- arm body -->
-    <path d="M 42,24 C 36,38 32,60 34,88 L 38,142 C 39,152 50,158 65,158 C 80,158 90,152 90,142 L 92,86 C 94,58 90,38 88,24 Z" fill="#243e5a" stroke="#4a7aa8" stroke-width="1.5"/>
-    <!-- humerus centerline -->
-    <line x1="65" y1="28" x2="65" y2="148" stroke="#5a8ab8" stroke-width="1" stroke-dasharray="4,4" opacity="0.35"/>
-    <!-- medial edge marker -->
-    <line x1="90" y1="34" x2="90" y2="138" stroke="#4a7aa8" stroke-width="1" stroke-dasharray="2,3" opacity="0.5"/>
-    <text x="96" y="58" font-family="Arial,sans-serif" font-size="7" fill="#6fa8d0" opacity="0.75" text-anchor="start">מדיאלי</text>
-    <!-- glow + dot -->
-    <circle cx="91" cy="82" r="18" fill="#ff8e3c" opacity="0.08"/>
-    <circle cx="91" cy="82" r="7" fill="#ff8e3c"/>
-    <circle cx="91" cy="82" r="11" fill="none" stroke="#ff8e3c" stroke-width="1.5" opacity="0.4"/>
-    <!-- connector -->
-    <line x1="103" y1="79" x2="135" y2="70" stroke="#ff8e3c" stroke-width="1.3" opacity="0.65"/>
-    <!-- labels -->
-    <text x="205" y="58" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#eef3f7" text-anchor="middle">עורק ברכיאלי</text>
-    <text x="205" y="74" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">הצד המדיאלי של הזרוע</text>
-    <text x="205" y="87" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">4 אצבעות מתחת לשריר</text>
-    <!-- technique tag -->
-    <rect x="136" y="122" width="130" height="22" rx="4" fill="#ff8e3c" fill-opacity="0.12"/>
-    <text x="201" y="137" font-family="Arial,sans-serif" font-size="9.5" fill="#ff8e3c" text-anchor="middle">לחיצה על גבי עצם הזרוע</text>
-  </svg>
-
-  <!-- ── עורק תת-בריחי ── -->
-  <svg viewBox="0 0 280 162" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:8px;direction:ltr;">
-    <rect width="280" height="162" fill="#182f4a" rx="8"/>
-    <!-- neck -->
-    <path d="M 56,4 C 52,12 50,26 52,40 L 56,50 C 60,53 69,55 69,55 C 69,55 78,53 82,50 L 86,40 C 88,26 86,12 82,4 Z" fill="#243e5a" stroke="#4a7aa8" stroke-width="1.2"/>
-    <!-- torso -->
-    <path d="M 14,60 C 9,66 7,86 10,116 L 13,160 L 125,160 L 128,116 C 131,86 129,66 124,60 L 82,50 C 78,53 69,55 69,55 C 69,55 60,53 56,50 Z" fill="#243e5a" stroke="#4a7aa8" stroke-width="1.5"/>
-    <!-- left shoulder/arm stub -->
-    <path d="M 14,60 C 2,58 -2,72 2,88 L 8,102 C 12,112 20,114 26,110" fill="#243e5a" stroke="#4a7aa8" stroke-width="1.2"/>
-    <!-- left clavicle (highlighted) -->
-    <path d="M 69,58 C 52,54 34,56 14,64" fill="none" stroke="#6fa8d0" stroke-width="2.5" stroke-linecap="round"/>
-    <!-- right clavicle (dim) -->
-    <path d="M 69,58 C 86,54 104,56 124,64" fill="none" stroke="#6fa8d0" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
-    <!-- clavicle label -->
-    <text x="36" y="50" font-family="Arial,sans-serif" font-size="8" fill="#6fa8d0" text-anchor="middle">עצם הבריח</text>
-    <!-- glow + dot at supraclavicular fossa -->
-    <circle cx="34" cy="49" r="16" fill="#ff8e3c" opacity="0.08"/>
-    <circle cx="34" cy="49" r="7" fill="#ff8e3c"/>
-    <circle cx="34" cy="49" r="11" fill="none" stroke="#ff8e3c" stroke-width="1.5" opacity="0.4"/>
-    <!-- connector -->
-    <line x1="45" y1="46" x2="135" y2="50" stroke="#ff8e3c" stroke-width="1.3" opacity="0.65"/>
-    <!-- labels -->
-    <text x="205" y="44" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#eef3f7" text-anchor="middle">עורק תת-בריחי</text>
-    <text x="205" y="59" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">שקע עצם הבריח</text>
-    <text x="205" y="72" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">מהכיוון הסופריורי</text>
-    <!-- technique tag -->
-    <rect x="136" y="122" width="130" height="22" rx="4" fill="#ff8e3c" fill-opacity="0.12"/>
-    <text x="201" y="137" font-family="Arial,sans-serif" font-size="9.5" fill="#ff8e3c" text-anchor="middle">לחיצה על גבי עצם הבריח</text>
-  </svg>
-
-  <!-- ── עורק פמורלי ── -->
-  <svg viewBox="0 0 280 162" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:8px;direction:ltr;">
-    <rect width="280" height="162" fill="#182f4a" rx="8"/>
-    <!-- upper thigh only — no pelvic anatomy -->
-    <path d="M 30,6 C 22,6 14,14 12,28 L 8,82 C 6,106 10,134 16,157 L 24,162 L 72,162 L 78,157 C 84,134 86,106 84,82 L 80,28 C 78,14 70,6 62,6 Z" fill="#243e5a" stroke="#4a7aa8" stroke-width="1.5"/>
-    <!-- femur centerline -->
-    <line x1="46" y1="10" x2="46" y2="155" stroke="#5a8ab8" stroke-width="1" stroke-dasharray="4,4" opacity="0.38"/>
-    <!-- bone label -->
-    <text x="46" y="148" font-family="Arial,sans-serif" font-size="7.5" fill="#6fa8d0" text-anchor="middle">עצם הירך</text>
-    <!-- glow + dot near top of thigh -->
-    <circle cx="46" cy="30" r="18" fill="#ff8e3c" opacity="0.08"/>
-    <circle cx="46" cy="30" r="7" fill="#ff8e3c"/>
-    <circle cx="46" cy="30" r="11" fill="none" stroke="#ff8e3c" stroke-width="1.5" opacity="0.4"/>
-    <!-- connector -->
-    <line x1="58" y1="27" x2="135" y2="46" stroke="#ff8e3c" stroke-width="1.3" opacity="0.65"/>
-    <!-- labels -->
-    <text x="205" y="42" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#eef3f7" text-anchor="middle">עורק פמורלי</text>
-    <text x="205" y="58" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">חלק עליון של הירך</text>
-    <text x="205" y="71" font-family="Arial,sans-serif" font-size="10" fill="#9fb4c8" text-anchor="middle">מישוש דופק ← לחץ על עצם הירך</text>
-    <!-- technique tag -->
-    <rect x="136" y="122" width="130" height="22" rx="4" fill="#ff8e3c" fill-opacity="0.12"/>
-    <text x="201" y="137" font-family="Arial,sans-serif" font-size="9.5" fill="#ff8e3c" text-anchor="middle">אגרוף + משקל הגוף על עצם הירך</text>
-  </svg>
-
-  </div>
   <div class="warn">אין לעזוב נקודת לחיצה (למעט שחלוף עם 669). לדווח על קיומה לפני שחלוף.</div>
 </div>`};
 
@@ -1623,6 +1465,7 @@ function navBack(){
 document.addEventListener('click',e=>{
   const t=e.target.closest('[data-go]');if(!t)return;
   const tgt=t.getAttribute('data-go');
+  if(tgt==='evac-tools')return;
   if(tgt.startsWith('role:'))enterRole(tgt.slice(5));
   else go(tgt);
 });
@@ -1641,6 +1484,23 @@ document.getElementById('btnMenu').addEventListener('click',()=>{document.getEle
 document.getElementById('btnCloseMenu').addEventListener('click',closeMenu);
 document.getElementById('sidemenu-overlay').addEventListener('click',e=>{if(e.target.id==='sidemenu-overlay')closeMenu();});
 function closeMenu(){document.getElementById('sidemenu-overlay').classList.remove('active');document.getElementById('sidemenu').classList.remove('active');}
+/* ---- THEME TOGGLE ---- */
+const _app=document.getElementById('app');
+const _sunIcon='<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>';
+const _moonIcon='<path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"></path>';
+function _applyThemeIcon(t){const el=document.getElementById('themeIcon');if(el)el.innerHTML=t==='miro'?_moonIcon:_sunIcon;}
+let _theme='tactical';
+try{_theme=localStorage.getItem('medicapp-theme')||_theme;}catch(e){}
+_app.setAttribute('data-theme',_theme);
+_applyThemeIcon(_theme);
+_app.setAttribute('data-density','comfortable');
+_app.setAttribute('data-motion','on');
+document.getElementById('btnTheme').addEventListener('click',()=>{
+  _theme=_theme==='miro'?'tactical':'miro';
+  _app.setAttribute('data-theme',_theme);
+  _applyThemeIcon(_theme);
+  try{localStorage.setItem('medicapp-theme',_theme);}catch(e){}
+});
 </script>
 </body>
 </html>
