@@ -283,7 +283,9 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
     <div class="proto-item" data-go="lesson:proto-chest-vent"><span class="pi-num">5</span><span class="pi-label">פרוטוקול טיפול בפצוע חזה מונשם</span><span class="pi-arrow" dir="ltr">›</span></div>
     <div class="proto-item" data-go="lesson:proto-chest-spont"><span class="pi-num">6</span><span class="pi-label">פרוטוקול הערכה וטיפול בפצוע חזה נושם ספונטנית</span><span class="pi-arrow" dir="ltr">›</span></div>
     <div class="proto-item" data-go="lesson:proto-airway"><span class="pi-num">7</span><span class="pi-label">פרוטוקול הערכת וניהול נתיב אוויר</span><span class="pi-arrow" dir="ltr">›</span></div>
-    <div class="proto-item" data-go="lesson:proto-damage-ctrl"><span class="pi-num">8</span><span class="pi-label">פרוטוקול החייאת בקרת נזקים בשדה בפצוע מדמם</span><span class="pi-arrow" dir="ltr">›</span></div>
+    <div class="proto-item" data-go="lesson:proto-damage-ctrl"><span class="pi-num">8</span><span class="pi-label">פרוטוקול החייאת בקרת נזקים בשדה בפצוע המדמם</span><span class="pi-arrow" dir="ltr">›</span></div>
+    <div class="proto-item" data-go="lesson:proto-musculo"><span class="pi-num">9</span><span class="pi-label">פרוטוקול קדימויות הטיפול בפציעות שריר ושלד</span><span class="pi-arrow" dir="ltr">›</span></div>
+    <div class="proto-item" data-go="lesson:proto-head"><span class="pi-num">10</span><span class="pi-label">פרוטוקול הטיפול בפגיעת ראש טראומטית</span><span class="pi-arrow" dir="ltr">›</span></div>
   </div>
   <div class="bottom-actions">
     <div class="btn btn-ghost" onclick="navBack()"><span dir="ltr">→</span> חזור</div>
@@ -965,28 +967,34 @@ D['arn']={eyebrow:'תו"ל',title:'תו"ל אר"ן',group:null,body:D['md-arn'].
 /* ===== PROTOCOLS (slides 17-24 text) ===== */
 
 D['proto-pain']={eyebrow:'פרוטוקולים',title:'פרוטוקול טיפול בכאב',group:null,body:`
-<img src="assets/proto_imgs/image4.jpg" style="width:100%;border-radius:8px;margin-bottom:12px;display:block;" alt="פרוטוקול טיפול בכאב">`};
+<img src="assets/proto_imgs/proto_pain.png" style="width:100%;border-radius:8px;margin-bottom:12px;display:block;" alt="פרוטוקול טיפול בכאב">`};
 
 D['proto-antibiotics']={eyebrow:'פרוטוקולים',title:'פרוטוקול הטיפול האנטיביוטי בשדה הקרב',group:null,body:`
-<img src="assets/proto_imgs/image3.jpg" style="width:100%;border-radius:8px;margin-bottom:12px;display:block;" alt="פרוטוקול הטיפול האנטיביוטי">`};
+<img src="assets/proto_imgs/proto_antibiotics.png" style="width:100%;border-radius:8px;margin-bottom:12px;display:block;" alt="פרוטוקול הטיפול האנטיביוטי בשדה הקרב">`};
 
-D['proto-vascular']={eyebrow:'פרוטוקולים',title:'פרוטוקול השגת גישה למחזור הדם',group:null,body:`
-<img src="assets/proto_imgs/image8.jpg" style="width:100%;border-radius:8px;margin-bottom:12px;display:block;" alt="פרוטוקול השגת גישה למחזור הדם">`};
+D['proto-vascular']={eyebrow:'פרוטוקולים',title:'פרוטוקול השגת נישה למחזור הדם',group:null,body:`
+<img src="assets/proto_imgs/proto_vascular.png" style="width:100%;border-radius:8px;margin-bottom:12px;display:block;" alt="פרוטוקול השגת נישה למחזור הדם">`};
 
-D['proto-death']={eyebrow:'פרוטוקולים',title:'פרוטוקול סיום מאמצי החייאה וקביעת מוות',group:null,body:`
-<img src="assets/proto_imgs/image7.jpg" style="width:100%;border-radius:8px;margin-bottom:12px;display:block;" alt="פרוטוקול סיום מאמצי החייאה וקביעת מוות">`};
+D['proto-death']={eyebrow:'פרוטוקולים',title:'פרוטוקול מאמצי החייאה בפצוע המאבד סימני חיים',group:null,body:`
+<img src="assets/proto_imgs/proto_death.png" style="width:100%;border-radius:8px;margin-bottom:12px;display:block;" alt="פרוטוקול מאמצי החייאה בפצוע המאבד סימני חיים">`};
 
 D['proto-chest-vent']={eyebrow:'פרוטוקולים',title:'פרוטוקול טיפול בפצוע חזה מונשם',group:null,body:`
-<img src="assets/proto_imgs/image10.jpg" style="width:100%;border-radius:8px;margin-bottom:12px;display:block;" alt="פרוטוקול טיפול בפצוע חזה מונשם">`};
+<img src="assets/proto_imgs/proto_chest_vent.png" style="width:100%;border-radius:8px;margin-bottom:12px;display:block;" alt="פרוטוקול טיפול בפצוע חזה מונשם">`};
 
 D['proto-chest-spont']={eyebrow:'פרוטוקולים',title:'פרוטוקול הערכה וטיפול בפצוע חזה נושם ספונטנית',group:null,body:`
-<img src="assets/proto_imgs/image2.jpg" style="width:100%;border-radius:8px;margin-bottom:12px;display:block;" alt="פרוטוקול הערכה וטיפול בפצוע חזה נושם ספונטנית">`};
+<img src="assets/proto_imgs/proto_chest_spont.png" style="width:100%;border-radius:8px;margin-bottom:12px;display:block;" alt="פרוטוקול הערכה וטיפול בפצוע חזה נושם ספונטנית">`};
 
 D['proto-airway']={eyebrow:'פרוטוקולים',title:'פרוטוקול הערכת וניהול נתיב האוויר',group:null,body:`
-<img src="assets/proto_imgs/image5.jpg" style="width:100%;border-radius:8px;margin-bottom:12px;display:block;" alt="פרוטוקול הערכת וניהול נתיב האוויר">`};
+<img src="assets/proto_imgs/proto_airway.png" style="width:100%;border-radius:8px;margin-bottom:12px;display:block;" alt="פרוטוקול הערכת וניהול נתיב האוויר">`};
 
-D['proto-damage-ctrl']={eyebrow:'פרוטוקולים',title:'פרוטוקול החייאת בקרת נזקים בשדה בפצוע מדמם',group:null,body:`
-<img src="assets/proto_imgs/image6.jpg" style="width:100%;border-radius:8px;margin-bottom:12px;display:block;" alt="פרוטוקול החייאת בקרת נזקים">`};
+D['proto-damage-ctrl']={eyebrow:'פרוטוקולים',title:'פרוטוקול החייאת בקרת נזקים בשדה בפצוע המדמם',group:null,body:`
+<img src="assets/proto_imgs/proto_damage_ctrl.png" style="width:100%;border-radius:8px;margin-bottom:12px;display:block;" alt="פרוטוקול החייאת בקרת נזקים בשדה בפצוע המדמם">`};
+
+D['proto-musculo']={eyebrow:'פרוטוקולים',title:'פרוטוקול קדימויות הטיפול בפציעות שריר ושלד',group:null,body:`
+<img src="assets/proto_imgs/proto_musculo.png" style="width:100%;border-radius:8px;margin-bottom:12px;display:block;" alt="פרוטוקול קדימויות הטיפול בפציעות שריר ושלד">`};
+
+D['proto-head']={eyebrow:'פרוטוקולים',title:'פרוטוקול הטיפול בפגיעת ראש טראומטית',group:null,body:`
+<img src="assets/proto_imgs/proto_head.png" style="width:100%;border-radius:8px;margin-bottom:12px;display:block;" alt="פרוטוקול הטיפול בפגיעת ראש טראומטית">`};
 
 /* ===== DRUGS (full text from tables) ===== */
 
