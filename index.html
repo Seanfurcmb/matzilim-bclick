@@ -75,6 +75,8 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
 .page-heading{text-align:center;font-size:24px;font-weight:600;color:var(--cream);margin:0 0 16px;letter-spacing:-0.2px;}
 .menu-list{display:flex;flex-direction:column;gap:13px;margin-top:6px;}
 .role-btn{background:linear-gradient(180deg,var(--card),var(--card-2));border:1px solid var(--line-soft);border-radius:var(--radius-pill);padding:17px 26px;color:var(--cream);font-size:18px;font-weight:600;text-align:center;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,.12);transition:.15s;display:flex;align-items:center;justify-content:center;gap:10px;}
+[data-go^="role:"]{background:linear-gradient(180deg,#1e4f80,#102d52);border-color:rgba(91,143,184,.5);color:#f3f7fa;}
+#app[data-theme="miro"] [data-go^="role:"]{background:linear-gradient(180deg,#5b8ec8,#3a6aaa);border-color:rgba(90,142,200,.35);color:#fff;box-shadow:0 4px 14px rgba(58,106,170,.22);}
 .role-btn:active{transform:scale(.98);}
 .role-btn:hover{border-color:var(--orange);}
 .role-btn .emoji{font-size:22px;}
@@ -260,9 +262,9 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
   <div class="page-title">מצילים חיים בקליק</div>
   <div class="page-heading">מי אני?</div>
   <div class="menu-list">
-    <div class="role-btn" style="background:linear-gradient(180deg,#1e4f80,#102d52);border-color:rgba(91,143,184,.5);" data-go="role:ls"><span class="emoji">🪖</span> מח"צ — מציל חיים צבאי</div>
-    <div class="role-btn" style="background:linear-gradient(180deg,#1e4f80,#102d52);border-color:rgba(91,143,184,.5);" data-go="role:md"><span class="emoji">🩹</span> חובש</div>
-    <div class="role-btn" style="background:linear-gradient(180deg,#1e4f80,#102d52);border-color:rgba(91,143,184,.5);" data-go="role:sr"><span class="emoji">⚕️</span> מטפל בכיר</div>
+    <div class="role-btn" data-go="role:ls"><span class="emoji">🪖</span> מח"צ — מציל חיים צבאי</div>
+    <div class="role-btn" data-go="role:md"><span class="emoji">🩹</span> חובש</div>
+    <div class="role-btn" data-go="role:sr"><span class="emoji">⚕️</span> מטפל בכיר</div>
     <div class="row2">
       <div class="role-btn small" style="opacity:.45;cursor:default;pointer-events:none;position:relative;">🚑 כלי פינוי <span style="font-size:10px;font-weight:600;background:var(--orange);color:#fff;border-radius:var(--radius-pill);padding:2px 7px;margin-right:4px;vertical-align:middle;">בפיתוח</span></div>
       <div class="role-btn small" style="background:linear-gradient(180deg,var(--btn1),var(--btn2));color:var(--btn-tx);border-color:transparent;" data-go="lesson:arn">📋 תו"ל אר"ן</div>
