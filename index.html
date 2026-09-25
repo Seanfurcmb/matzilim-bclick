@@ -226,6 +226,24 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
 </style>
 </head>
 <body>
+<div id="geo-block" style="display:none;position:fixed;inset:0;z-index:99999;background:#08111c;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px;font-family:'Plus Jakarta Sans','Segoe UI',Arial,sans-serif;color:#f3f7fa;">
+  <div style="font-size:56px;margin-bottom:20px;">🛡️</div>
+  <div style="font-size:22px;font-weight:700;margin-bottom:12px;">גישה מוגבלת</div>
+  <div style="font-size:15px;color:#a9bcce;max-width:280px;line-height:1.6;">האפליקציה זמינה לשימוש בישראל בלבד.<br>Access is restricted to Israel only.</div>
+</div>
+<script>
+(function(){
+  fetch('https://ipapi.co/country_code/')
+    .then(function(r){return r.text();})
+    .then(function(code){
+      if(code.trim()!=='IL'){
+        var el=document.getElementById('geo-block');
+        if(el) el.style.display='flex';
+      }
+    })
+    .catch(function(){});
+})();
+</script>
 <div id="app" data-theme="tactical">
 <div class="texture"></div>
 
