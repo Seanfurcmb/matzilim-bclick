@@ -6,56 +6,61 @@
 <title>מצילים חיים בקליק</title>
 <script data-goatcounter="https://seanfur.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html,body{margin:0;padding:0;}
-body{font-family:'Plus Jakarta Sans','Segoe UI',Arial,sans-serif;background:#08111c;color:#f3f7fa;min-height:100vh;display:flex;justify-content:center;}
-#app{--radius-card:16px;--radius-pill:9999px;width:100%;max-width:480px;min-height:100vh;position:relative;overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.6);transition:background .25s ease;}
+body{font-family:'Heebo','Assistant','Segoe UI',Arial,sans-serif;background:#060607;color:#f4f1ea;min-height:100vh;display:flex;justify-content:center;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;transition:background .3s ease;}
+body:has(#app[data-theme="miro"]){background:#e6e1d8;}
+#app{--radius-card:18px;--radius-pill:9999px;--display:'Heebo','Segoe UI',Arial,sans-serif;width:100%;max-width:480px;min-height:100vh;position:relative;overflow:hidden;color:var(--cream);box-shadow:0 0 80px rgba(0,0,0,.45);transition:background .3s ease,color .3s ease;}
 #app[data-theme="tactical"]{
-  --navy-dark:#0a1522;--navy:#13253c;--navy-mid:#22405e;--navy-light:#5b8fb8;
-  --card:#1d3652;--card-2:#152a41;--orange:#ff9d4d;--accent:#ffd02f;
-  --cream:#f3f7fa;--muted:#a9bcce;--gold:#ffd02f;--good:#33d999;--danger-light:#ffc6c6;
-  --surf-soft:rgba(255,255,255,.055);--surf:rgba(255,255,255,.08);--surf-strong:rgba(255,255,255,.11);
-  --line:rgba(255,255,255,.12);--line-soft:rgba(255,255,255,.08);--line-strong:rgba(255,255,255,.20);
-  --t-good-bg:rgba(51,217,153,.12);--t-good-bd:rgba(51,217,153,.32);--t-good-tx:#5fe3ad;
-  --t-good2-bg:rgba(51,217,153,.16);--t-good2-bd:rgba(51,217,153,.48);--t-good2-tx:#b3f2d6;
-  --t-bad-bg:rgba(255,153,153,.14);--t-bad-bd:rgba(255,153,153,.38);--t-bad-tx:#ffcfcf;
-  --t-info-bg:rgba(91,143,184,.16);--t-info-bd:rgba(91,143,184,.4);--t-info-tx:#bcdaf0;
-  --t-note-bg:rgba(255,208,47,.14);--t-note-bd:rgba(255,208,47,.4);
-  --btn1:#ffd02f;--btn2:#fcb900;--btn-tx:#1c1c1e;
-  background:radial-gradient(circle at 30% 0%,rgba(91,143,184,.28),transparent 55%),linear-gradient(165deg,var(--navy-dark) 0%,var(--navy) 45%,var(--navy-mid) 100%);
+  --bg:#0e0e10;
+  --navy-dark:#0e0e10;--navy:#141416;--navy-mid:#1b1b1e;--navy-light:#ff5a5f;
+  --card:#18181b;--card-2:#131315;--orange:#ff6b6e;--accent:#ff4d55;
+  --cream:#f4f1ea;--muted:#a39e95;--gold:#f2b64c;--good:#3ddc97;--danger-light:#ffb4b4;
+  --surf-soft:rgba(255,255,255,.035);--surf:rgba(255,255,255,.06);--surf-strong:rgba(255,255,255,.1);
+  --line:rgba(255,255,255,.085);--line-soft:rgba(255,255,255,.055);--line-strong:rgba(255,255,255,.16);
+  --t-good-bg:rgba(61,220,151,.09);--t-good-bd:rgba(61,220,151,.3);--t-good-tx:#72e7b4;
+  --t-good2-bg:rgba(61,220,151,.13);--t-good2-bd:rgba(61,220,151,.45);--t-good2-tx:#bdf4da;
+  --t-bad-bg:rgba(255,77,85,.09);--t-bad-bd:rgba(255,77,85,.34);--t-bad-tx:#ffb6b9;
+  --t-info-bg:rgba(78,205,196,.08);--t-info-bd:rgba(78,205,196,.3);--t-info-tx:#9ee6df;
+  --t-note-bg:rgba(242,182,76,.08);--t-note-bd:rgba(242,182,76,.32);
+  --btn1:#f0303e;--btn2:#c20f2b;--btn-tx:#fff;--btn-glow:rgba(226,30,54,.35);
+  --badge-bg:rgba(255,77,85,.12);--hdr:rgba(14,14,16,.72);
+  --elev:0 1px 0 rgba(255,255,255,.03) inset,0 8px 24px rgba(0,0,0,.28);
+  background:radial-gradient(130% 55% at 50% -12%,rgba(226,30,54,.17),transparent 62%),var(--bg);
 }
 #app[data-theme="miro"]{
-  --navy-dark:#ffffff;--navy:#ffffff;--navy-mid:#ffffff;--navy-light:#c7cad5;
-  --card:#ffffff;--card-2:#f7f8fa;--orange:#a8580a;--accent:#746019;
-  --cream:#1c1c1e;--muted:#555a6a;--gold:#746019;--good:#00874f;--danger-light:#8a1f1f;
-  --surf-soft:#f7f8fa;--surf:#f2f3f6;--surf-strong:#eceef2;
-  --line:#e0e2e8;--line-soft:#eef0f3;--line-strong:#c7cad5;
-  --t-good-bg:#e3f7ee;--t-good-bd:rgba(0,135,79,.25);--t-good-tx:#0a6b45;
-  --t-good2-bg:#d3f2e4;--t-good2-bd:rgba(0,135,79,.4);--t-good2-tx:#054a30;
-  --t-bad-bg:#fbd4d4;--t-bad-bd:rgba(96,0,0,.18);--t-bad-tx:#600000;
-  --t-info-bg:#eef1ff;--t-info-bd:rgba(66,98,255,.25);--t-info-tx:#2a41b6;
-  --t-note-bg:#fff4c4;--t-note-bd:rgba(116,96,25,.22);
-  --btn1:#ffd02f;--btn2:#fcb900;--btn-tx:#1c1c1e;
-  background:#ffffff;
+  --bg:#f7f4ef;
+  --navy-dark:#f7f4ef;--navy:#ffffff;--navy-mid:#ffffff;--navy-light:#c8102e;
+  --card:#ffffff;--card-2:#fbf9f6;--orange:#c8102e;--accent:#c8102e;
+  --cream:#17171a;--muted:#5c574f;--gold:#945500;--good:#0f8a55;--danger-light:#9b1c1c;
+  --surf-soft:#ffffff;--surf:#f0ece5;--surf-strong:#e7e2d9;
+  --line:#e6e1d8;--line-soft:#efebe4;--line-strong:#d4cec3;
+  --t-good-bg:#e7f5ed;--t-good-bd:rgba(15,138,85,.28);--t-good-tx:#0b6b41;
+  --t-good2-bg:#d7efe2;--t-good2-bd:rgba(15,138,85,.45);--t-good2-tx:#064a2c;
+  --t-bad-bg:#fdeaea;--t-bad-bd:rgba(200,16,46,.24);--t-bad-tx:#8f0f22;
+  --t-info-bg:#e6f4f2;--t-info-bd:rgba(13,122,112,.26);--t-info-tx:#0b5f57;
+  --t-note-bg:#fcf1dd;--t-note-bd:rgba(148,85,0,.26);
+  --btn1:#e0263a;--btn2:#b10d27;--btn-tx:#fff;--btn-glow:rgba(200,16,46,.24);
+  --badge-bg:#fbe8eb;--hdr:rgba(247,244,239,.78);
+  --elev:0 1px 2px rgba(23,23,26,.04),0 8px 22px rgba(23,23,26,.06);
+  background:radial-gradient(130% 50% at 50% -12%,rgba(200,16,46,.07),transparent 62%),var(--bg);
 }
-#app[data-theme="miro"] .texture{display:none;}
-.texture{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0px,rgba(255,255,255,.015) 1px,transparent 1px,transparent 3px);pointer-events:none;mix-blend-mode:overlay;}
-header{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px;backdrop-filter:blur(2px);}
-#app[data-theme="tactical"] header{background:linear-gradient(180deg,rgba(8,17,28,.92),rgba(8,17,28,.55) 80%,transparent);}
-#app[data-theme="miro"] header{background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.7) 80%,transparent);}
+.texture{display:none;}
+header{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;min-height:72px;background:var(--hdr);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);border-bottom:1px solid var(--line-soft);margin-bottom:14px;}
 header .icon-group{display:flex;gap:8px;}
-header .icon-btn{width:38px;height:38px;border-radius:var(--radius-pill);display:flex;align-items:center;justify-content:center;background:var(--surf);border:1px solid var(--line-strong);color:var(--cream);cursor:pointer;transition:.15s;}
-header .icon-btn:hover{background:var(--surf-strong);}
+header .icon-btn{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:var(--surf);border:1px solid var(--line);color:var(--cream);cursor:pointer;transition:background .15s,border-color .15s,transform .15s;}
+header .icon-btn:hover{background:var(--surf-strong);border-color:var(--line-strong);}
+header .icon-btn:active{transform:scale(.94);}
 header .icon-btn svg{width:19px;height:19px;}
-header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 10px rgba(0,0,0,.5);}
-.screen{display:none;padding:0 18px 110px;animation:fadein .25s ease;}
+header>img{box-shadow:0 4px 14px rgba(0,0,0,.25);}
+.screen{display:none;padding:0 18px 110px;animation:fadein .3s ease;}
 .screen.active{display:block;}
-@keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadein{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 #app[data-motion="off"] .screen{animation:none;}
 #app[data-motion="off"] .bounce-down{animation:none;}
-#app[data-motion="off"] .evac-modal-box{animation:none;}
 #app[data-motion="off"] .flow-wrap.stepper .flow-step,#app[data-motion="off"] .card-stepper-wrap .lesson-card{animation:none;}
 #app[data-density="compact"] .lesson-card{padding:11px 13px;margin-bottom:8px;}
 #app[data-density="compact"] .lesson-card h3{margin:0 0 6px;font-size:14.5px;}
@@ -67,37 +72,50 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
 #app[data-density="compact"] .drug-val{font-size:12.5px;line-height:1.5;}
 #app[data-density="compact"] .scheme-table td{padding:6px 8px;}
 #app[data-density="compact"] .proto-item{padding:10px 13px;}
-#screen-splash{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:26px;padding-top:0;}
-#screen-splash img.logo{width:170px;height:170px;filter:drop-shadow(0 6px 18px rgba(0,0,0,.35));}
-#screen-splash h1{color:var(--gold);font-size:30px;font-weight:600;margin:0;line-height:1.3;letter-spacing:-0.3px;}
-.bounce-down{width:62px;height:62px;border:2px solid var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;animation:bounce 1.6s infinite;}
-@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(10px);}}
-.page-title{text-align:center;color:var(--gold);font-size:11px;letter-spacing:.6px;text-transform:uppercase;font-weight:600;opacity:.9;margin:4px 0 2px;}
-.page-heading{text-align:center;font-size:24px;font-weight:600;color:var(--cream);margin:0 0 16px;letter-spacing:-0.2px;}
-.menu-list{display:flex;flex-direction:column;gap:13px;margin-top:6px;}
-.role-btn{background:linear-gradient(180deg,var(--card),var(--card-2));border:1px solid var(--line-soft);border-radius:var(--radius-pill);padding:17px 26px;color:var(--cream);font-size:18px;font-weight:600;text-align:center;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,.12);transition:.15s;display:flex;align-items:center;justify-content:center;gap:10px;}
-[data-go^="role:"]{background:linear-gradient(180deg,#1e4f80,#102d52);border-color:rgba(91,143,184,.5);color:#f3f7fa;}
-#app[data-theme="miro"] [data-go^="role:"]{background:linear-gradient(180deg,#5b8ec8,#3a6aaa);border-color:rgba(90,142,200,.35);color:#fff;box-shadow:0 4px 14px rgba(58,106,170,.22);}
+#screen-splash{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:28px;padding-top:0;}
+#screen-splash img.logo{width:168px;height:168px;filter:drop-shadow(0 14px 30px rgba(226,30,54,.28));}
+#screen-splash h1{font-family:var(--display);color:var(--cream);font-size:44px;font-weight:900;margin:0;line-height:1.1;}
+#screen-splash h1 span{color:var(--accent);}
+.bounce-down{width:60px;height:60px;border:1.5px solid var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--accent);background:var(--badge-bg);animation:bounce 1.8s ease-in-out infinite;}
+.bounce-down svg{width:24px;height:24px;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(9px);}}
+#screen-splash .muted{font-size:14px;letter-spacing:.02em;}
+.page-title{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--accent);font-size:12.5px;letter-spacing:.06em;font-weight:600;margin:6px 0 6px;}
+.page-title::before,.page-title::after{content:"";width:22px;height:1px;background:currentColor;opacity:.45;}
+.page-heading{text-align:center;font-family:var(--display);font-size:28px;font-weight:800;color:var(--cream);margin:0 0 22px;line-height:1.25;}
+.menu-list{display:flex;flex-direction:column;gap:12px;margin-top:6px;}
+.role-btn{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 22px;color:var(--cream);font-size:17px;font-weight:600;text-align:center;cursor:pointer;box-shadow:var(--elev);transition:transform .15s,border-color .2s,background .2s,box-shadow .2s;display:flex;align-items:center;justify-content:center;gap:10px;}
+[data-go^="role:"]{justify-content:flex-start;gap:14px;padding:14px 16px;font-size:17.5px;text-align:start;}
+[data-go^="role:"] .emoji{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:var(--badge-bg);font-size:23px;flex-shrink:0;}
+[data-go^="role:"]::after{content:"";width:8px;height:8px;margin-inline-start:auto;margin-inline-end:6px;border-left:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .2s,border-color .2s;}
+[data-go^="role:"]:hover::after{transform:translateX(-4px) rotate(45deg);border-color:var(--accent);}
 #app[data-role="md"] .matav-only{display:none;}
 .role-btn:active{transform:scale(.98);}
-.role-btn:hover{border-color:var(--orange);}
+.role-btn:hover{border-color:color-mix(in srgb,var(--accent) 55%,transparent);}
 .role-btn .emoji{font-size:22px;}
+.role-btn.accent{background:linear-gradient(180deg,var(--btn1),var(--btn2));color:var(--btn-tx);border-color:transparent;box-shadow:0 8px 20px var(--btn-glow);}
+.role-btn.accent:hover{border-color:transparent;filter:brightness(1.06);}
+.role-btn.link{display:inline-flex;width:auto;padding:10px 22px;background:transparent;border:1px solid var(--line-strong);border-radius:var(--radius-pill);color:var(--muted);font-size:13.5px;font-weight:500;box-shadow:none;}
+.role-btn.link:hover{color:var(--cream);}
+.menu-sep{height:1px;background:var(--line);margin:8px 6px 2px;}
 .row2{display:flex;gap:12px;}
-.row2 .role-btn{flex:1;font-size:14px;padding:15px 12px;}
-.role-btn.small{font-size:14px;padding:13px 14px;}
+.row2 .role-btn{flex:1;font-size:14.5px;padding:15px 12px;}
+.role-btn.small{font-size:14.5px;padding:14px 14px;}
 .role-btn.ghost{background:transparent;border:1px dashed var(--line-strong);color:var(--muted);font-weight:600;font-size:14px;box-shadow:none;}
-.lesson-card{background:var(--surf-soft);border:1px solid var(--line);border-radius:var(--radius-card);padding:16px;margin-bottom:13px;}
-.lesson-card h3{margin:0 0 10px;color:var(--orange);font-size:16px;font-weight:600;display:flex;align-items:center;gap:8px;}
-.lesson-card p{margin:0 0 8px;font-size:14px;line-height:1.85;color:var(--cream);}
+.lesson-card{background:var(--surf-soft);border:1px solid var(--line);border-radius:var(--radius-card);padding:18px;margin-bottom:14px;box-shadow:var(--elev);}
+.lesson-card h3{margin:0 0 10px;color:var(--orange);font-size:16.5px;font-weight:700;display:flex;align-items:center;gap:8px;line-height:1.4;}
+.lesson-card p{margin:0 0 8px;font-size:14.5px;line-height:1.85;color:var(--cream);}
 .lesson-card ul{margin:4px 0;padding-inline-start:18px;}
-.lesson-card li{font-size:14px;line-height:1.85;margin-bottom:5px;color:var(--cream);}
-.lesson-card b{color:var(--gold);}
-.note{background:var(--t-note-bg);border:1px solid var(--t-note-bd);color:var(--gold);padding:10px 12px;border-radius:12px;font-size:13px;margin-bottom:12px;line-height:1.65;}
-.warn{background:var(--t-bad-bg);border:1px solid var(--t-bad-bd);color:var(--t-bad-tx);padding:10px 12px;border-radius:12px;font-size:13px;margin-bottom:12px;line-height:1.65;}
-.info{background:var(--t-info-bg);border:1px solid var(--t-info-bd);color:var(--t-info-tx);padding:10px 12px;border-radius:12px;font-size:13px;margin-bottom:12px;line-height:1.65;}
+.lesson-card li{font-size:14.5px;line-height:1.85;margin-bottom:5px;color:var(--cream);}
+.lesson-card li::marker{color:var(--accent);}
+.lesson-card b{color:var(--gold);font-weight:700;}
+.note,.warn,.info{padding:11px 14px;border-radius:12px;font-size:13.5px;margin-bottom:12px;line-height:1.7;border:1px solid;border-inline-start-width:3px;}
+.note{background:var(--t-note-bg);border-color:var(--t-note-bd);border-inline-start-color:var(--gold);color:var(--gold);}
+.warn{background:var(--t-bad-bg);border-color:var(--t-bad-bd);border-inline-start-color:var(--accent);color:var(--t-bad-tx);}
+.info{background:var(--t-info-bg);border-color:var(--t-info-bd);border-inline-start-color:var(--t-info-tx);color:var(--t-info-tx);}
 .flow-wrap{display:flex;flex-direction:column;gap:0;}
-.flow-step{background:var(--surf);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14px;line-height:1.7;color:var(--cream);}
-.flow-decision{background:var(--t-note-bg);border:1px solid var(--t-note-bd);border-radius:10px;padding:12px 14px;font-size:14px;font-weight:600;color:var(--gold);line-height:1.6;}
+.flow-step{background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:14.5px;line-height:1.7;color:var(--cream);}
+.flow-decision{background:var(--t-note-bg);border:1px solid var(--t-note-bd);border-radius:12px;padding:12px 14px;font-size:14.5px;font-weight:600;color:var(--gold);line-height:1.6;}
 .flow-arrow{text-align:center;color:var(--muted);font-size:18px;padding:3px 0;line-height:1;}
 .flow-branch{display:flex;flex-direction:column;gap:6px;padding:4px 0 4px 0;}
 .flow-wrap.stepper .flow-step{display:none;animation:stepFade .3s ease both;}
@@ -105,112 +123,67 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
 .flow-wrap.stepper .flow-arrow{display:none;}
 @keyframes stepFade{from{opacity:0;transform:translateX(-8px);}to{opacity:1;transform:translateX(0);}}
 .stepper-nav{display:flex;align-items:center;gap:10px;margin-top:10px;}
-.stepper-nav .step-btn{flex:1;padding:10px;border-radius:var(--radius-pill);text-align:center;font-size:14px;font-weight:600;cursor:pointer;border:1px solid var(--line-strong);background:var(--surf);color:var(--cream);transition:.15s;user-select:none;}
+.stepper-nav .step-btn{flex:1;padding:11px;border-radius:var(--radius-pill);text-align:center;font-size:14px;font-weight:600;cursor:pointer;border:1px solid var(--line-strong);background:var(--surf);color:var(--cream);transition:.15s;user-select:none;}
 .stepper-nav .step-btn:active{transform:scale(.96);}
-.stepper-nav .step-btn.primary{background:linear-gradient(180deg,var(--btn1),var(--btn2));color:var(--btn-tx);border-color:transparent;}
-.stepper-nav .step-btn.disabled{opacity:.35;pointer-events:none;}
-.stepper-counter{font-size:12px;color:var(--muted);white-space:nowrap;min-width:54px;text-align:center;}
+.stepper-nav .step-btn.primary{background:linear-gradient(180deg,var(--btn1),var(--btn2));color:var(--btn-tx);border-color:transparent;box-shadow:0 6px 16px var(--btn-glow);}
+.stepper-nav .step-btn.disabled{opacity:.35;pointer-events:none;box-shadow:none;}
+.stepper-counter{font-size:12.5px;color:var(--muted);white-space:nowrap;min-width:54px;text-align:center;font-variant-numeric:tabular-nums;}
 .card-stepper-wrap .lesson-card{display:none;}
 .card-stepper-wrap .lesson-card.cur{display:block;animation:stepFade .3s ease both;}
-.flow-yes{background:var(--t-good-bg);border:1px solid var(--t-good-bd);border-radius:9px;padding:10px 12px;font-size:13.5px;line-height:1.7;color:var(--cream);}
-.flow-yes::before{content:"✅ כן — ";font-weight:600;color:var(--t-good-tx);}
-.flow-no{background:var(--t-bad-bg);border:1px solid var(--t-bad-bd);border-radius:9px;padding:10px 12px;font-size:13.5px;line-height:1.7;color:var(--cream);}
-.flow-no::before{content:"❌ לא — ";font-weight:600;color:var(--t-bad-tx);}
-.flow-result{background:var(--t-info-bg);border:1px solid var(--t-info-bd);border-radius:9px;padding:10px 12px;font-size:13.5px;line-height:1.7;color:var(--t-info-tx);}
-.flow-note{font-size:12.5px;color:var(--muted);padding:4px 10px;line-height:1.6;font-style:italic;}
-.flow-main{background:var(--t-good2-bg);border:1.5px solid var(--t-good2-bd);border-radius:10px;padding:10px 14px;font-size:13.5px;font-weight:600;line-height:1.65;color:var(--t-good2-tx);}
+.flow-yes{background:var(--t-good-bg);border:1px solid var(--t-good-bd);border-radius:10px;padding:10px 12px;font-size:14px;line-height:1.7;color:var(--cream);}
+.flow-yes::before{content:"כן — ";font-weight:600;color:var(--t-good-tx);}
+.flow-no{background:var(--t-bad-bg);border:1px solid var(--t-bad-bd);border-radius:10px;padding:10px 12px;font-size:14px;line-height:1.7;color:var(--cream);}
+.flow-no::before{content:"לא — ";font-weight:600;color:var(--t-bad-tx);}
+.flow-result{background:var(--t-info-bg);border:1px solid var(--t-info-bd);border-radius:10px;padding:10px 12px;font-size:14px;line-height:1.7;color:var(--t-info-tx);}
+.flow-note{font-size:13px;color:var(--muted);padding:4px 10px;line-height:1.6;font-style:italic;}
+.flow-main{background:var(--t-good2-bg);border:1.5px solid var(--t-good2-bd);border-radius:12px;padding:10px 14px;font-size:14px;font-weight:600;line-height:1.65;color:var(--t-good2-tx);}
 .flow-row{display:flex;gap:8px;padding:4px 0;}
 .flow-row>.flow-yes,.flow-row>.flow-no{flex:1;}
-.steps-row{display:flex;gap:6px;justify-content:center;margin-bottom:14px;}
-.steps-row .dot{width:9px;height:9px;border-radius:50%;background:var(--surf-strong);}
-.steps-row .dot.done{background:var(--good);}
-.steps-row .dot.cur{background:var(--orange);width:22px;border-radius:6px;}
-.bottom-actions{display:flex;gap:10px;margin-top:16px;}
-.btn{flex:1;padding:14px 10px;border-radius:var(--radius-pill);text-align:center;font-size:15px;font-weight:600;cursor:pointer;border:1px solid var(--line-strong);transition:.15s;user-select:none;}
+.steps-row{display:flex;gap:6px;justify-content:center;margin:-10px 0 18px;}
+.steps-row .dot{width:8px;height:8px;border-radius:50%;background:var(--surf-strong);transition:.2s;}
+.steps-row .dot.done{background:color-mix(in srgb,var(--accent) 45%,transparent);}
+.steps-row .dot.cur{background:var(--accent);width:24px;border-radius:6px;}
+.bottom-actions{display:flex;gap:10px;margin-top:20px;}
+.btn{flex:1;padding:14px 10px;border-radius:var(--radius-pill);text-align:center;font-size:15px;font-weight:600;cursor:pointer;border:1px solid var(--line-strong);transition:transform .15s,background .2s,color .2s,filter .2s;user-select:none;}
 .btn:active{transform:scale(.97);}
-.btn-primary{background:linear-gradient(180deg,var(--btn1),var(--btn2));color:var(--btn-tx);border-color:transparent;}
-.btn-primary:hover{border-color:var(--orange);}
-.btn-ghost{background:transparent;color:var(--muted);}
-.btn-ghost:hover{color:var(--cream);}
+.btn-primary{background:linear-gradient(180deg,var(--btn1),var(--btn2));color:var(--btn-tx);border-color:transparent;box-shadow:0 8px 20px var(--btn-glow);}
+.btn-primary:hover{filter:brightness(1.06);}
+.btn-ghost{background:var(--surf-soft);color:var(--muted);}
+.btn-ghost:hover{color:var(--cream);background:var(--surf);}
 .btn-wide{width:100%;}
-#sidemenu-overlay{position:absolute;inset:0;background:rgba(0,0,0,.55);z-index:80;display:none;}
+#sidemenu-overlay{position:absolute;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);z-index:80;display:none;}
 #sidemenu-overlay.active{display:block;}
-#sidemenu{position:absolute;top:0;right:0;bottom:0;width:78%;max-width:340px;background:var(--card);z-index:90;transform:translateX(100%);transition:transform .25s ease;padding:20px 16px;overflow-y:auto;box-shadow:-8px 0 24px rgba(0,0,0,.3);}
+#sidemenu{position:absolute;top:0;right:0;bottom:0;width:80%;max-width:340px;background:var(--card);border-inline-end:1px solid var(--line);z-index:90;transform:translateX(100%);transition:transform .28s cubic-bezier(.2,.8,.2,1);padding:22px 16px;overflow-y:auto;box-shadow:-12px 0 40px rgba(0,0,0,.3);}
 #sidemenu.active{transform:translateX(0);}
-#sidemenu h4{color:var(--gold);font-size:13px;margin:18px 0 8px;opacity:.85;}
-#sidemenu .item{padding:12px 10px;border-radius:10px;color:var(--cream);font-size:15px;cursor:pointer;display:flex;align-items:center;gap:10px;}
+#sidemenu h4{color:var(--muted);font-size:12px;font-weight:600;letter-spacing:.05em;margin:22px 10px 8px;padding-top:14px;border-top:1px solid var(--line-soft);}
+#sidemenu .item{padding:11px 12px;border-radius:12px;color:var(--cream);font-size:15px;cursor:pointer;display:flex;align-items:center;gap:10px;transition:background .15s;}
 #sidemenu .item:hover{background:var(--surf);}
-#sidemenu .close-x{position:absolute;top:16px;left:16px;cursor:pointer;color:var(--muted);font-size:22px;}
+#sidemenu .close-x{position:absolute;top:16px;left:16px;cursor:pointer;color:var(--muted);font-size:18px;width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--surf);}
 #sm-role-section:empty{display:none;}
 .proto-list{display:flex;flex-direction:column;gap:10px;}
-.proto-item{background:var(--surf-soft);border:1px solid var(--line);border-radius:var(--radius-card);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:.15s;}
-.proto-item:hover{border-color:var(--orange);background:var(--surf);}
-.proto-item .pi-label{font-size:14.5px;font-weight:600;color:var(--cream);flex:1;}
-.proto-item .pi-num{font-size:11px;color:var(--muted);background:var(--surf-strong);padding:2px 8px;border-radius:var(--radius-pill);margin-left:8px;white-space:nowrap;}
-.proto-item .pi-arrow{color:var(--muted);font-size:18px;}
-#screen-evac-tools .evac-table-wrap{background:var(--surf-soft);border:1px solid var(--line);border-radius:var(--radius-card);overflow:hidden;margin-bottom:16px;}
-.evac-table{width:100%;border-collapse:collapse;}
-.evac-table thead th{background:var(--surf-strong);color:var(--gold);font-size:13px;font-weight:600;padding:11px 12px;text-align:right;}
-.evac-table thead th:last-child{text-align:center;}
-.evac-table tbody tr{border-top:1px solid var(--line-soft);}
-.evac-table tbody tr:hover{background:var(--surf-soft);}
-.evac-table td{padding:11px 12px;font-size:13.5px;vertical-align:middle;color:var(--cream);}
-.evac-table td:last-child{text-align:center;min-width:70px;}
-.evac-name-row{display:flex;align-items:center;gap:10px;}
-.evac-thumb{width:46px;height:34px;border-radius:8px;object-fit:cover;flex-shrink:0;border:1px solid var(--line-strong);box-shadow:0 2px 8px rgba(0,0,0,.2);}
-.evac-name{font-weight:600;}
-.evac-name small{display:block;font-weight:400;color:var(--muted);font-size:12px;}
-.badge-armor{display:inline-block;font-size:11px;padding:2px 8px;border-radius:var(--radius-pill);background:var(--surf-strong);color:var(--muted);}
-.btn-evac{background:linear-gradient(180deg,var(--btn1),var(--btn2));color:var(--btn-tx);border:none;border-radius:var(--radius-pill);padding:7px 14px;font-size:13px;font-weight:600;cursor:pointer;transition:.15s;}
-.btn-evac:active{transform:scale(.96);}
-#evacModal{position:absolute;inset:0;background:rgba(0,0,0,.55);z-index:100;display:none;flex-direction:column;align-items:center;justify-content:flex-end;}
-#evacModal.open{display:flex;}
-.evac-handle{width:64px;height:32px;border-radius:32px 32px 0 0;background:var(--surf);border:1.5px solid var(--line-strong);border-bottom:none;cursor:pointer;flex-shrink:0;transition:.15s;}
-.evac-handle:hover{background:var(--surf-strong);}
-.evac-modal-box{background:var(--card);border:1px solid var(--line);border-top-left-radius:20px;border-top-right-radius:20px;width:100%;max-height:82vh;overflow-y:auto;padding:20px 18px 40px;box-shadow:0 -8px 32px rgba(0,0,0,.2);animation:slideUp .25s ease-out;position:relative;}
-@keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
-.evac-hero-wrap{position:relative;margin:-20px -18px 14px;overflow:hidden;border-top-left-radius:20px;border-top-right-radius:20px;height:170px;background:var(--card-2);}
-.evac-hero-bg{position:absolute;inset:-12px;background-size:cover;background-position:center;filter:blur(22px) brightness(.5) saturate(1.1);transform:scale(1.15);}
-.evac-hero-wrap img{position:relative;width:100%;height:100%;object-fit:contain;object-position:center;display:block;}
-.evac-hero-fade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.3) 84%,var(--card) 100%);pointer-events:none;}
-.evac-hero-wrap video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;display:none;}
-.evac-hero-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:50%;background:rgba(8,17,28,.6);backdrop-filter:blur(3px);border:1px solid rgba(255,255,255,.3);display:none;align-items:center;justify-content:center;color:#fff;font-size:20px;cursor:pointer;transition:transform .15s;}
-.evac-hero-play:active{transform:translate(-50%,-50%) scale(.92);}
-.evac-hero-wrap.has-video{cursor:pointer;}
-.evac-hero-wrap.has-video .evac-hero-play{display:flex;}
-.evac-hero-wrap.playing .evac-hero-bg,.evac-hero-wrap.playing .evac-hero-fade,.evac-hero-wrap.playing .evac-hero-play,.evac-hero-wrap.playing img{display:none;}
-.evac-hero-wrap.playing video{display:block;}
-.evac-modal-box h3{color:var(--gold);margin:0 0 16px;font-size:19px;font-weight:600;}
-.evac-close{position:absolute;top:16px;left:16px;background:rgba(8,17,28,.5);backdrop-filter:blur(3px);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.2);color:#fff;font-size:20px;cursor:pointer;line-height:1;}
-.evac-tabs{display:flex;gap:4px;margin-bottom:16px;}
-.evac-tab{flex:1;padding:10px 6px;border-radius:var(--radius-pill);background:var(--surf);border:1px solid var(--line);color:var(--muted);font-size:14px;font-weight:600;cursor:pointer;text-align:center;transition:.15s;}
-.evac-tab.active{background:var(--t-info-bg);border-color:var(--navy-light);color:var(--cream);}
-.evac-panel{display:none;}
-.evac-panel.active{display:block;}
-.evac-row{margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--line-soft);}
-.evac-row:last-child{border-bottom:none;}
-.evac-lbl{font-size:12px;color:var(--muted);margin-bottom:3px;}
-.evac-val{font-size:15px;color:var(--cream);font-weight:500;}
-.evac-pros{background:var(--t-good-bg);border:1px solid var(--t-good-bd);color:var(--t-good-tx);padding:12px;border-radius:12px;margin-bottom:12px;font-size:14px;line-height:1.7;}
-.evac-cons{background:var(--t-bad-bg);border:1px solid var(--t-bad-bd);color:var(--t-bad-tx);padding:12px;border-radius:12px;font-size:14px;line-height:1.7;}
-.evac-pros-title,.evac-cons-title{font-weight:600;margin-bottom:6px;display:block;font-size:13px;}
+.proto-item{background:var(--surf-soft);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;box-shadow:var(--elev);transition:border-color .2s,background .2s,transform .15s;}
+.proto-item:hover{border-color:color-mix(in srgb,var(--accent) 55%,transparent);}
+.proto-item:active{transform:scale(.985);}
+.proto-item .pi-label{font-size:15px;font-weight:500;color:var(--cream);flex:1;line-height:1.45;}
+.proto-item .pi-num{font-size:12.5px;font-weight:700;color:var(--accent);background:var(--badge-bg);width:30px;height:30px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;margin-left:12px;flex-shrink:0;font-variant-numeric:tabular-nums;}
+.proto-item .pi-arrow{color:var(--muted);font-size:20px;margin-right:8px;}
 .muted{color:var(--muted);}
 .small{font-size:12.5px;}
 .center{text-align:center;}
-.drug-card{background:var(--surf-soft);border:1px solid var(--line);border-radius:var(--radius-card);margin-bottom:12px;overflow:hidden;}
+.drug-card{background:var(--surf-soft);border:1px solid var(--line);border-radius:var(--radius-card);margin-bottom:12px;overflow:hidden;box-shadow:var(--elev);}
 .drug-header{background:var(--surf);padding:12px 14px;display:flex;align-items:baseline;justify-content:space-between;gap:8px;border-bottom:1px solid var(--line-soft);}
-.drug-name{font-size:15px;font-weight:600;color:var(--cream);}
-.drug-dose{font-size:12px;color:var(--muted);white-space:nowrap;font-family:monospace;}
+.drug-name{font-size:15.5px;font-weight:700;color:var(--cream);}
+.drug-dose{font-size:12px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums;}
 .drug-body{padding:4px 0;}
 .drug-row{padding:9px 14px;border-bottom:1px solid var(--line-soft);display:flex;flex-direction:column;gap:3px;}
 .drug-row:last-child{border-bottom:none;}
-.drug-lbl{font-size:11px;color:var(--gold);font-weight:600;letter-spacing:.4px;text-transform:uppercase;}
-.matav-badge{display:inline-block;font-size:10.5px;font-weight:600;color:var(--accent);border:1px solid rgba(255,142,60,.45);border-radius:var(--radius-pill);padding:1px 9px;cursor:pointer;letter-spacing:.2px;white-space:nowrap;transition:background .15s;vertical-align:middle}
-.matav-badge:hover{background:rgba(255,142,60,.15)}
-.drug-val{font-size:13.5px;color:var(--cream);line-height:1.75;}
+.drug-lbl{font-size:11.5px;color:var(--gold);font-weight:700;letter-spacing:.03em;}
+.matav-badge{display:inline-block;font-size:10.5px;font-weight:600;color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 45%,transparent);border-radius:var(--radius-pill);padding:1px 9px;cursor:pointer;white-space:nowrap;transition:background .15s;vertical-align:middle}
+.matav-badge:hover{background:var(--badge-bg)}
+.drug-val{font-size:14px;color:var(--cream);line-height:1.75;}
 .scheme-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:14px;}
 .scheme-table{width:100%;border-collapse:collapse;font-size:13.5px;}
-.scheme-table .sec-row td{background:var(--surf-strong);color:var(--gold);font-weight:600;font-size:13px;padding:9px 12px;letter-spacing:.3px;}
+.scheme-table .sec-row td{background:var(--surf-strong);color:var(--gold);font-weight:600;font-size:13px;padding:9px 12px;}
 .scheme-table tr:not(.sec-row){border-bottom:1px solid var(--line-soft);}
 .scheme-table tr:not(.sec-row):hover{background:var(--surf-soft);}
 .scheme-table td{padding:9px 10px;vertical-align:top;line-height:1.65;color:var(--cream);}
@@ -223,10 +196,65 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
 .ltr-E{background:rgba(211,84,0,.22);color:#f0b27a;border:1px solid rgba(211,84,0,.4);}
 .ltr-PFC{background:rgba(125,102,8,.22);color:var(--gold);border:1px solid rgba(125,102,8,.4);font-size:10px;width:36px;border-radius:12px;}
 .scheme-note{font-size:12px;color:var(--muted);padding:6px 10px 10px;line-height:1.6;font-style:italic;}
+#lessonBody img{border-radius:14px !important;border:1px solid var(--line);box-shadow:var(--elev);}
+.ic{display:inline-flex;align-items:center;justify-content:center;width:1.15em;height:1.15em;flex-shrink:0;vertical-align:-.18em;font-style:normal;}
+.ic::before{content:"";width:100%;height:100%;background:currentColor;-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat;}
+[data-go^="role:"] .emoji{color:var(--accent);}
+[data-go^="role:"] .emoji .ic{width:24px;height:24px;}
+.role-btn>.ic{width:18px;height:18px;opacity:.9;}
+.lesson-card h3>.ic{width:32px;height:32px;border-radius:10px;background:var(--badge-bg);color:var(--accent);}
+.lesson-card h3>.ic::before{width:17px;height:17px;}
+.lesson-card h3>.ic-dot::before{width:12px;height:12px;}
+#sidemenu .item>.ic{width:18px;height:18px;color:var(--accent);}
+#sidemenu h4 .ic{width:15px;height:15px;color:var(--accent);margin-inline-end:4px;}
+#sidemenu .close-x .ic{width:16px;height:16px;}
+.btn .ic{width:16px;height:16px;}
+.step-n{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:8px;background:var(--accent);color:#fff;font-size:12.5px;font-weight:700;margin-inline-end:8px;vertical-align:1px;font-variant-numeric:tabular-nums;}
+.ic-activity{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 12h-4l-3 9L9 3l-3 9H2'/%3E%3C/svg%3E");}
+.ic-alert{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z'/%3E%3Cpath d='M12 9v4M12 17h.01'/%3E%3C/svg%3E");}
+.ic-ban{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='m4.9 4.9 14.2 14.2'/%3E%3C/svg%3E");}
+.ic-bandage{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='7.5' width='20' height='9' rx='4.5' transform='rotate%28-45 12 12%29'/%3E%3Cpath d='M10 10h.01M14 14h.01M10 14h.01M14 10h.01'/%3E%3C/svg%3E");}
+.ic-book{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15A2.5 2.5 0 0 0 6.5 22H20v-5'/%3E%3C/svg%3E");}
+.ic-book-open{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z'/%3E%3Cpath d='M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z'/%3E%3C/svg%3E");}
+.ic-brain{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5a3 3 0 0 0-5.9-.7A3 3 0 0 0 4 9a3 3 0 0 0 0 5 3 3 0 0 0 2 4.5A3 3 0 0 0 12 19z'/%3E%3Cpath d='M12 5a3 3 0 0 1 5.9-.7A3 3 0 0 1 20 9a3 3 0 0 1 0 5 3 3 0 0 1-2 4.5A3 3 0 0 1 12 19z'/%3E%3Cpath d='M12 5v14'/%3E%3C/svg%3E");}
+.ic-chart{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 3v18h18'/%3E%3Cpath d='M8 17v-5M13 17V8M18 17v-9'/%3E%3C/svg%3E");}
+.ic-check{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");}
+.ic-check-circle{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M8 12l3 3 5-6'/%3E%3C/svg%3E");}
+.ic-clipboard{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='8' y='2' width='8' height='4' rx='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='M12 11h4M12 16h4M8 11h.01M8 16h.01'/%3E%3C/svg%3E");}
+.ic-clock{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 6v6l4 2'/%3E%3C/svg%3E");}
+.ic-crosshair{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 3v4M12 17v4M3 12h4M17 12h4'/%3E%3C/svg%3E");}
+.ic-dot{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='5' fill='black' stroke='none'/%3E%3C/svg%3E");}
+.ic-droplet{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5S5 13 5 15a7 7 0 0 0 7 7z'/%3E%3C/svg%3E");}
+.ic-file{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z'/%3E%3Cpath d='M14 2v5h6'/%3E%3Cpath d='M8 13h8M8 17h8M8 9h2'/%3E%3C/svg%3E");}
+.ic-gem{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 3h12l4 6-10 12L2 9z'/%3E%3Cpath d='M2 9h20'/%3E%3Cpath d='M12 21 8 9l2-6M12 21l4-12-2-6'/%3E%3C/svg%3E");}
+.ic-helicopter{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 4h18M12 4v3'/%3E%3Cpath d='M9 7h6a4 4 0 0 1 4 4v1a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-1a4 4 0 0 1 3-4z'/%3E%3Cpath d='M6 11H2M2 9v4'/%3E%3Cpath d='M8 20h11M10 15v5M16 15v5'/%3E%3C/svg%3E");}
+.ic-home{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 11l9-8 9 8'/%3E%3Cpath d='M5 10v10h14V10'/%3E%3C/svg%3E");}
+.ic-layers{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2 2 7l10 5 10-5-10-5z'/%3E%3Cpath d='M2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E");}
+.ic-lock{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='11' width='18' height='11' rx='2'/%3E%3Cpath d='M7 11V7a5 5 0 0 1 10 0v4'/%3E%3C/svg%3E");}
+.ic-lungs{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3v8'/%3E%3Cpath d='M12 11l-3-2M12 11l3-2'/%3E%3Cpath d='M8 7c-3 0-5 4.5-5 10 0 2 1 3 3 3s3-1 3-3V9'/%3E%3Cpath d='M16 7c3 0 5 4.5 5 10 0 2-1 3-3 3s-3-1-3-3V9'/%3E%3C/svg%3E");}
+.ic-microscope{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 18h8M3 22h18M14 22a7 7 0 1 0 0-14h-1'/%3E%3Cpath d='M9 14h2M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2z'/%3E%3Cpath d='M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3'/%3E%3C/svg%3E");}
+.ic-pill{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7z'/%3E%3Cpath d='m8.5 8.5 7 7'/%3E%3C/svg%3E");}
+.ic-pin{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E");}
+.ic-radio{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.9 19.1a10 10 0 0 1 0-14.2M7.8 16.2a6 6 0 0 1 0-8.4M16.2 7.8a6 6 0 0 1 0 8.4M19.1 4.9a10 10 0 0 1 0 14.2'/%3E%3Ccircle cx='12' cy='12' r='2'/%3E%3C/svg%3E");}
+.ic-refresh{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12a9 9 0 0 1-15 6.7L3 16'/%3E%3Cpath d='M3 12a9 9 0 0 1 15-6.7L21 8'/%3E%3Cpath d='M21 3v5h-5'/%3E%3Cpath d='M3 21v-5h5'/%3E%3C/svg%3E");}
+.ic-shield{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3C/svg%3E");}
+.ic-shield-plus{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3Cpath d='M12 8v6M9 11h6'/%3E%3C/svg%3E");}
+.ic-shirt{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20.4 3.5 16 2a4 4 0 0 1-8 0L3.6 3.5a2 2 0 0 0-1.3 2.2l.6 3.5a1 1 0 0 0 1 .8H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.1a1 1 0 0 0 1-.8l.6-3.5a2 2 0 0 0-1.3-2.2z'/%3E%3C/svg%3E");}
+.ic-siren{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 18v-6a5 5 0 0 1 10 0v6'/%3E%3Cpath d='M5 21a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v1H5z'/%3E%3Cpath d='M21 12h1M18.5 4.5 18 5M2 12h1M12 2v1M4.9 4.9l.7.7M12 12v6'/%3E%3C/svg%3E");}
+.ic-stethoscope{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 12 0V4a2 2 0 0 0-2-2h-1'/%3E%3Cpath d='M8 15v1a6 6 0 0 0 12 0v-4'/%3E%3Ccircle cx='20' cy='10' r='2'/%3E%3C/svg%3E");}
+.ic-syringe{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m18 2 4 4M17 7l3-3'/%3E%3Cpath d='M19 9 8.7 19.3a1 1 0 0 1-1.4 0l-2.6-2.6a1 1 0 0 1 0-1.4L15 5'/%3E%3Cpath d='m9 11 4 4M5 19l-3 3M14 4l6 6'/%3E%3C/svg%3E");}
+.ic-tag{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z'/%3E%3Ccircle cx='7.5' cy='7.5' r='1'/%3E%3C/svg%3E");}
+.ic-target{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Ccircle cx='12' cy='12' r='6'/%3E%3Ccircle cx='12' cy='12' r='2'/%3E%3C/svg%3E");}
+.ic-tourniquet{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='9' width='18' height='8' rx='4'/%3E%3Cpath d='M12 9V4M9 4h6'/%3E%3C/svg%3E");}
+.ic-users{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9' cy='8' r='4'/%3E%3Cpath d='M2 21v-1a6 6 0 0 1 6-6h2a6 6 0 0 1 6 6v1'/%3E%3Cpath d='M16 4a4 4 0 0 1 0 8M22 21v-1a6 6 0 0 0-4-5.7'/%3E%3C/svg%3E");}
+.ic-wind{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17.7 7.7A2.5 2.5 0 1 1 19.5 12H2'/%3E%3Cpath d='M9.6 4.6A2 2 0 1 1 11 8H2'/%3E%3Cpath d='M12.6 19.4A2 2 0 1 0 14 16H2'/%3E%3C/svg%3E");}
+.ic-wrench{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z'/%3E%3C/svg%3E");}
+.ic-x{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6 6 18M6 6l12 12'/%3E%3C/svg%3E");}
+.ic-zap{--i:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 2 3 14h9l-1 8 10-12h-9l1-8z'/%3E%3C/svg%3E");}
 </style>
 </head>
 <body>
-<div id="geo-block" style="display:none;position:fixed;inset:0;z-index:99999;background:#08111c;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px;font-family:'Plus Jakarta Sans','Segoe UI',Arial,sans-serif;color:#f3f7fa;">
+<div id="geo-block" style="display:none;position:fixed;inset:0;z-index:99999;background:#0e0e10;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px;font-family:'Heebo','Segoe UI',Arial,sans-serif;color:#f4f1ea;">
   <div style="font-size:20px;font-weight:700;letter-spacing:.04em;">Access Denied</div>
 </div>
 <script>
@@ -256,22 +284,21 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
 </header>
 
 <div id="sidemenu-overlay"><div id="sidemenu">
-  <div class="close-x" id="btnCloseMenu">✕</div>
+  <div class="close-x" id="btnCloseMenu"><i class="ic ic-x"></i></div>
   <div class="center" style="margin-top:6px;"><img src="assets/logo.png" style="width:64px;height:64px;border-radius:50%;"></div>
   <h4>תפריט ראשי</h4>
-  <div class="item" data-go="menu">🏠 מי אני?</div>
+  <div class="item" data-go="menu"><i class="ic ic-home"></i> מי אני?</div>
   <div id="sm-role-section"></div>
   <h4>כלים נוספים</h4>
-  <div class="item" style="opacity:.45;cursor:default;pointer-events:none;">🚑 כלי פינוי <span style="font-size:10px;font-weight:600;background:var(--orange);color:#fff;border-radius:var(--radius-pill);padding:2px 7px;margin-right:4px;">בפיתוח</span></div>
-  <div class="item" data-go="lesson:arn">📋 תו"ל אר"ן</div>
-  <div class="item" data-go="lesson:lessons">📖 לקחי מלחמת התקומה</div>
+  <div class="item" data-go="lesson:arn"><i class="ic ic-clipboard"></i> תו"ל אר"ן</div>
+  <div class="item" data-go="lesson:lessons"><i class="ic ic-book-open"></i> לקחי מלחמת התקומה</div>
 </div></div>
 
 <!-- SPLASH -->
 <section class="screen active" id="screen-splash">
   <img class="logo" src="assets/logo.png" alt="ענף רפואה קרבית">
-  <h1>מצילים חיים<br>בקליק</h1>
-  <div class="bounce-down" id="btnEnter"><svg viewBox="0 0 24 24" fill="none" stroke="#ff8e3c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="4" x2="12" y2="20"/><polyline points="6 14 12 20 18 14"/></svg></div>
+  <h1>מצילים חיים<br><span>בקליק</span></h1>
+  <div class="bounce-down" id="btnEnter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="4" x2="12" y2="20"/><polyline points="6 14 12 20 18 14"/></svg></div>
   <div class="muted small">לומדה דיגיטלית לאנשי הרפואה</div>
 </section>
 
@@ -280,15 +307,15 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
   <div class="page-title">מצילים חיים בקליק</div>
   <div class="page-heading">מי אני?</div>
   <div class="menu-list">
-    <div class="role-btn" data-go="role:ls"><span class="emoji">🪖</span> מח"צ — מציל חיים צבאי</div>
-    <div class="role-btn" data-go="role:md"><span class="emoji">🩹</span> חובש</div>
-    <div class="role-btn" data-go="role:sr"><span class="emoji">⚕️</span> מטפל בכיר</div>
+    <div class="role-btn" data-go="role:ls"><span class="emoji"><i class="ic ic-shield-plus"></i></span> מח"צ — מציל חיים צבאי</div>
+    <div class="role-btn" data-go="role:md"><span class="emoji"><i class="ic ic-bandage"></i></span> חובש</div>
+    <div class="role-btn" data-go="role:sr"><span class="emoji"><i class="ic ic-stethoscope"></i></span> מטפל בכיר</div>
+    <div class="menu-sep"></div>
     <div class="row2">
-      <div class="role-btn small" style="opacity:.45;cursor:default;pointer-events:none;position:relative;">🚑 כלי פינוי <span style="font-size:10px;font-weight:600;background:var(--orange);color:#fff;border-radius:var(--radius-pill);padding:2px 7px;margin-right:4px;vertical-align:middle;">בפיתוח</span></div>
-      <div class="role-btn small" style="background:linear-gradient(180deg,var(--btn1),var(--btn2));color:var(--btn-tx);border-color:transparent;" data-go="lesson:arn">📋 תו"ל אר"ן</div>
+      <div class="role-btn small accent" data-go="lesson:lessons"><i class="ic ic-book-open"></i> לקחי מלחמת התקומה</div>
+      <div class="role-btn small accent" data-go="lesson:arn"><i class="ic ic-clipboard"></i> תו"ל אר"ן</div>
     </div>
-    <div class="role-btn" style="background:linear-gradient(180deg,var(--btn1),var(--btn2));color:var(--btn-tx);border-color:transparent;" data-go="lesson:lessons">📖 לקחי מלחמת התקומה</div>
-    <div style="text-align:center;"><div class="role-btn small" style="display:inline-flex;width:auto;padding:11px 28px;background:transparent;border:1px solid var(--line-strong);color:var(--muted);font-size:13px;font-weight:600;" onclick="window.open('https://heyzine.com/flip-book/e0e0c4f0f1.html','_blank')">📘 קישור לספר הטראומה</div></div>
+    <div style="text-align:center;margin-top:4px;"><div class="role-btn link" onclick="window.open('https://heyzine.com/flip-book/e0e0c4f0f1.html','_blank')"><i class="ic ic-book"></i> קישור לספר הטראומה</div></div>
   </div>
 </section>
 
@@ -335,57 +362,6 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
   </div>
 </section>
 
-<!-- כלי פינוי -->
-<section class="screen" id="screen-evac-tools">
-  <div class="page-title">לומדה</div>
-  <div class="page-heading">כלי פינוי</div>
-  <div class="evac-table-wrap">
-    <table class="evac-table">
-      <thead><tr><th>כלי</th><th>מהירות מקסימלית</th><th>מיגון</th><th></th></tr></thead>
-      <tbody>
-        <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/nagmash.jpg" alt="נגמ&quot;ש פינוי" loading="lazy"><span class="evac-name">נגמ"ש פינוי</span></div></td><td>30 קמ"ש</td><td><span class="badge-armor">נק"ל</span></td><td><button class="btn-evac" onclick="openEvac('p1')">פרטים</button></td></tr>
-        <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/NAMER.jpg" alt="נמ&quot;ר פינוי" loading="lazy"><span class="evac-name">נמ"ר פינוי</span></div></td><td>40 קמ"ש</td><td><span class="badge-armor">נק"ל + נ"ט</span></td><td><button class="btn-evac" onclick="openEvac('p2')">פרטים</button></td></tr>
-        <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/Achzarit.jpg" alt="אכזרית פינוי" loading="lazy"><span class="evac-name">אכזרית פינוי</span></div></td><td>30 קמ"ש</td><td><span class="badge-armor">נק"ל + נ"ט</span></td><td><button class="btn-evac" onclick="openEvac('p3')">פרטים</button></td></tr>
-        <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/hammer.jpg" alt="האמר גנרי" loading="lazy"><span class="evac-name">האמר גנרי</span></div></td><td>65 קמ"ש</td><td><span class="badge-armor">לא ממוגן</span></td><td><button class="btn-evac" onclick="openEvac('p4')">פרטים</button></td></tr>
-        <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/yanshuf.jpg" alt="ינשוף" loading="lazy"><span class="evac-name">ינשוף</span></div></td><td>מהיר</td><td><span class="badge-armor">לא ממוגן</span></td><td><button class="btn-evac" onclick="openEvac('p5')">פרטים</button></td></tr>
-        <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/yasur.jpg" alt="יסעור" loading="lazy"><span class="evac-name">יסעור</span></div></td><td>מהיר</td><td><span class="badge-armor">לא ממוגן</span></td><td><button class="btn-evac" onclick="openEvac('p6')">פרטים</button></td></tr>
-        <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/ford.jpg" alt="פורד בולנס" loading="lazy"><span class="evac-name">פורד בולנס</span></div></td><td>90 קמ"ש</td><td><span class="badge-armor">לא ממוגן</span></td><td><button class="btn-evac" onclick="openEvac('p7')">פרטים</button></td></tr>
-        <tr><td><div class="evac-name-row"><img class="evac-thumb" src="assets/sprinter.jpg" alt="ספרינטר" loading="lazy"><span class="evac-name">ספרינטר</span></div></td><td>90 קמ"ש</td><td><span class="badge-armor">לא ממוגן</span></td><td><button class="btn-evac" onclick="openEvac('p8')">פרטים</button></td></tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="bottom-actions"><div class="btn btn-ghost btn-wide" data-go="menu">⟵ חזרה לתפריט הראשי</div></div>
-  <div id="evacModal">
-    <div class="evac-handle" onclick="closeEvac()"></div>
-    <div class="evac-modal-box">
-      <button class="evac-close" onclick="closeEvac()">✕</button>
-      <div class="evac-hero-wrap" id="eHeroWrap">
-        <div class="evac-hero-bg" id="eHeroBg"></div>
-        <img id="eHeroImg" src="" alt="">
-        <video id="eHeroVideo" playsinline controls></video>
-        <div class="evac-hero-fade"></div>
-        <div class="evac-hero-play" id="eHeroPlay">▶</div>
-      </div>
-      <h3 id="evacTitle">—</h3>
-      <div class="evac-tabs">
-        <div class="evac-tab active" data-etab="gen">מאפיינים</div>
-        <div class="evac-tab" data-etab="pc">יתרונות וחסרונות</div>
-      </div>
-      <div class="evac-panel active" id="epanel-gen">
-        <div class="evac-row"><div class="evac-lbl">כוח רפואי</div><div class="evac-val" id="eCrew"></div></div>
-        <div class="evac-row"><div class="evac-lbl">העמסת נפגעים</div><div class="evac-val" id="eCapacity"></div></div>
-        <div class="evac-row"><div class="evac-lbl">מיגון</div><div class="evac-val" id="eArmor"></div></div>
-        <div class="evac-row"><div class="evac-lbl">מהירות מקסימלית</div><div class="evac-val" id="eSpeed"></div></div>
-        <div class="evac-row" id="eTerrainRow"><div class="evac-lbl">עבירות</div><div class="evac-val" id="eTerrain"></div></div>
-      </div>
-      <div class="evac-panel" id="epanel-pc">
-        <div class="evac-pros"><span class="evac-pros-title">✅ יתרונות</span><span id="ePros"></span></div>
-        <div class="evac-cons"><span class="evac-cons-title">⚠️ חסרונות</span><span id="eCons"></span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- LESSON (generic) -->
 <section class="screen" id="screen-lesson">
   <div class="page-title" id="lessonEyebrow">—</div>
@@ -397,108 +373,44 @@ header .logo-wrap img{width:54px;height:54px;border-radius:50%;box-shadow:0 2px 
 
 </div>
 <script>
-/* ---- EVAC DATA ---- */
-const evacData={
-  p1:{title:'נגמ"ש פינוי',img:'assets/nagmash.jpg',crew:'מט"ב + 2 חובשים',capacity:'2 בשכיבה עם יכולת טיפול · 4 בשכיבה ללא טיפול · 6 בישיבה',armor:'נק"ל',speed:'30 קמ"ש',terrain:'גבוהה',pros:'יכולת טיפול בנסיעה · מתקון ייעודי · עבירות בשטח',cons:'איטי מאוד · מיגון מנק"ל בלבד'},
-  p2:{title:'נמ"ר פינוי',img:'assets/NAMER.jpg',crew:'מט"ב + 3 חובשים',capacity:'2 פצועים בשכיבה עם יכולת טיפול · 4 פצועים בשכיבה ללא יכולת טיפול',armor:'נק"ל + נ"ט',speed:'40 קמ"ש',terrain:'גבוהה',pros:'מתקון ייעודי · טיפול תוך כדי נסיעה',cons:'צפוף'},
-  p3:{title:'אכזרית פינוי',img:'assets/Achzarit.jpg',video:'assets/achzarit.mp4',crew:'מט"ב + שלושה חובשים',capacity:'2 בשכיבה',armor:'נק"ל + נ"ט',speed:'30 קמ"ש',terrain:'גבוהה',pros:'טיפול תוך כדי נסיעה',cons:'העמסה מורכבת — מסדרון צר · איטי · אין מתקון לאלונקות'},
-  p4:{title:'האמר גנרי',img:'assets/hammer.jpg',crew:'מט"ב + שלושה חובשים',capacity:'2 בשכיבה עם טיפול מוגבל · 4 בשכיבה ללא טיפול',armor:'לא ממוגן',speed:'65 קמ"ש',terrain:'בינונית',pros:'עבירות גבוהה · מהיר · מתקון ייעודי · טיפול וניטור',cons:'לא ממוגן · לא מואר · בפינוי אין מקום ללוחמים'},
-  p5:{title:'ינשוף',img:'assets/yanshuf.jpg',crew:'2 מט"בים + 2 לוחמים חובשים',capacity:'2 בשכיבה',armor:'לא ממוגן',speed:'מהירות גבוהה',pros:'מהיר · טיפול וליווי נמרץ · העמסת ציוד',cons:'לא ממוגן · אין מתקון'},
-  p6:{title:'יסעור',img:'assets/yasur.jpg',crew:'3-4 מט"בים + 4 חובשים לוחמים',capacity:'4 בשכיבה עם טיפול · 7 ללא טיפול · 42 בישיבה',armor:'לא ממוגן',speed:'מהירות גבוהה',pros:'מהיר · טיפול וליווי נמרץ · העמסת ציוד',cons:'לא ממוגן · מאסיבי ורועש · אין מתקון'},
-  p7:{title:'פורד בולנס',img:'assets/ford.jpg',crew:'2 ספסלים ומושב למט"ב',capacity:'2 עם יכולת טיפול · 4 בלי יכולת טיפול',armor:'לא ממוגן',speed:'90 קמ"ש',terrain:'4X4',pros:'מהיר · מתקון ותאורה ייעודיים · טיפול וניטור',cons:'לא ממוגן · עבירות לא מותאמת לצירים קשים'},
-  p8:{title:'ספרינטר',img:'assets/sprinter.jpg',crew:'מט"ב + שני חובשים בחלק האחורי',capacity:'2 בשכיבה עם טיפול · 3 בשכיבה ללא טיפול',armor:'לא ממוגן',speed:'90 קמ"ש',terrain:'4X4',pros:'מהיר · מתקון ותאורה ייעודיים · יכולות טיפול וניטור',cons:'לא ממוגן · עבירות לא מותאמת לצירים קשים'}
-};
-function openEvac(id){
-  const d=evacData[id];if(!d)return;
-  const hero=document.getElementById('eHeroImg');
-  hero.src=d.img;hero.alt=d.title;
-  document.getElementById('eHeroBg').style.backgroundImage=`url('${d.img}')`;
-  const wrap=document.getElementById('eHeroWrap');
-  const video=document.getElementById('eHeroVideo');
-  wrap.classList.remove('playing');
-  video.pause();
-  video.removeAttribute('src');video.load();
-  if(d.video){wrap.classList.add('has-video');video.dataset.src=d.video;}
-  else{wrap.classList.remove('has-video');delete video.dataset.src;}
-  document.getElementById('evacTitle').textContent=d.title;
-  document.getElementById('eCrew').textContent=d.crew;
-  document.getElementById('eCapacity').textContent=d.capacity;
-  document.getElementById('eArmor').textContent=d.armor;
-  document.getElementById('eSpeed').textContent=d.speed;
-  const terrainRow=document.getElementById('eTerrainRow');
-  if(d.terrain){document.getElementById('eTerrain').textContent=d.terrain;terrainRow.style.display='';}
-  else{terrainRow.style.display='none';}
-  document.getElementById('ePros').textContent=d.pros;
-  document.getElementById('eCons').textContent=d.cons;
-  document.querySelectorAll('.evac-tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.evac-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelector('.evac-tab[data-etab="gen"]').classList.add('active');
-  document.getElementById('epanel-gen').classList.add('active');
-  document.getElementById('evacModal').classList.add('open');
-}
-function closeEvac(){
-  document.getElementById('evacModal').classList.remove('open');
-  const video=document.getElementById('eHeroVideo');
-  video.pause();
-  document.getElementById('eHeroWrap').classList.remove('playing');
-}
-document.getElementById('eHeroPlay').addEventListener('click',()=>{
-  const wrap=document.getElementById('eHeroWrap');
-  if(!wrap.classList.contains('has-video'))return;
-  const video=document.getElementById('eHeroVideo');
-  if(!video.src&&video.dataset.src)video.src=video.dataset.src;
-  wrap.classList.add('playing');
-  video.play();
-});
-document.querySelectorAll('.evac-tab').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const tab=btn.getAttribute('data-etab');
-    document.querySelectorAll('.evac-tab').forEach(t=>t.classList.remove('active'));
-    document.querySelectorAll('.evac-panel').forEach(p=>p.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('epanel-'+tab).classList.add('active');
-  });
-});
-document.getElementById('evacModal').addEventListener('click',e=>{if(e.target.id==='evacModal')closeEvac();});
-
 /* ===== LESSON REGISTRY ===== */
 const D={};
 
 /* ---- מח"צ: חלץ טפל ---- */
 D['ls-chaltz']={eyebrow:'מח"צ',title:'חלץ טפל',group:'ls',body:`
 <div class="lesson-card">
-  <h3>🎯 הכרזה ופתיחת האירוע</h3>
+  <h3><i class="ic ic-target"></i> הכרזה ופתיחת האירוע</h3>
   <p><b>הכרזה: "פצוע בכוח" / "נפצעתי"</b> + השבה באש.</p>
 </div>
 <div class="lesson-card">
-  <h3>🔄 סדר פעולות — פצוע בכוח</h3>
+  <h3><i class="ic ic-refresh"></i> סדר פעולות — פצוע בכוח</h3>
   <div class="flow-wrap">
-    <div class="flow-step">1️⃣ השגת עליונות באש</div>
+    <div class="flow-step"><span class="step-n">1</span>השגת עליונות באש</div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">2️⃣ חילוץ הפצוע למחסה ראשוני על ידי חילוץ עצמי או כוח שהוגדר לכך</div>
+    <div class="flow-step"><span class="step-n">2</span>חילוץ הפצוע למחסה ראשוני על ידי חילוץ עצמי או כוח שהוגדר לכך</div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">3️⃣ עצירת דימום פורץ על ידי לוחם / מטפל סמוך</div>
+    <div class="flow-step"><span class="step-n">3</span>עצירת דימום פורץ על ידי לוחם / מטפל סמוך</div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">4️⃣ העברת דיווח אג"מי</div>
+    <div class="flow-step"><span class="step-n">4</span>העברת דיווח אג"מי</div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">5️⃣ הגעה למקום מוגן — מרחק סביר מגורמי סיכון, בו ניתן לתת לפצוע טיפול ראשוני</div>
+    <div class="flow-step"><span class="step-n">5</span>הגעה למקום מוגן — מרחק סביר מגורמי סיכון, בו ניתן לתת לפצוע טיפול ראשוני</div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">6️⃣ המשך לחימה והשלמת המשימה <b>תוך פינוי הפצוע לנקודת הטיפול</b></div>
+    <div class="flow-step"><span class="step-n">6</span>המשך לחימה והשלמת המשימה <b>תוך פינוי הפצוע לנקודת הטיפול</b></div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">7️⃣ טיפול ראשוני בפצוע וחבירה לצוות רפואי בהקדם</div>
+    <div class="flow-step"><span class="step-n">7</span>טיפול ראשוני בפצוע וחבירה לצוות רפואי בהקדם</div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">8️⃣ פינוי</div>
+    <div class="flow-step"><span class="step-n">8</span>פינוי</div>
   </div>
 </div>
 <div class="lesson-card">
-  <h3>⚠️ לוחם שנשאר במקום הפציעה</h3>
+  <h3><i class="ic ic-alert"></i> לוחם שנשאר במקום הפציעה</h3>
   <p>לוחם שנשאר בנקודה בה נפצע עשוי <b>להיפצע בשנית</b>. יש לתרגל את הלוחמים בהשבה באש ותפיסת מחסות, ולחזור ללחימה בהקדם.</p>
 </div>`};
 
 /* ---- מח"צ: עצירת דימומים ---- */
 D['ls-bleed']={eyebrow:'מח"צ',title:'עצירת דימומים',group:'ls',body:`
 <div class="lesson-card">
-  <h3>🩸 שיטות עצירת דימום</h3>
+  <h3><i class="ic ic-droplet"></i> שיטות עצירת דימום</h3>
   <div class="flow-wrap">
     <div class="flow-step"><b>לחץ ישיר (F.C — First Care)</b><br>עצירת הדימום מכלי הדם הספציפי שנפגע. לחץ ישיר זה אדיר! (מניעת נמק בגפה)</div>
     <div class="flow-arrow">או</div>
@@ -508,7 +420,7 @@ D['ls-bleed']={eyebrow:'מח"צ',title:'עצירת דימומים',group:'ls',bo
 </div>
 
 <div class="lesson-card">
-  <h3>📋 א.ת.ק.ל.ח — התוויות להנחת CAT</h3>
+  <h3><i class="ic ic-clipboard"></i> א.ת.ק.ל.ח — התוויות להנחת CAT</h3>
   <ul>
     <li><b>א — אר"ן:</b> אירוע רב נפגעים</li>
     <li><b>ת — תחת אש</b></li>
@@ -520,41 +432,41 @@ D['ls-bleed']={eyebrow:'מח"צ',title:'עצירת דימומים',group:'ls',bo
 </div>
 
 <div class="lesson-card">
-  <h3>🔴 הנחת CAT — שלב אחר שלב</h3>
+  <h3><i class="ic ic-tourniquet"></i> הנחת CAT — שלב אחר שלב</h3>
   <div class="flow-wrap">
-    <div class="flow-step">1️⃣ זיהוי הגפה הפגועה</div>
+    <div class="flow-step"><span class="step-n">1</span>זיהוי הגפה הפגועה</div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">2️⃣ הCAT מגיע מושחל בתצורה של לולאה — יש להשחיל אותה על הגפה לפני ההידוק. במידה ונדרש לעצור דימום באזור בו קשה להשחיל את הלולאה המוכנה, יש להפריד את הלולאה הקיימת ולהשחיל את רצועת הסקוצ' דרך אחד הפתחים בלבד, ע"מ לייצר לולאה להידוק.</div>
+    <div class="flow-step"><span class="step-n">2</span>הCAT מגיע מושחל בתצורה של לולאה — יש להשחיל אותה על הגפה לפני ההידוק. במידה ונדרש לעצור דימום באזור בו קשה להשחיל את הלולאה המוכנה, יש להפריד את הלולאה הקיימת ולהשחיל את רצועת הסקוצ' דרך אחד הפתחים בלבד, ע"מ לייצר לולאה להידוק.</div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">3️⃣ <b>יש לבצע הידוק חזק ככל הניתן בראש הגפה הפגועה.</b> הידוק זה מהווה את השלב המשמעותי ביותר בקביעת הלחץ המופעל לעצירת הדימום — מחייב הפעלת כוח מירבי ושימור המתיחה וההידוק המקסימליים עד לחיבור הסקוצ'. במידה והגפה הופשטה — יש להניח ישירות על העור. אם לא הופשטה — יש לוודא כי לא קיימים חפצים בכיס הסמוך לנקודת ההנחה ולהניח על הבגד.</div>
+    <div class="flow-step"><span class="step-n">3</span><b>יש לבצע הידוק חזק ככל הניתן בראש הגפה הפגועה.</b> הידוק זה מהווה את השלב המשמעותי ביותר בקביעת הלחץ המופעל לעצירת הדימום — מחייב הפעלת כוח מירבי ושימור המתיחה וההידוק המקסימליים עד לחיבור הסקוצ'. במידה והגפה הופשטה — יש להניח ישירות על העור. אם לא הופשטה — יש לוודא כי לא קיימים חפצים בכיס הסמוך לנקודת ההנחה ולהניח על הבגד.</div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">4️⃣ <b>יש לסובב את הידית (עם/נגד כיוון השעון) מספר מקסימלי של סיבובים ולקבעה במגרעת הייעודית.</b> במצב בו מתאפשר יותר מ-4 סיבובים — עלול להעיד על הידוק ראשוני לא מספק, ויש לבצע הידוק חוזר מקסימלי.</div>
+    <div class="flow-step"><span class="step-n">4</span><b>יש לסובב את הידית (עם/נגד כיוון השעון) מספר מקסימלי של סיבובים ולקבעה במגרעת הייעודית.</b> במצב בו מתאפשר יותר מ-4 סיבובים — עלול להעיד על הידוק ראשוני לא מספק, ויש לבצע הידוק חוזר מקסימלי.</div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">5️⃣ <b>בתום ההנחה יש לוודא כי נעצר הדימום הפעיל.</b> במידה והדימום לא נעצר — יש להדק מחדש את הרצועה ולסובב להשגת לחץ מקסימלי.</div>
+    <div class="flow-step"><span class="step-n">5</span><b>בתום ההנחה יש לוודא כי נעצר הדימום הפעיל.</b> במידה והדימום לא נעצר — יש להדק מחדש את הרצועה ולסובב להשגת לחץ מקסימלי.</div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">6️⃣ <b>יש לוודא רישום של שם המטפל ושעת הביצוע</b> על המקום הייעודי בח"ע ועל הפצוע במקומות חשופים.</div>
+    <div class="flow-step"><span class="step-n">6</span><b>יש לוודא רישום של שם המטפל ושעת הביצוע</b> על המקום הייעודי בח"ע ועל הפצוע במקומות חשופים.</div>
   </div>
   <div class="warn">תחת אש — ההנחה תתבצע מעל המדים ובראש הגפה! · אם ח.ע. כשל — הנח ח.ע. נוסף מעל לראשון</div>
 </div>
 
 <div class="lesson-card">
-  <h3>🩹 הנחת First Care — תחבושת אישית</h3>
+  <h3><i class="ic ic-bandage"></i> הנחת First Care — תחבושת אישית</h3>
   <div class="flow-wrap">
-    <div class="flow-step">1️⃣ חשיפה וזיהוי מקום הדימום</div>
+    <div class="flow-step"><span class="step-n">1</span>חשיפה וזיהוי מקום הדימום</div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">2️⃣ לאחר הוצאת התחבושת מאריזה סטרילית — הנחת הפד הלבן על מקור הדימום. בהנחה עצמית יש להשחיל את הגפה העליונה לשרוול המובנה.</div>
+    <div class="flow-step"><span class="step-n">2</span>לאחר הוצאת התחבושת מאריזה סטרילית — הנחת הפד הלבן על מקור הדימום. בהנחה עצמית יש להשחיל את הגפה העליונה לשרוול המובנה.</div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">3️⃣ ליפוף התחבושת תוך הפעלת לחץ ישיר ושימוש בגשרון הפלסטיק להגברת הלחץ המקומי</div>
+    <div class="flow-step"><span class="step-n">3</span>ליפוף התחבושת תוך הפעלת לחץ ישיר ושימוש בגשרון הפלסטיק להגברת הלחץ המקומי</div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">4️⃣ אטימת קצוות החבישה ותפיסת האגד על ידי התפס הפלסטי</div>
+    <div class="flow-step"><span class="step-n">4</span>אטימת קצוות החבישה ותפיסת האגד על ידי התפס הפלסטי</div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">5️⃣ בדיקת דופק בהמשך הגפה</div>
+    <div class="flow-step"><span class="step-n">5</span>בדיקת דופק בהמשך הגפה</div>
   </div>
   <div class="warn">אם התחבושת לא עוזרת ונספגת בדם — <b>יש לשים CAT!</b> להניח את התחבושת כך שהדימום נמצא בין הגשרון לבין המדבקה הלבנה.</div>
 </div>
 
 <div class="lesson-card">
-  <h3>💪 נקודות לחיצה</h3>
+  <h3><i class="ic ic-crosshair"></i> נקודות לחיצה</h3>
   <p>לחיצה חזקה על העורק למניעת זרימת דם להמשך הגפה. <b>יש לבצע רק אם כשלו הניסיונות לעצירה ע"י FC/CAT</b>, או לבצע עד הגעת CAT.</p>
   <ul>
     <li><b>עורק ברכיאלי:</b> יש למצוא את העורק ע"י הכנסת ארבע אצבעות מתחת לשריר בחלק המדיאלי של הזרוע ומישוש הדופק, וללחוץ את העורק על גבי עצם הזרוע.</li>
@@ -563,11 +475,11 @@ D['ls-bleed']={eyebrow:'מח"צ',title:'עצירת דימומים',group:'ls',bo
   </ul>
 </div>
 <div class="lesson-card">
-  <h3>🦿 גדם קטיעה — ח"ע חובה</h3>
+  <h3><i class="ic ic-tourniquet"></i> גדם קטיעה — ח"ע חובה</h3>
   <p>כל גדם קטיעה יטופל בהנחת חסם עורקים — <b>גם אם לא מדמם באופן פעיל</b> בזמן הטיפול.</p>
 </div>
 <div class="lesson-card">
-  <h3>🔧 ח"ע לא אפקטיבי — פרוטוקול</h3>
+  <h3><i class="ic ic-wrench"></i> ח"ע לא אפקטיבי — פרוטוקול</h3>
   <div class="flow-wrap">
     <div class="flow-decision">האם ח"ע הונח רפוי? (ניתן להחליק על פני הגפה)</div>
     <div class="flow-yes">שחרר הידית ← מתיחה מקסימלית ← סיבוב מחדש ← השלמת פעולות עצירת הדימום</div>
@@ -580,7 +492,7 @@ D['ls-bleed']={eyebrow:'מח"צ',title:'עצירת דימומים',group:'ls',bo
 /* ---- מח"צ: סכמת SABC ---- */
 D['ls-scheme']={eyebrow:'מח"צ',title:'סכמת הטיפול בפצוע בודד',group:'ls',body:`
 <div class="lesson-card">
-  <h3>🛡️ S — Safety (בטיחות)</h3>
+  <h3><i class="ic ic-shield"></i> S — Safety (בטיחות)</h3>
   <p>בטיחות המטפל והמטופל: הרחקה מגורם מסכן, נטרול אויב, הסרת נשק ונצירתו.</p>
   <p><b>עצירת דימומים פורצים:</b> ח"ע בראש גפה, F.C, נקודת לחיצה.</p>
   <p>דיווח ראשוני ודרישה לפינוי — לפי שיטת <b>5 המ"מים:</b></p>
@@ -593,17 +505,17 @@ D['ls-scheme']={eyebrow:'מח"צ',title:'סכמת הטיפול בפצוע בוד
   </ul>
 </div>
 <div class="lesson-card">
-  <h3>🌬️ A — Airway (נתיב אוויר)</h3>
+  <h3><i class="ic ic-wind"></i> A — Airway (נתיב אוויר)</h3>
   <p>בדיקת הכרה על ידי <b>קול בלבד</b>.</p>
   <p>סילוק הפרשות — הטיה קלה של הראש הצידה <b>מבלי להכניס עצמים לפיו של המטופל</b>.</p>
 </div>
 <div class="lesson-card">
-  <h3>💨 B — Breathing (נשימה)</h3>
+  <h3><i class="ic ic-lungs"></i> B — Breathing (נשימה)</h3>
   <p>בדיקת נשימה: <b>נושם / לא נושם (10 שניות)</b>.</p>
   <p>ביצוע חש"י (חצי שכיבה חצי ישיבה) לכל פצוע שנושם בצורה לא תקינה / לא נושם.</p>
 </div>
 <div class="lesson-card">
-  <h3>🩸 C — Circulation (מחזור דם)</h3>
+  <h3><i class="ic ic-droplet"></i> C — Circulation (מחזור דם)</h3>
   <p>סריקת דימומים נוספים ועצירתם — בגפיים, באיזורי מעבר.</p>
   <p>העלאת דיווח נוסף: דרישה לפינוי + מצב הפצועים (הכרה, נשימה, פציעות) + חבירה למטפל.</p>
   <p><b>הכנה לפינוי:</b> הפשטה, העמסה לאלונקה, כיסוי וקיבוע.</p>
@@ -614,20 +526,20 @@ D['ls-scheme']={eyebrow:'מח"צ',title:'סכמת הטיפול בפצוע בוד
 /* ---- מח"צ: ARN ---- */
 D['ls-arn']={eyebrow:'מח"צ',title:'אר"ן — אירוע רב נפגעים',group:'ls',body:`
 <div class="lesson-card">
-  <h3>📖 הגדרה</h3>
+  <h3><i class="ic ic-book-open"></i> הגדרה</h3>
   <p>אר"ן = אירוע בו <b>הטיפול בפצוע אחד יפגע באיכות הטיפול או פינוי פצוע אחר.</b></p>
   <p>באר"ן נתמקד באיתור מוקדם של <b>הפצועים בני ההצלה</b> ונשקיע את משאבי הפינוי והטיפול לטובתם.</p>
 </div>
 
 <div class="lesson-card">
-  <h3>👥 תפקידי פיקוד</h3>
+  <h3><i class="ic ic-users"></i> תפקידי פיקוד</h3>
   <p><b>מפקד רפואי:</b> המטפל הבכיר ביותר באירוע. יכול להתחלף במהלך האירוע אם מגיע בכיר יותר.</p>
   <p><b>מפקד אג"מי:</b> מנהל האירוע (בדר"כ מציר סגנים). תפקידו לארגן את הזירה והפינויים ולאפשר למטפל הבכיר והצוות הרפואי להתמקד בטיפול הרפואי.</p>
   <div class="note">מפקד רפואי ומפקד אג"מי — <b>צמודים ולא נפרדים</b> לאורך כל האירוע!</div>
 </div>
 
 <div class="lesson-card">
-  <h3>📍 שלב 1 — הגעה לזירה וריכוז פצועים</h3>
+  <h3><i class="ic ic-pin"></i> שלב 1 — הגעה לזירה וריכוז פצועים</h3>
   <p>מנהל האירוע קובע נקודת ריכוז פצועים ומחלק את המח"צים לגזרות.</p>
   <p><b>דיווח בהגעה (ע"י מנהל האירוע):</b></p>
   <ul>
@@ -648,7 +560,7 @@ D['ls-arn']={eyebrow:'מח"צ',title:'אר"ן — אירוע רב נפגעים',
 </div>
 
 <div class="lesson-card">
-  <h3>🏷️ שלב 2 — טריאז' (מיון ראשוני) — SABC</h3>
+  <h3><i class="ic ic-tag"></i> שלב 2 — טריאז' (מיון ראשוני) — SABC</h3>
   <ul>
     <li><b>דחוף</b> — פצוע עם סכנה לחיים או לאיבר</li>
     <li><b>לא דחוף</b> — פצוע ללא סכנה לחיים / לאיבר</li>
@@ -659,19 +571,19 @@ D['ls-arn']={eyebrow:'מח"צ',title:'אר"ן — אירוע רב נפגעים',
 </div>
 
 <div class="lesson-card">
-  <h3>📊 שלב 3 — סיכום טריאז'</h3>
+  <h3><i class="ic ic-chart"></i> שלב 3 — סיכום טריאז'</h3>
   <p>מפקד אג"מי ומפקד רפואי עוברים על טבלת השליטה וקובעים סדר קדימויות לטיפול ולפינוי <b>(נא לא להפריד)</b>.</p>
   <p><b>דיווח בסיום:</b> מספר פצועים לפי חלוקה לדחיפויות · דרישות מיוחדות (מסוק, חילוץ, הכנת פלזמה וכו').</p>
 </div>
 
 <div class="lesson-card">
-  <h3>🩺 שלב 4 — סבב טיפולי</h3>
+  <h3><i class="ic ic-stethoscope"></i> שלב 4 — סבב טיפולי</h3>
   <p><b>מטפל בכיר + חובש:</b> השלמת סקר ראשוני לפי הסכמה המלאה, לפי קדימויות. הערכות לביצוע פרוצדורות.</p>
   <p><b>מנהל אירוע:</b> מתן משימות לחובשים ולמח"צים · קידום פינויים.</p>
 </div>
 
 <div class="lesson-card">
-  <h3>✅ שלב 5 — סיום האירוע</h3>
+  <h3><i class="ic ic-check-circle"></i> שלב 5 — סיום האירוע</h3>
   <ul>
     <li>וידוא פינוי <b>כלל הפצועים</b> — סריקת זירה איכותית</li>
     <li>השלמת ואיסוף רישום</li>
@@ -682,7 +594,7 @@ D['ls-arn']={eyebrow:'מח"צ',title:'אר"ן — אירוע רב נפגעים',
 </div>
 
 <div class="lesson-card">
-  <h3>🪖 תפקיד המח"צ באר"ן</h3>
+  <h3><i class="ic ic-shield-plus"></i> תפקיד המח"צ באר"ן</h3>
   <ul>
     <li>עצירת דימומים גורפת לכלל הפצועים בגזרתכם</li>
     <li>הבאת הפצועים בגזרתכם לנקודת הריכוז</li>
@@ -692,11 +604,11 @@ D['ls-arn']={eyebrow:'מח"צ',title:'אר"ן — אירוע רב נפגעים',
   </ul>
 </div>
 <div class="lesson-card">
-  <h3>🎯 קביעת דחיפות — מט"ב בלבד</h3>
+  <h3><i class="ic ic-target"></i> קביעת דחיפות — מט"ב בלבד</h3>
   <p>קביעת הדחיפות תתבצע <b>על ידי מט"ב בלבד</b>, מוקדם ככל האפשר. קביעת דחיפות על ידי מפקדים עלולה לגרום <b>להערכת חסר וסיכון הפצוע</b>.</p>
 </div>
 <div class="lesson-card">
-  <h3>📋 דיווח על הפסקת החייאה</h3>
+  <h3><i class="ic ic-clipboard"></i> דיווח על הפסקת החייאה</h3>
   <p>במידה והמטפל הבכיר החליט להפסיק מאמצי החייאה יש להגדיר את הפצוע כ<b>לא דחוף</b> על מנת להימנע מהשקעת משאבים מיותרים שיכולים להיות מופנים לפצוע דחוף.</p>
 </div>
 `};
@@ -704,31 +616,31 @@ D['ls-arn']={eyebrow:'מח"צ',title:'אר"ן — אירוע רב נפגעים',
 /* ---- מח"צ: יהלו"ם ---- */
 D['ls-yahalom']={eyebrow:'מח"צ',title:'יהלו"ם — תגובת קרב',group:'ls',body:`
 <div class="lesson-card">
-  <h3>💎 מה זה יהלו"ם?</h3>
+  <h3><i class="ic ic-gem"></i> מה זה יהלו"ם?</h3>
   <p>סכמת יהלו"ם <b>מפחיתה בעשרות אחוזים</b> את הסיכויים לפוסט-טראומה.</p>
   <div class="note">לא לשכוח לבדוק האם הפצוע נפצע פיזית וצריך טיפול רפואי!</div>
 </div>
 <div class="lesson-card">
-  <h3>🔵 י — יצירת קשר</h3>
+  <h3><i class="ic ic-dot"></i> י — יצירת קשר</h3>
   <p>רואה, שומע, מגיב.</p>
   <p>"תסתכל עליי" · "אתה שומע אותי?" · "תלחץ לי את היד"</p>
 </div>
 <div class="lesson-card">
-  <h3>🔵 ה — הדגשת מחוייבות</h3>
+  <h3><i class="ic ic-dot"></i> ה — הדגשת מחוייבות</h3>
   <p>"אני איתך, אתה לא לבד"</p>
 </div>
 <div class="lesson-card">
-  <h3>🔵 ל — לברר עובדות</h3>
+  <h3><i class="ic ic-dot"></i> ל — לברר עובדות</h3>
   <p>שאלות קצרות וממוקדות עובדות.</p>
   <p>"איך קוראים לך?, מה המספר האישי שלך?"</p>
 </div>
 <div class="lesson-card">
-  <h3>🔵 ו — וידוא סדר התרחשות</h3>
+  <h3><i class="ic ic-dot"></i> ו — וידוא סדר התרחשות</h3>
   <p>להסביר מה קרה, מה קורה, ומה יקרה.</p>
   <p>"חטפנו טיל" / "יורים עלינו" / "אני צריך שתשיב באש"</p>
 </div>
 <div class="lesson-card">
-  <h3>🔵 ם — מתן משימות</h3>
+  <h3><i class="ic ic-dot"></i> ם — מתן משימות</h3>
   <p>הנחייה סמכותית לפעולה מיידית.</p>
   <p>"קח את הנשק שלך ותירה מהחלון"</p>
   <div class="note">התערבות מהירה תסייע לנפגע להתאושש מהר ולחזור לתפקוד.</div>
@@ -737,11 +649,11 @@ D['ls-yahalom']={eyebrow:'מח"צ',title:'יהלו"ם — תגובת קרב',gro
 /* ---- חובש: X ---- */
 D['md-X']={eyebrow:'חובש',title:'X — חילוץ',group:'md',body:`
 <div class="lesson-card">
-  <h3>🎯 חלץ טפל / פצוע בכוח</h3>
+  <h3><i class="ic ic-target"></i> חלץ טפל / פצוע בכוח</h3>
   <p>הכרזה בשטח ובקשר על <b>פצוע בכוח</b>, השגת עליונות באש, הגעה למחסה ראשוני על ידי חילוץ עצמי או על ידי כוח שהוגדר לכך, עצירת דימום פורץ על ידי לוחם / מטפל סמוך.</p>
 </div>
 <div class="lesson-card">
-  <h3>🔄 סדר פעולות</h3>
+  <h3><i class="ic ic-refresh"></i> סדר פעולות</h3>
   <div class="flow-wrap">
     <div class="flow-step">הכרזה ← חילוץ ← עצירת דימום פורץ</div>
     <div class="flow-arrow">↓</div>
@@ -752,34 +664,34 @@ D['md-X']={eyebrow:'חובש',title:'X — חילוץ',group:'md',body:`
 /* ---- חובש: C עצירת דימומים ---- */
 D['md-C']={eyebrow:'חובש',title:'C — עצירת דימומים',group:'md',body:`
 <div class="lesson-card">
-  <h3>🔴 CAT — חוסם עורקים</h3>
+  <h3><i class="ic ic-tourniquet"></i> CAT — חוסם עורקים</h3>
   <p><b>התוויות (א.ת.ק.ל.ח):</b> אר"ן, תחת אש, קטיעה, לחץ ישיר שנכשל, חוסר הכרה שלא כתוצאה מחבלת ראש / תרופות.</p>
   <p>4 אצבעות מעל הפציעה ← מתיחה ראשונית חזקה ← לסובב עד שאי אפשר ← הצנעת ה-CAT ← <b>לרשום שעה במיקום ברור.</b></p>
   <div class="warn">בארן / תחת אש — יש להניח בראש הגפה!</div>
 </div>
 <div class="lesson-card">
-  <h3>🩹 First Care — תחבושת אישית</h3>
+  <h3><i class="ic ic-bandage"></i> First Care — תחבושת אישית</h3>
   <p>שבירת הגשרון בסיבוב השלישי, שמירה על סטריליות.</p>
   <div class="warn">בפציעות ראש — <b>רק למט"ב מותר לשבור גשרון.</b></div>
   <p>לבדוק דופק על הגפה החבושה לאחר הנחה — לוודא שלא ביצענו חסם עורקים בשוגג.</p>
 </div>
 <div class="lesson-card">
-  <h3>🧲 Packing — תחבושת דחיסה</h3>
+  <h3><i class="ic ic-layers"></i> Packing — תחבושת דחיסה</h3>
   <p>לבצע כנגד עצם. <b>אין לבצע בטורסו.</b></p>
   <p>יש להקפיד על לחיצה במשך <b>3 דקות</b> לפני הנחת ה-First Care מעל.</p>
 </div>
 <div class="lesson-card">
-  <h3>👕 הפשטה — מתי ואיך?</h3>
+  <h3><i class="ic ic-shirt"></i> הפשטה — מתי ואיך?</h3>
   <p>הפשטה מלאה תתבצע <b>כבר בשלב C</b>, בדגש על תחתונים ו<b>בתי שחי</b> — לסרוק היטב ולא לפספס דימום מאזורי מעבר.</p>
   <p>אם לא הושלמה בשלב C — תושלם <b>לפני הפינוי בשלב E</b>, ורק לאחריה תיקבע דחיפות הפינוי.</p>
 </div>
 <div class="lesson-card matav-only">
-  <h3>🩺 קטטר פולי <span class="matav-badge" style="font-weight:400">מט"ב בלבד</span></h3>
+  <h3><i class="ic ic-stethoscope"></i> קטטר פולי <span class="matav-badge" style="font-weight:400">מט"ב בלבד</span></h3>
   <p>לשאוב 10 סיסי ולנפח עד 30 (ניפוח בסליין). ניתן להכניס נוסף אם הדימום לא נעצר.</p>
   <p>לקבע באמצעות First Care כדי שלא יישלף.</p>
 </div>
 <div class="lesson-card">
-  <h3>💪 נקודות לחיצה</h3>
+  <h3><i class="ic ic-crosshair"></i> נקודות לחיצה</h3>
   <ul>
     <li><b>עורק ברכיאלי:</b> יש למצוא את העורק ע"י הכנסת ארבע אצבעות מתחת לשריר בחלק המדיאלי של הזרוע ומישוש הדופק, וללחוץ את העורק על גבי עצם הזרוע.</li>
     <li><b>עורק תת-בריחי:</b> יש להכניס שתי אצבעות לתוך השקע של עצם הבריח מהכיוון הסופריורי, למצוא את העורק ע"י מישוש דופק, וללחוץ את העורק על גבי עצם הבריח.</li>
@@ -791,7 +703,7 @@ D['md-C']={eyebrow:'חובש',title:'C — עצירת דימומים',group:'md'
 /* ---- חובש: C החזר נפח ---- */
 D['md-volflow']={eyebrow:'חובש',title:'C — החזר נפח והמרת CAT',group:'md',body:`
 <div class="lesson-card">
-  <h3>🚨 קריטריונים להלם עמוק</h3>
+  <h3><i class="ic ic-siren"></i> קריטריונים להלם עמוק</h3>
   <ul>
     <li>ל"ד סיסטולי מתחת ל-90 ממ"כ, <b>או</b></li>
     <li>ל"ד שאינו נמדד + דופק רדיאלי שאינו נימוש, <b>או</b></li>
@@ -800,22 +712,22 @@ D['md-volflow']={eyebrow:'חובש',title:'C — החזר נפח והמרת CAT'
   <div class="note">בחשד להלם עמוק — שיעור כשלון גבוה של מדידת ל"ד <b>בתנועה</b>. יש לשאוף לקבל מדידה <b>על הקרקע</b> (סמוך לפציעה / מנחת). אם לא בוצעה — לעצור את כלי הפינוי לקבלת מדידה אמינה.</div>
 </div>
 <div class="lesson-card">
-  <h3>💉 מתן החזר נפח</h3>
+  <h3><i class="ic ic-syringe"></i> מתן החזר נפח</h3>
   <div class="flow-wrap">
-    <div class="flow-step">1️⃣ השגת גישה ורידית <b>או</b> תוך-גרמית (IO) — IO — <span class="matav-badge">מט"ב בלבד</span></div>
+    <div class="flow-step"><span class="step-n">1</span>השגת גישה ורידית <b>או</b> תוך-גרמית (IO) — IO — <span class="matav-badge">מט"ב בלבד</span></div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">2️⃣ חיבור מחסנית הקלקר למכשיר הקינפלו ולסוללה ← הדלקה</div>
+    <div class="flow-step"><span class="step-n">2</span>חיבור מחסנית הקלקר למכשיר הקינפלו ולסוללה ← הדלקה</div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">3️⃣ חיבור הסט למכשיר (החלק הקצר) ← שטיפת הסט ← חיבור החלק הארוך למטופל ← תחילת מתן דם</div>
+    <div class="flow-step"><span class="step-n">3</span>חיבור הסט למכשיר (החלק הקצר) ← שטיפת הסט ← חיבור החלק הארוך למטופל ← תחילת מתן דם</div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">4️⃣ <b>הכנת פלזמה:</b> העברת מי הזרקה לבקבוקון הפלזמה בסטון ← ערבוב עדין עד מרקם אחיד ללא גושים ← חיבור סט Y ← שטיפה ומתן</div>
+    <div class="flow-step"><span class="step-n">4</span><b>הכנת פלזמה:</b> העברת מי הזרקה לבקבוקון הפלזמה בסטון ← ערבוב עדין עד מרקם אחיד ללא גושים ← חיבור סט Y ← שטיפה ומתן</div>
   </div>
   <div class="note">מומלץ למדוד ל"ד לפני תחילת הפינוי או בהגעה למנחת / נקודת שחלוף.</div>
   <div class="warn"><b>אין להכין מנות נפח טרם הערכה המודינמית</b> של הפצוע. השגת הגישה למחזור הדם והכנת הנפח תתבצע על ידי <b>יתר הצוות</b> — לא על ידי המט"ב עצמו עד סיום הסקר הראשוני.</div>
   <div class="note">מנת דם תינתן רק על ידי מט"ב שהוסמך לכך.</div>
 </div>
 <div class="lesson-card">
-  <h3>🔄 המרת חסם עורקים</h3>
+  <h3><i class="ic ic-refresh"></i> המרת חסם עורקים</h3>
   <p><b>התוויות להמרה — כל אלה יחד:</b></p>
   <ul>
     <li>חסם עורקים שהונח מסיבות חולפות (אר"ן / תחת אש) <b>ושהסיבות חלפו</b></li>
@@ -828,9 +740,9 @@ D['md-volflow']={eyebrow:'חובש',title:'C — החזר נפח והמרת CAT'
   </ul>
   <p><b>סדר פעולות:</b></p>
   <div class="flow-wrap">
-    <div class="flow-step">1️⃣ הכנת CAT נוסף מעל מקור הדימום</div>
+    <div class="flow-step"><span class="step-n">1</span>הכנת CAT נוסף מעל מקור הדימום</div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">2️⃣ שחרור הדרגתי של ח.ע. המקורי ובחינת מקור הדימום</div>
+    <div class="flow-step"><span class="step-n">2</span>שחרור הדרגתי של ח.ע. המקורי ובחינת מקור הדימום</div>
     <div class="flow-arrow">↓</div>
     <div class="flow-decision">האם הדימום התחדש?</div>
     <div class="flow-branch">
@@ -845,17 +757,17 @@ D['md-volflow']={eyebrow:'חובש',title:'C — החזר נפח והמרת CAT'
 /* ---- חובש: A/R ---- */
 D['md-AR']={eyebrow:'חובש',title:'A/R — נתיב אוויר ונשימה',group:'md',body:`
 <div class="lesson-card">
-  <h3>🌬️ טיפול נשימתי תומך</h3>
+  <h3><i class="ic ic-wind"></i> טיפול נשימתי תומך</h3>
   <p>דגש על טיפול תומך: <b>הושבה · מתן חמצן · סילוק הפרשות · פתיחת פה.</b></p>
   <div class="warn">ההנשמה בלחץ חיובי תחמיר את המצב ההמודינמי בפצועי חזה.</div>
 </div>
 <div class="lesson-card">
-  <h3>💨 מנשם</h3>
+  <h3><i class="ic ic-lungs"></i> מנשם</h3>
   <p>לחבר את המנשם למקור חמצן ולמעגל החולה ← להפעיל על תוכנית <b>SIMV-VCPS</b>.</p>
   <div class="note">את מרבית הפצועים לא ננשים, במידה והפצוע נדרש בכך, נשאף לחבר למנשם ולהפעיל את התוכנית.</div>
 </div>
 <div class="lesson-card">
-  <h3>🫁 פציעות חזה</h3>
+  <h3><i class="ic ic-lungs"></i> פציעות חזה</h3>
   <p>בית החזה מוגדר מ<b>בסיס הצוואר עד קו הטבור.</b></p>
   <div class="warn">בפציעות חזה — <b>אין</b> לבצע Packing או לחץ ישיר באמצעות First Care.</div>
 </div>`};
@@ -863,17 +775,17 @@ D['md-AR']={eyebrow:'חובש',title:'A/R — נתיב אוויר ונשימה',
 /* ---- חובש: E ---- */
 D['md-E']={eyebrow:'חובש',title:'E — הכנה ופינוי',group:'md',body:`
 <div class="lesson-card">
-  <h3>🩹 הכנה לפינוי</h3>
+  <h3><i class="ic ic-bandage"></i> הכנה לפינוי</h3>
   <div class="flow-wrap">
     <div class="flow-step">הפשטה ← סריקה ← הפיכה ← כיסוי ← קסדה ← קשירה לאלונקה ← הצנעת שרוכים ← קיבוע מיטבי של כלל הפרוצדורות</div>
   </div>
 </div>
 <div class="lesson-card">
-  <h3>🔒 קיבועים</h3>
+  <h3><i class="ic ic-lock"></i> קיבועים</h3>
   <p>במהלך פינוי רפואי, כל דבר שלא קובע למקומו עף. יש לשים לב לקיבוע הגישה למחזור הדם, קיבוע פרוצדורות וקיבוע הפצוע לאלונקה לפני תחילת הפינוי.</p>
 </div>
 <div class="lesson-card">
-  <h3>🚁 חבירה לפינוי מוסק</h3>
+  <h3><i class="ic ic-helicopter"></i> חבירה לפינוי מוסק</h3>
   <ul>
     <li>קיבוע ציוד לפני הגעת מסוק למנחת (בדגש: שמיכת מילוט)</li>
     <li>אין להעביר דרישה לקיצור מסוק — רק בקשת הזנקה; אם לא נדרש: חזל"ש</li>
@@ -888,30 +800,30 @@ D['md-E']={eyebrow:'חובש',title:'E — הכנה ופינוי',group:'md',bod
   </ul>
 </div>
 <div class="lesson-card">
-  <h3>🚫 אין פינוי רפואי בטנק</h3>
+  <h3><i class="ic ic-ban"></i> אין פינוי רפואי בטנק</h3>
   <p>פינוי בטנק <b>לא מאפשר טיפול מיטבי</b> בפצוע. הטנק ישמש לחילוץ טקטי <b>בלבד</b> במקרים חריגים.</p>
 </div>
 <div class="lesson-card">
-  <h3>🔄 מינימום שחלופים</h3>
+  <h3><i class="ic ic-refresh"></i> מינימום שחלופים</h3>
   <p>בפינוי פצוע דחוף — לשאוף למספר שחלופים קטן ככל הניתן. <b>יש להימנע משחלוף לבנה כבדה ללבנה כבדה.</b></p>
   <p>קביעת הדחיפות תתבצע על ידי <b>מט"ב בלבד</b> — קביעת דחיפות על ידי מפקדים עלולה לגרום להערכת חסר.</p>
 </div>`};
 
 /* ---- יהלו"ם (shared) ---- */
 D['md-yahalom']={eyebrow:'חובש',title:'יהלו"ם — תגובת קרב',group:'md',body:D['ls-yahalom'].body};
-D['md-arn']={eyebrow:'חובש',title:'אר"ן — אירוע רב נפגעים',group:'md',body:D['ls-arn'].body.replace('<div class="lesson-card">\n  <h3>🎯 קביעת דחיפות',`<div class="lesson-card">
-  <h3>⚠️ הסטת קשב</h3>
+D['md-arn']={eyebrow:'חובש',title:'אר"ן — אירוע רב נפגעים',group:'md',body:D['ls-arn'].body.replace('<div class="lesson-card">\n  <h3><i class="ic ic-target"></i> קביעת דחיפות',`<div class="lesson-card">
+  <h3><i class="ic ic-alert"></i> הסטת קשב</h3>
   <p>פציעה בולטת ומסיטת קשב עשויה להביא ל<b>טריאז' מקל ושגוי</b> של יתר הפצועים — נפוץ במיוחד במקרי <b>קטיעה וכוויות</b>.</p>
   <p>יש לבצע סריקה יסודית של <b>כל פצוע</b> לפני סיווג כדחוף או לא דחוף.</p>
 </div>
 <div class="lesson-card">
-  <h3>💥 פצוע רסיסים — כלל הסיווג</h3>
+  <h3><i class="ic ic-zap"></i> פצוע רסיסים — כלל הסיווג</h3>
   <p>פצוע רסיסים יסווג כ<b>דחוף לפינוי</b> — למעט מקרים של רסיסים דיסטליים בגפיים <b>ללא</b> סימנים לנזק נוירווסקולרי.</p>
   <p>קל לפספס — נדרשת <b>הפשטה מלאה ויסודית</b>.</p>
   <p><b>גורמי סיכון לפציעה קשה ברסיסים:</b> ריבוי פצועים, ריבוי פציעות, מיקום בראש/גו, מצב הכרה ירוד, סימני הלם עמוק.</p>
 </div>
 <div class="lesson-card">
-  <h3>🎯 קביעת דחיפות`).replace('<p>במידה והמטפל הבכיר החליט להפסיק מאמצי החייאה יש להגדיר את הפצוע כ<b>לא דחוף</b> על מנת להימנע מהשקעת משאבים מיותרים שיכולים להיות מופנים לפצוע דחוף.</p>','<p>יש לוודא <b>העברת דיווח על הפסקת מאמצי החייאה לדרג הבא</b> — למניעת השקעת משאבים מיותרים בפצוע שנקבע עליו מוות בדרג קודם.</p>')};
+  <h3><i class="ic ic-target"></i> קביעת דחיפות`).replace('<p>במידה והמטפל הבכיר החליט להפסיק מאמצי החייאה יש להגדיר את הפצוע כ<b>לא דחוף</b> על מנת להימנע מהשקעת משאבים מיותרים שיכולים להיות מופנים לפצוע דחוף.</p>','<p>יש לוודא <b>העברת דיווח על הפסקת מאמצי החייאה לדרג הבא</b> — למניעת השקעת משאבים מיותרים בפצוע שנקבע עליו מוות בדרג קודם.</p>')};
 
 /* ---- סכמת טיפול מלאה (חובש ומטפל בכיר) ---- */
 D['full-scheme']={eyebrow:'סכמת טיפול',title:'סכמת הטיפול בפצוע בודד',group:null,body:`
@@ -921,30 +833,30 @@ D['full-scheme']={eyebrow:'סכמת טיפול',title:'סכמת הטיפול ב�
 <div class="scheme-wrap">
 <table class="scheme-table">
 <tbody>
-<tr class="sec-row"><td colspan="2">🔴 טיפול תחת אש</td></tr>
+<tr class="sec-row"><td colspan="2"><i class="ic ic-tourniquet"></i> טיפול תחת אש</td></tr>
 <tr><td><span class="ltr ltr-X">X</span></td><td>ביצוע תרגולת <b>חלץ-טפל</b> או טכניקה קרבית <b>פצוע בכוח</b></td></tr>
 <tr><td><span class="ltr ltr-X">X</span></td><td>הכרזה בשטח ובקשר על פצוע בכוח</td></tr>
 <tr><td><span class="ltr ltr-X">X</span></td><td>השגת עליונות באש</td></tr>
 <tr><td><span class="ltr ltr-X">X</span></td><td>הגעה למחסה ראשוני ע"י חילוץ עצמי או כוח שהוגדר לכך</td></tr>
 <tr><td><span class="ltr ltr-X">X</span></td><td>עצירת דימום פורץ עצמאית או ע"י לוחם / מטפל סמוך</td></tr>
-<tr class="sec-row"><td colspan="2">📋 סקר ראשוני — EXtract</td></tr>
+<tr class="sec-row"><td colspan="2"><i class="ic ic-clipboard"></i> סקר ראשוני — EXtract</td></tr>
 <tr><td><span class="ltr ltr-X">X</span></td><td>הגעה לסביבה מאובטחת / בטוחה</td></tr>
 <tr><td><span class="ltr ltr-X">X</span></td><td>התרשמות ראשונית מהירה — מנגנון הפציעה, בחינה ויזואלית ופניה לפצוע, דחיפות</td></tr>
 <tr><td><span class="ltr ltr-X">X</span></td><td>דיווח אג"מי — פניה, הזדהות, תיאור האירוע, מיקום, מספר פצועים ודחיפות פינוי</td></tr>
-<tr style="background:rgba(255,255,255,0.035)"><td colspan="2" style="padding:5px 12px;font-size:11.5px;font-weight:600;color:rgba(200,215,230,0.6);border-top:1px solid rgba(255,255,255,0.07)">🩸 C — Circulation &nbsp;·&nbsp; <span style="color:var(--accent)">∼ 30–90 sec</span></td></tr>
+<tr style="background:rgba(255,255,255,0.035)"><td colspan="2" style="padding:5px 12px;font-size:11.5px;font-weight:600;color:rgba(200,215,230,0.6);border-top:1px solid rgba(255,255,255,0.07)"><i class="ic ic-droplet"></i> C — Circulation &nbsp;·&nbsp; <span style="color:var(--accent)">∼ 30–90 sec</span></td></tr>
 <tr><td><span class="ltr ltr-C">C</span></td><td>עצירת דימום פורץ. בוצע בדרג קודם ← וידוא שהדימום נעצר</td></tr>
 <tr><td><span class="ltr ltr-C">C</span></td><td>חיפוש פציעות ומקורות דימום בגו, גפיים ואזורים נסתרים — תוך <b>הפיכה והפשטה</b>: ראש, חזה, עורף, בתי שחי, גב, גפיים, עכוז ומפשעות</td></tr>
 <tr><td><span class="ltr ltr-C">C</span></td><td><b>הערכה קלינית:</b> הכרה לפי AVPU · בהיעדר נשימה/תגובה לכאב ← JT + AW · בטראומה לנתיב האוויר ← סילוק הפרשות + הושבה</td></tr>
 <tr><td><span class="ltr ltr-C">C</span></td><td>מדידת <b>ל"ד, דופק</b> (איכותי וכמותי), <b>סטורציה</b></td></tr>
 <tr><td><span class="ltr ltr-C">C</span></td><td>בהלם עמוק ← הנחיית הצוות להשגת גישה למחזור הדם + הכנת מוצרי דם. המשך הסכמה ע"י מט"ב — הפעולות ע"י חובשים בלבד בשלב זה.<div class="scheme-note">תחילת פינוי בהתאם למצב המבצעי ויכולת הטיפול בפינוי</div></td></tr>
-<tr style="background:rgba(255,255,255,0.035)"><td colspan="2" style="padding:5px 12px;font-size:11.5px;font-weight:600;color:rgba(200,215,230,0.6);border-top:1px solid rgba(255,255,255,0.07)">🫁 A — Airway &nbsp;·&nbsp; <span style="color:var(--accent)">∼ 30 sec</span></td></tr>
+<tr style="background:rgba(255,255,255,0.035)"><td colspan="2" style="padding:5px 12px;font-size:11.5px;font-weight:600;color:rgba(200,215,230,0.6);border-top:1px solid rgba(255,255,255,0.07)"><i class="ic ic-lungs"></i> A — Airway &nbsp;·&nbsp; <span style="color:var(--accent)">∼ 30 sec</span></td></tr>
 <tr><td><span class="ltr ltr-A">A</span></td><td>הערכת נתיב האוויר ומצוקה נשימתית — תוך פניה לפצוע</td></tr>
 <tr><td><span class="ltr ltr-A">A</span></td><td>אמצעים בסיסיים: פתיחת פה + סילוק הפרשות · הושבה · העשרה בחמצן</td></tr>
-<tr style="background:rgba(255,255,255,0.035)"><td colspan="2" style="padding:5px 12px;font-size:11.5px;font-weight:600;color:rgba(200,215,230,0.6);border-top:1px solid rgba(255,255,255,0.07)">💨 R — Respiration</td></tr>
+<tr style="background:rgba(255,255,255,0.035)"><td colspan="2" style="padding:5px 12px;font-size:11.5px;font-weight:600;color:rgba(200,215,230,0.6);border-top:1px solid rgba(255,255,255,0.07)"><i class="ic ic-lungs"></i> R — Respiration</td></tr>
 <tr><td><span class="ltr ltr-R">R</span></td><td>בהיעדר נשימה ← הנשמה באמבו ומסיכה</td></tr>
 <tr><td><span class="ltr ltr-R">R</span></td><td>בחשד לפגיעה ← שמירה על עמש"צ</td></tr>
 <tr><td><span class="ltr ltr-R">R</span></td><td>חשיפת בית החזה והתרשמות מסימני חבלה</td></tr>
-<tr style="background:rgba(255,255,255,0.035)"><td colspan="2" style="padding:5px 12px;font-size:11.5px;font-weight:600;color:rgba(200,215,230,0.6);border-top:1px solid rgba(255,255,255,0.07)">🩹 E — Exposure &amp; Evacuation &nbsp;·&nbsp; <span style="color:var(--accent)">∼ 60 sec</span></td></tr>
+<tr style="background:rgba(255,255,255,0.035)"><td colspan="2" style="padding:5px 12px;font-size:11.5px;font-weight:600;color:rgba(200,215,230,0.6);border-top:1px solid rgba(255,255,255,0.07)"><i class="ic ic-bandage"></i> E — Exposure &amp; Evacuation &nbsp;·&nbsp; <span style="color:var(--accent)">∼ 60 sec</span></td></tr>
 <tr><td><span class="ltr ltr-E">E</span></td><td><b>הפשטה מלאה + הפיכה</b> — איתור כלל הפציעות, עצירת דימום שזוהה</td></tr>
 <tr><td><span class="ltr ltr-E">E</span></td><td>ראש — התרשמות מסימני חבלה</td></tr>
 <tr><td><span class="ltr ltr-E">E</span></td><td>עמש"צ — בחשד לפגיעה ← הנחת צווארון</td></tr>
@@ -952,7 +864,7 @@ D['full-scheme']={eyebrow:'סכמת טיפול',title:'סכמת הטיפול ב�
 <tr><td><span class="ltr ltr-E">E</span></td><td>כיסוי, חימום והעמסה לאלונקה</td></tr>
 <tr><td><span class="ltr ltr-E">E</span></td><td>חיתוך מצב — סיכום ממצאים, הגדרת דחיפות הפינוי, מתן הנחיות לצוות <span class="matav-badge">מט"ב</span></td></tr>
 <tr><td><span class="ltr ltr-E">E</span></td><td>העברת דיווח רפואי + השלמת תיעוד ב-101 (דיגיטלי / ידני)</td></tr>
-<tr class="sec-row"><td colspan="2">🔬 סקר שניוני</td></tr>
+<tr class="sec-row"><td colspan="2"><i class="ic ic-microscope"></i> סקר שניוני</td></tr>
 <tr><td><span class="ltr ltr-C">C</span></td><td>הערכת הלם חוזרת + המשך החזר נפח לפצועים בהלם עמוק</td></tr>
 <tr><td><span class="ltr ltr-C">C</span></td><td>השגת גישה למחזור הדם וקיבוע  <span class="matav-badge"">מט"ב</span></td></tr>
 <tr><td><span class="ltr ltr-C">C</span></td><td>מתן TXA  <span class="matav-badge"">מט"ב</span></td></tr>
@@ -971,7 +883,7 @@ D['full-scheme']={eyebrow:'סכמת טיפול',title:'סכמת הטיפול ב�
 <tr><td><span class="ltr ltr-E">E</span></td><td>השלמת תיעוד ב-101 (דיגיטלי / ידני)</td></tr>
 <tr><td><span class="ltr ltr-E">E</span></td><td>הערכה לתגובת דחק / קרב + ביצוע התערבות יהלו"ם</td></tr>
 <tr><td><span class="ltr ltr-E">E</span></td><td>העברת דיווח רפואי חוזר</td></tr>
-<tr class="sec-row"><td colspan="2">🕐 PFC — טיפול מתמשך</td></tr>
+<tr class="sec-row"><td colspan="2"><i class="ic ic-clock"></i> PFC — טיפול מתמשך</td></tr>
 <tr><td><span class="ltr ltr-PFC">PFC</span></td><td>ניטור ותיעוד סימנים חיוניים באופן תדיר ומחזורי</td></tr>
 <tr><td><span class="ltr ltr-PFC">PFC</span></td><td>החדרת נקז חזה לפצוע חזה נושם עצמונית עם הדרדרות נשימתית  <span class="matav-badge"">מט"ב</span></td></tr>
 <tr><td><span class="ltr ltr-PFC">PFC</span></td><td>מתן חוזר של טיפול תרופתי תוך-ורידי  <span class="matav-badge"">מט"ב</span></td></tr>
@@ -1199,7 +1111,7 @@ ${[
 /* ===== לקחי מלחמת התקומה ===== */
 D['lessons']={eyebrow:'לומדה',title:'לקחי מלחמת התקומה',group:null,body:`
 <div class="lesson-card">
-  <h3>📜 הנחיות חיל הרפואה — מחייבות</h3>
+  <h3><i class="ic ic-file"></i> הנחיות חיל הרפואה — מחייבות</h3>
   <ul>
     <li>אין לעשות שימוש בציוד רפואי שאינו מאושר.</li>
     <li>מטפל שאינו מוכר ע"י חיל הרפואה — יטפל בסמכויות <b>מח"צ בלבד.</b></li>
@@ -1207,7 +1119,7 @@ D['lessons']={eyebrow:'לומדה',title:'לקחי מלחמת התקומה',grou
   </ul>
 </div>
 <div class="lesson-card">
-  <h3>🎯 מבצעי</h3>
+  <h3><i class="ic ic-target"></i> מבצעי</h3>
   <ul>
     <li>נוהל קרב מדוקדק וקפ"ק פינוי יומי הכולל כוחות רפואה ומפקדים רלוונטיים (לרוב ציר סגנים) — <b>המפתח להצלחת מאמץ הפינוי.</b> הנוהל יכלול: כוחות הפינוי וכשירותם (כולל מיקום הדם המלא), מיקומם, תדרי דיווח (מחו"פ, מנו"ח ורשתות נוספות), צירי פינוי, קווי תיאום, נקודות שחלוף, מנחתים וכח אג"מי מנחית. מומלץ לקיים קפ"ק פינוי חטיבתי על רשת מנו"ח.</li>
     <li>יש לתכנן את <b>"שרשרת הפיקוד והמענה הרפואי"</b> במקרה שכוח רפואי נפגע.</li>
@@ -1220,12 +1132,12 @@ D['lessons']={eyebrow:'לומדה',title:'לקחי מלחמת התקומה',grou
   <p>ייעוד לבנות הפינוי הוא <b>פינוי בלבד</b> — אין להשתמש בהן לוגיסטית.</p>
 </div>
 <div class="lesson-card">
-  <h3>📡 שליטה, תיעוד ודיווח</h3>
+  <h3><i class="ic ic-radio"></i> שליטה, תיעוד ודיווח</h3>
   <p>יש לדווח <b>מוקדם ככל הניתן</b> לצורך בניית תמונת מצב והבאת משאבים.</p>
   <p>תיעוד על גבי <b>טופס 101</b> (דיגיטלי/ידני) <b>ומנפ"ץ</b> לכל פצוע — גם אם לא פונה. גם פעולות שהחלו ולא הושלמו מחויבות בהעברת מקל ודיווח.</p>
 </div>
 <div class="lesson-card">
-  <h3>🪖 אר"ן וטריאז'</h3>
+  <h3><i class="ic ic-shield-plus"></i> אר"ן וטריאז'</h3>
   <ul>
     <li>הכרז אר"ן <b>מוקדם ככל האפשר</b> — הן בשטח והן בדרגי המפקדות.</li>
     <li>הגדרת "ממתין" באר"ן: <b>פצוע שאינו נושם באופן ספונטני.</b></li>
@@ -1234,12 +1146,12 @@ D['lessons']={eyebrow:'לומדה',title:'לקחי מלחמת התקומה',grou
   </ul>
 </div>
 <div class="lesson-card">
-  <h3>☠️ אובדן סימני חיים</h3>
+  <h3><i class="ic ic-activity"></i> אובדן סימני חיים</h3>
   <p>ניתן להחליט על הפסקת / אי ביצוע מאמצי החייאה על ידי כל מטפל בכיר (רופא / פרמדיק) בהיעדר נשימה, דופק, תגובת אישונים ול"ד. יש למלא טופס 101 הכולל את הפעולות והסימנים שהובילו להחלטה.</p>
   <p>קביעת המוות הסופית — <b>רק ע"י רופא/ה</b>, על גבי טופס הודעת פטירה.</p>
 </div>
 <div class="lesson-card">
-  <h3>🩸 עצירת דימומים</h3>
+  <h3><i class="ic ic-droplet"></i> עצירת דימומים</h3>
   <ul>
     <li>בקיאות ב: CAT, First Care ועצירת דימומים ע"י נקודות לחיצה.</li>
     <li>דימום מפציעות מפשעה שכיח — <b>הפשטה מלאה</b> (דגש על תחתונים) וסריקה יסודית.</li>
@@ -1247,7 +1159,7 @@ D['lessons']={eyebrow:'לומדה',title:'לקחי מלחמת התקומה',grou
   </ul>
 </div>
 <div class="lesson-card">
-  <h3>💉 החזר נפח</h3>
+  <h3><i class="ic ic-syringe"></i> החזר נפח</h3>
   <ul>
     <li>מתן נפח <b>רק</b> בהלם עמוק (ל"ד &lt;90 / היעדר דופק רדיאלי / שינוי הכרה). מומלץ למדוד ל"ד לפני הפינוי.</li>
     <li>בפצוע המחובר למנת נפח — יש לסיים את המנה ורק אז להעריך מחדש.</li>
@@ -1257,7 +1169,7 @@ D['lessons']={eyebrow:'לומדה',title:'לקחי מלחמת התקומה',grou
   </ul>
 </div>
 <div class="lesson-card">
-  <h3>🌬️ נתיב אוויר וחזה</h3>
+  <h3><i class="ic ic-wind"></i> נתיב אוויר וחזה</h3>
   <ul>
     <li>בבעיה בנתיב האוויר — התחל בטיפול שמרני: הושבה, סילוק הפרשות, חמצן.</li>
     <li>הנשמה בלחץ חיובי בפצוע מדמם תרע את מצבו ההמודינמי — הימנע מהתערבויות מיותרות.</li>
@@ -1265,7 +1177,7 @@ D['lessons']={eyebrow:'לומדה',title:'לקחי מלחמת התקומה',grou
   </ul>
 </div>
 <div class="lesson-card">
-  <h3>🧠 פציעות ראש</h3>
+  <h3><i class="ic ic-brain"></i> פציעות ראש</h3>
   <ul>
     <li>לאחר טיפול בפגיעות מסכנות חיים — ניטור תדיר: הכרה, אישונים, GCS.</li>
     <li>שמירה: ל"ד סיסטולי &gt;90 · סטורציה &gt;90% · מניעת היפותרמיה.</li>
@@ -1273,16 +1185,16 @@ D['lessons']={eyebrow:'לומדה',title:'לקחי מלחמת התקומה',grou
   </ul>
 </div>
 <div class="lesson-card">
-  <h3>💊 טיפול בכאב</h3>
+  <h3><i class="ic ic-pill"></i> טיפול בכאב</h3>
   <p>בתום סקר החייאה, לאחר הערכה המודינמית. התווית נגד לאקטיק: הלם עמוק.</p>
   <p>כאב עוצמה 5+ + גישה ורידית ← <b>קטמין IV 25 מ"ג.</b></p>
 </div>
 <div class="lesson-card">
-  <h3>🩹 סקר שניוני</h3>
+  <h3><i class="ic ic-bandage"></i> סקר שניוני</h3>
   <p>שטיפת פצע כבר בדרג השטח — דגש על פצעים עמוקים ו"מלוכלכים". קיבוע לאלונקה בכל שלבי הפינוי — לא סותר כיסוי בשמיכת מילוט.</p>
 </div>
 <div class="lesson-card">
-  <h3>🚁 חבירה לפינוי מוסק</h3>
+  <h3><i class="ic ic-helicopter"></i> חבירה לפינוי מוסק</h3>
   <ul>
     <li>קיבוע ציוד לפני הגעת מסוק (שמיכת מילוט!).</li>
     <li>אין להעביר דרישת קיצור — רק הזנקה; אם לא נדרש: חזל"ש.</li>
@@ -1294,7 +1206,7 @@ D['lessons']={eyebrow:'לומדה',title:'לקחי מלחמת התקומה',grou
 </div>
 
 <div class="lesson-card">
-  <h3>🛡️ מיגון אישי ללוחם</h3>
+  <h3><i class="ic ic-shield"></i> מיגון אישי ללוחם</h3>
   <p>פציעות חודרות הן הנפוצות ביותר בלחימה. 55% מהאירועים נגרמו מ<b>פיצוץ/רסיסים</b>, רק 10% מירי. בקרב חללים מרסיסים — <b>62% נפצעו בגו</b>.</p>
   <p><b>שני סוגי מיגון עיקריים:</b></p>
   <ul>
@@ -1306,7 +1218,7 @@ D['lessons']={eyebrow:'לומדה',title:'לקחי מלחמת התקומה',grou
 </div>
 
 <div class="lesson-card">
-  <h3>🚁 רחפני FPV — פציעות ולקחים (10.05.2026)</h3>
+  <h3><i class="ic ic-helicopter"></i> רחפני FPV — פציעות ולקחים (10.05.2026)</h3>
   <p>רחפני FPV הם נושאי נפץ מסוגים שונים עם יכולת צפייה מרחוק. <b>הספרות לקויה בחסר</b> ומבוססת בעיקר על דיווחים מאוקראינה.</p>
   <p><b>פציעות אופייניות (בעירבון מוגבל):</b></p>
   <ul>
@@ -1318,7 +1230,7 @@ D['lessons']={eyebrow:'לומדה',title:'לקחי מלחמת התקומה',grou
 </div>
 
 <div class="lesson-card">
-  <h3>💉 IO — גישה תוך-גרמית: נתונים <span class="matav-badge" style="font-weight:400">מט"ב בלבד</span></h3>
+  <h3><i class="ic ic-syringe"></i> IO — גישה תוך-גרמית: נתונים <span class="matav-badge" style="font-weight:400">מט"ב בלבד</span></h3>
   <p>בפצועים בהלם עמוק: שיעור הצלחה של <b>IO — 83.9%</b> לעומת <b>IV — 63.1%</b> בניסיון הראשון.</p>
   <p>בפצוע בהלם עמוק — יש להיות עם <b>סף נמוך להחלטה על IO</b>, בעדיפות <b>EZIO על פני NIO</b>.</p>
   <p>בביצוע IO בהומרוס — קיים אתגר בקיבוע: <b>יש לקבע את הזרוע לצד הגוף</b>.</p>
@@ -1335,34 +1247,34 @@ const ROLE_HOME={ls:'menu',md:'menu'};
 
 /* ===== ROLES (sidebar + direct entry) ===== */
 const ROLE_DEF={
-  ls:{title:'מח"צ',emoji:'🪖',first:'ls-chaltz',items:[
+  ls:{title:'מח"צ',emoji:'<i class="ic ic-shield-plus"></i>',first:'ls-chaltz',items:[
     {go:'lesson:ls-chaltz',label:'1. חלץ טפל'},
     {go:'lesson:ls-bleed',label:'2. עצירת דימומים'},
     {go:'lesson:ls-scheme',label:'3. סכמת הטיפול בפצוע בודד'},
     {go:'lesson:ls-arn',label:'4. אר"ן'},
     {go:'lesson:ls-yahalom',label:'5. יהלו"ם — תגובת קרב'},
   ]},
-  md:{title:'חובש',emoji:'🩹',first:'md-X',items:[
+  md:{title:'חובש',emoji:'<i class="ic ic-bandage"></i>',first:'md-X',items:[
     {go:'lesson:md-X',label:'X — חילוץ'},
     {go:'lesson:md-C',label:'C — עצירת דימומים'},
     {go:'lesson:md-volflow',label:'C — החזר נפח והמרת CAT'},
     {go:'lesson:md-AR',label:'A/R — נתיב אוויר ונשימה'},
     {go:'lesson:md-E',label:'E — הכנה ופינוי'},
-    {go:'lesson:md-arn',label:'📋 אר"ן'},
-    {go:'lesson:md-yahalom',label:'💎 יהלו"ם'},
-    {go:'lesson:full-scheme',label:'📊 סכמת הטיפול'},
+    {go:'lesson:md-arn',label:'<i class="ic ic-clipboard"></i> אר"ן'},
+    {go:'lesson:md-yahalom',label:'<i class="ic ic-gem"></i> יהלו"ם'},
+    {go:'lesson:full-scheme',label:'<i class="ic ic-chart"></i> סכמת הטיפול'},
   ]},
-  sr:{title:'מטפל בכיר',emoji:'⚕️',first:'md-X',items:[
+  sr:{title:'מטפל בכיר',emoji:'<i class="ic ic-stethoscope"></i>',first:'md-X',items:[
     {go:'lesson:md-X',label:'X — חילוץ'},
     {go:'lesson:md-C',label:'C — עצירת דימומים'},
     {go:'lesson:md-volflow',label:'C — החזר נפח והמרת CAT'},
     {go:'lesson:md-AR',label:'A/R — נתיב אוויר ונשימה'},
     {go:'lesson:md-E',label:'E — הכנה ופינוי'},
-    {go:'lesson:md-arn',label:'📋 אר"ן'},
-    {go:'lesson:md-yahalom',label:'💎 יהלו"ם'},
-    {go:'sr-protocols',label:'📋 פרוטוקולים'},
-    {go:'sr-drugs',label:'💊 תרופות'},
-    {go:'lesson:full-scheme',label:'📊 סכמת הטיפול'},
+    {go:'lesson:md-arn',label:'<i class="ic ic-clipboard"></i> אר"ן'},
+    {go:'lesson:md-yahalom',label:'<i class="ic ic-gem"></i> יהלו"ם'},
+    {go:'sr-protocols',label:'<i class="ic ic-clipboard"></i> פרוטוקולים'},
+    {go:'sr-drugs',label:'<i class="ic ic-pill"></i> תרופות'},
+    {go:'lesson:full-scheme',label:'<i class="ic ic-chart"></i> סכמת הטיפול'},
   ]},
 };
 let currentRole=null;
@@ -1383,7 +1295,6 @@ function enterRole(role){
 
 /* ===== NAV ===== */
 let _hist=['splash'];
-const NUM_EMOJI=new RegExp('^[1-9]\\uFE0F?\\u20E3');
 function buildStepNav(total,goTo){
   const nav=document.createElement('div');
   nav.className='stepper-nav';
@@ -1409,7 +1320,7 @@ function enhanceInteractivity(){
   body.querySelectorAll('.flow-wrap').forEach(fw=>{
     if(fw.dataset.enhanced)return;
     const steps=[...fw.children].filter(c=>c.classList.contains('flow-step'));
-    if(steps.length<2||!NUM_EMOJI.test(steps[0].textContent.trim()))return;
+    if(steps.length<2||!steps[0].querySelector('.step-n'))return;
     fw.dataset.enhanced='1';
     fw.classList.add('stepper');
     const nav=buildStepNav(steps.length,i=>steps.forEach((s,j)=>s.classList.toggle('cur',j===i)));
@@ -1461,7 +1372,7 @@ function renderLesson(key){
     if(idx<arr.length-1){nx=document.createElement('div');nx.className='btn btn-primary';const nextKey=arr[idx+1];nx.innerHTML=(nextKey==='md-yahalom'?'יהלום':'המשך')+' <span dir="ltr">←</span>';nx.onclick=()=>go('lesson:'+nextKey);}
     else if(currentRole==='sr'&&key==='md-yahalom'){nx=document.createElement('div');nx.className='btn btn-primary';nx.innerHTML='פרוטוקולים <span dir="ltr">←</span>';nx.onclick=()=>go('sr-protocols');}
     else if(currentRole==='md'&&key==='md-yahalom'){nx=document.createElement('div');nx.className='btn btn-primary';nx.innerHTML='סכמת הטיפול בפצוע בודד <span dir="ltr">←</span>';nx.onclick=()=>go('lesson:full-scheme');}
-    else{nx=document.createElement('div');nx.className='btn btn-primary';nx.textContent='סיום ✓';nx.onclick=()=>go(ROLE_HOME[d.group]);}
+    else{nx=document.createElement('div');nx.className='btn btn-primary';nx.innerHTML='סיום <i class="ic ic-check"></i>';nx.onclick=()=>go(ROLE_HOME[d.group]);}
     const bk=document.createElement('div');bk.className='btn btn-ghost';bk.textContent='תפריט';bk.onclick=()=>go(ROLE_HOME[d.group]);
     const back=document.createElement('div');back.className='btn btn-ghost';back.innerHTML='<span dir="ltr">→</span> חזור';
     if(idx>0){back.onclick=()=>go('lesson:'+arr[idx-1]);}else{back.onclick=()=>go(ROLE_HOME[d.group]);}
@@ -1496,7 +1407,6 @@ function navBack(){
 document.addEventListener('click',e=>{
   const t=e.target.closest('[data-go]');if(!t)return;
   const tgt=t.getAttribute('data-go');
-  if(tgt==='evac-tools')return;
   if(tgt.startsWith('role:'))enterRole(tgt.slice(5));
   else go(tgt);
 });
